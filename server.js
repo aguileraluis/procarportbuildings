@@ -39,6 +39,19 @@ app.use('/api/signedupusers', signedRoute);
 __dirname = path.resolve();
 
 if(process.env.NODE_ENV === "production") {
+  var mongoURL = 'mongodb+srv://luisaguileragarciamail:Knu081895!luis@cluster0.fgnl8h4.mongodb.net/project0';
+
+mongoose.connect(mongoURL, { useUnifiedTopology : true, useNewUrlParser : true }); 
+
+var connection = mongoose.connection; 
+
+connection.on('connected', ()=> {
+    console.log('Mongo DB Connection Successful'); 
+});
+
+connection.on('error', ()=> {
+  console.log('Mongo DB Connection failed'); 
+}); 
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
   app.get('*', function (req, res) {
