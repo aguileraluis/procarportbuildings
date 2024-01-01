@@ -86,13 +86,13 @@ const ProductList = () => {
   const changeLocation = (e) => {
     const locationvalue = e.target.value;
     if (locationvalue === "Standard-Buildings"){
-        window.location.href = 'http://localhost:3000/products/Standard%20Buildings'
+        window.location.href = '/products/Standard%20Buildings'
     } else if (locationvalue === "Barn-Buildings") {
-        window.location.href = 'http://localhost:3000/products/Barn%20Buildings'
+        window.location.href = '/products/Barn%20Buildings'
     } else if (locationvalue === "Triple-Buildings") {
-        window.location.href = 'http://localhost:3000/products/Triple%20Buildings'
+        window.location.href = '/products/Triple%20Buildings'
     } else if (locationvalue === "Commercial-Buildings") {
-        window.location.href = 'http://localhost:3000/products/Commercial%20Buildings'
+        window.location.href = '/products/Commercial%20Buildings'
     }
   }
 
@@ -130,10 +130,10 @@ const ProductList = () => {
           <FilterText>Select Category:</FilterText>
           <Select onChange={changeLocation}>
             <Option>Select Carport Style</Option>
-            <Option value="Standard-Buildings"><Link to='http://localhost:5000/api/products?category=Standard%20Buildings'>Standard Buildings</Link></Option>
-            <Option value="Barn-Buildings"><Link to='http://localhost:5000/api/products?category=Barn%20Buildings'>Barn Buildings</Link></Option>
-            <Option value="Triple-Buildings"><Link to='http://localhost:5000/api/products?category=Triple%20Buildings'>Triple Buildings</Link></Option>
-            <Option value="Commercial-Buildings"><Link to='http://localhost:5000/api/products?category=Triple%20Buildings'>Commercial 40' 50' 60' Buildings</Link></Option>
+            <Option value="Standard-Buildings"><Link to='/products/Standard%20Buildings'>Standard Buildings</Link></Option>
+            <Option value="Barn-Buildings"><Link to='/products/Barn%20Buildings'>Barn Buildings</Link></Option>
+            <Option value="Triple-Buildings"><Link to='/products/Triple%20Buildings'>Triple Buildings</Link></Option>
+            <Option value="Commercial-Buildings"><Link to='/products/Triple%20Buildings'>Commercial 40' 50' 60' Buildings</Link></Option>
           </Select>
         </Filter>
       </FilterContainer>
