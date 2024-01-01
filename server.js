@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-require('dotenv').config({ path: "./.env" });
+require('dotenv').config({ path: "./config.env" });
 dotenv.config();
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
@@ -14,19 +14,12 @@ const usersRoute= require('./routes/usersRoute');
 const signedRoute = require('./routes/signedRoute');
 mongoose.set('strictQuery', true);
 
-var mongoURL = 'mongodb+srv://luisaguileragarciamail:Knu081895!luis@cluster0.fgnl8h4.mongodb.net/project0';
-
-mongoose.connect(mongoURL, { useUnifiedTopology : true, useNewUrlParser : true }); 
-
-var connection = mongoose.connection; 
-
-connection.on('connected', ()=> {
-    console.log('Mongo DB Connection Successful'); 
-});
-
-connection.on('error', ()=> {
-  console.log('Mongo DB Connection failed'); 
-}); 
+mongoose
+  .connect(process.env.MONGO_URI, { useUnifiedTopology : true, useNewUrlParser : true } )
+  .then(() => console.log("DB Connection Successfull!"))
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(cors());
 app.use(express.json());
@@ -39,19 +32,6 @@ app.use('/api/signedupusers', signedRoute);
 __dirname = path.resolve();
 
 if(process.env.NODE_ENV === "production") {
-  var mongoURL = 'mongodb+srv://luisaguileragarciamail:Knu081895!luis@cluster0.fgnl8h4.mongodb.net/project0';
-
-mongoose.connect(mongoURL, { useUnifiedTopology : true, useNewUrlParser : true }); 
-
-var connection = mongoose.connection; 
-
-connection.on('connected', ()=> {
-    console.log('Mongo DB Connection Successful'); 
-});
-
-connection.on('error', ()=> {
-  console.log('Mongo DB Connection failed'); 
-}); 
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
   app.get('*', function (req, res) {
