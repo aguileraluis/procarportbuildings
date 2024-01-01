@@ -1,0 +1,96 @@
+
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+    text-align: center !important;
+    justify-content: space-between;
+    gap: 30px !important;
+    margin-top: 35px;
+}
+
+.testimonials .container {
+    width: 1440px;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.testimonials h2 {
+    font-size: 4rem;
+    margin-top: 5%;
+    margin-right: 15% !important;
+    margin-left: 8%;
+    margin-bottom: 20px;
+}
+
+.testimonials .container .content {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.testimonials .card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgb(0,0,0,.2);
+    padding: 1rem;
+    width: 100% !important;
+    height: 100%;
+    text-align: center !important;
+}
+
+.testimonials .card p {
+    color: #181717;
+    font-size: 1.4rem;
+    /* margin: 5px; */
+}
+
+.testimonials .card span {
+    color: darkcyan;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 940px) {
+
+    .testimonials {
+        max-width: 100%;
+        text-align: center !important;
+        position: relative;
+        display: flex;
+        margin-right: 20px;
+        margin-left: 40px;
+        
+    }
+
+    .testimonials h2 {
+        font-size: 2rem;
+        /* margin-right: 200px !important; */
+        text-align: center !important;
+        margin-top: 5%;
+    }
+
+    .testimonials .container {
+        /* margin-right: 140px !important; */
+        width: 100%;
+        text-align: center !important;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .testimonials .container .content {
+        text-align: center;
+        grid-template-columns: 1fr;
+        gap: 30px !important;
+
+    }
+
+    .testimonials .card {
+        max-width: 100%;
+        /* margin: 1rem; */
+        
+        text-align: center;
+    }
+}

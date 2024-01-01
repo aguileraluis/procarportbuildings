@@ -1,0 +1,47 @@
+.heroimg {
+    position: block;
+    display: inline-block;
+    width: 90vw;
+    height: 60vh;
+    object-fit: cover;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.h1tag {
+    text-align: center;
+    align-items: center;
+    font-size: 60px;
+    width: 100%;
+    color: black;
+    text-transform: uppercase;
+    font-family: 'GoldmanBold';
+    font-weight: 100;
+    position: relative;
+    margin-bottom: 200px;
+    border-radius: 30px;
+
+    @media screen and (max-width: 850px) {
+        text-align: center;
+        align-items: center;
+        font-size: 40px;
+        width: 100%;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'GoldmanBold';
+        font-weight: 100;
+        position: relative;
+        margin-bottom: 200px; 
+    
+      }
+}
+
+.h2tag {
+    margin-bottom: 100px;
+    margin-top: -40px;
+    color: black;
+    border-radius: 20px;
+    opacity: 2 !important;
+   background-color: white;
+    padding: 10px;
+}
