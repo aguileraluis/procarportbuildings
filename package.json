@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "node server",
     "client": "npm start",
     "build": "npm i",
-    "server": "nodemon server",
+    "server": "node server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server"
+    "dev": "node server"
   },
   "keywords": [],
   "author": "",
