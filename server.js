@@ -12,6 +12,7 @@ const cors = require("cors");
 const path = require("path");
 const usersRoute= require('./routes/usersRoute');
 const signedRoute = require('./routes/signedRoute');
+mongoose.set('strictQuery', true);
 
 mongoose
   .connect(process.env.MONGO_URI)
