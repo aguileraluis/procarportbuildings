@@ -6,12 +6,13 @@ require('dotenv').config({ path: "./config.env" });
 dotenv.config();
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes/usersRoute");
 const stripeRoute = require("./routes/stripe");
 const cors = require("cors");
 const path = require("path");
 const usersRoute= require('./routes/usersRoute');
 const signedRoute = require('./routes/signedRoute');
-// mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true);
 
 mongoose
   .connect(process.env.MONGO_URI, { useUnifiedTopology : true, useNewUrlParser : true } )
