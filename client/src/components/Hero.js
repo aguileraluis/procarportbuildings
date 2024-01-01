@@ -5,9 +5,6 @@ import herotwo from '../images/herotwo.jpg';
 import herothree from '../images/herothree.jpg';
 import './Hero.css';
 
-
-
-
 function Hero() {
   return (
     <Carousel data-bs-theme="dark" fade={true} pause={false}>

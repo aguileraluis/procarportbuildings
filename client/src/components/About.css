@@ -7,16 +7,12 @@
     height: auto;
     text-align: center;
 
-    @media screen and (max-width: 850px) {
-        flex: 0 0 100%; 
-        max-width: 100%;
-        aspect-ratio: 16/9;
-        width: '50%';
-        height: '50%';
-         position: 'relative';
-          display: 'inline-block';
-          margin-right: '1rem';
-      }
+        @media screen and (max-width: 850px) {
+            max-width: 100%;
+            position: 'relative';
+             display: 'block';
+             text-align: center !important;
+          }
 }
 
 .aboutimg {
@@ -79,7 +75,7 @@
 }
 
 
-@media screen and (max-width:940px) {
+@media screen and (max-width:850px) {
     .about .container {
         grid-template-columns: 1fr;
     }
