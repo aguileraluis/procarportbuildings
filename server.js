@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-require('dotenv').config({ path: "./config.env" });
+require('dotenv').config({ path: "./.env" });
 dotenv.config();
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
