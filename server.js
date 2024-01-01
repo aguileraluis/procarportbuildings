@@ -14,7 +14,7 @@ const usersRoute= require('./routes/usersRoute');
 const signedRoute = require('./routes/signedRoute');
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err);
@@ -31,10 +31,10 @@ app.use('/api/signedupusers', signedRoute);
 __dirname = path.resolve();
 
 if(process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+  app.use(express.static(path.join(__dirname, 'build')));
 
   app.get('*', function (req, res) {
-      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+      res.sendFile(path.join(__dirname, 'build', 'index.html'));
   })
 } else {
   app.get("/", function (req, res) {
