@@ -17,7 +17,7 @@ const ContainerTwo = styled.div`
   margin-bottom: 1% !important;
   justify-content: space-between;
 
-  ${mobile({ marginBottom: '2px', display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', justifyContent: 'center', textAlign: 'center', borderRadius: '10px', marginLeft: '14%' })}
+  ${mobile({  marginRight: '20px', marginLeft: '55px', marginTop: '20px', flexDirection: "column", display: 'block', gap: '0px'})}
 `;
 
 const Products = ({ cat, filters, sort }) => {
@@ -83,17 +83,9 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <ContainerTwo>
       {cat ? filteredProducts.map((item) => (
-        <div className="row" >
-          <div ClassName="col-md-12">
-            <Product item={item} key={item.id} />
-          </div>
-        </div>
+            <Product item={item} key={item._id} />
       )) : products.map((item) =>
-        <div className="row" >
-          <div ClassName="col-md-12">
-            <Product item={item} key={item.id} />
-          </div>
-        </div>
+            <Product item={item} key={item._id} />
       )}
     </ContainerTwo>
   );
