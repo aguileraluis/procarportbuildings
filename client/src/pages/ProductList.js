@@ -52,7 +52,8 @@ const Select = styled.select`
 `;
 const Option = styled.option`
   font-size: 20px;
-  ${mobile({ width: '60%'})}
+  color: teal;
+  ${mobile({ width: '60%', color: 'teal'})}
 `;
 
 const ProductList = () => {

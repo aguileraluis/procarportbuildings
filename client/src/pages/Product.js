@@ -28,7 +28,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  ${mobile({ display: 'flex', padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -39,7 +39,7 @@ const Image = styled.img`
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: "40vh", width: '100%', objectFit: 'cover' })}
 `;
 
 const InfoContainer = styled.div`

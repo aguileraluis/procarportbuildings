@@ -11,9 +11,10 @@ const Container = styled.form`
   background-color: #d0f7f7;
   display: flex;
   align-items: center;
+  text-align: center;
   justify-content: center;
   flex-direction: column;
-  ${mobile({ marginTop: "70px", height: '80vh'})}
+  ${mobile({ height: '80vh', display: 'flex', textAlign: 'center', flexDirection: 'column', justifyContent: 'center'})}
 `;
 
 const Title = styled.h1`

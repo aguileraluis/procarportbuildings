@@ -13,15 +13,15 @@ import {
   import React from 'react';
   
   const Container = styled.div`
-     position: sticky;
-  position: -webkit-sticky;
-  bottom: 0;
-  width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 0 !important;
+    width: 100%;
     height: 200% !important;
     padding-bottom: 30px;
     background-color: teal;
     text-align: center !important;
-    ${mobile({ flexDirection: "column", marginBottom: '190px', textAlign: 'center', height: '130%'})}
+    ${mobile({ flexDirection: "column", textAlign: 'center', height: '130%'})}
   `;
   
   const Left = styled.div`

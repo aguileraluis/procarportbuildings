@@ -17,42 +17,42 @@ const ContainerTwo = styled.div`
   margin-bottom: 1% !important;
   justify-content: space-between;
 
-  ${mobile({ marginBottom: '2px', display: 'grid', gridTemplateColumns:'repeat(1, 1fr)', justifyContent: 'center', textAlign: 'center',   borderRadius: '10px', marginLeft: '14%'})}
+  ${mobile({ marginBottom: '2px', display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', justifyContent: 'center', textAlign: 'center', borderRadius: '10px', marginLeft: '14%' })}
 `;
 
 const Products = ({ cat, filters, sort }) => {
 
-  const [ products, setProducts ] = useState([]);
-  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
-        try {
-          const res = await axios.get( cat ? `/api/products?category=${cat}` : "/api/products" );
-          setProducts(res.data)
-        } catch (err) {};
+      try {
+        const res = await axios.get(cat ? `/api/products?category=${cat}` : "/api/products");
+        setProducts(res.data)
+      } catch (err) { };
     };
     getProducts()
   }, [cat]);
 
   useEffect(() => {
-    cat && 
+    cat &&
       setFilteredProducts(
-        products.filter((item) => 
-          Object.entries(filters).every(([key, value]) => 
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
             item[key].includes(value)
+          )
         )
       )
-    )
   }, [products, cat, filters])
 
   useEffect(() => {
-    if(sort === "newest") {
+    if (sort === "newest") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
     }
-    else if(sort === "asc") {
+    else if (sort === "asc") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.price - b.price)
       );
@@ -65,33 +65,35 @@ const Products = ({ cat, filters, sort }) => {
   }, [sort])
 
   const location = useLocation();
-    const id = location.pathname.split("/")[2];
-    const [ product, setProduct ] = useState({}); 
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
 
-    useEffect(() => {
-      const getProduct = async () => {
-        try {
-          const res = await publicRequest.get("/products/find/" + id)
-          setProduct(res.data);
-        } catch {
-                
-        }
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id)
+        setProduct(res.data);
+      } catch {
+
       }
-      getProduct()
-    }, [id])
+    }
+    getProduct()
+  }, [id])
 
   return (
     <ContainerTwo>
-        { cat ? filteredProducts.map((item) => (
-
-                  <Product item={item} key={item.id} />
-
-      )) : products.map((item) => 
-      <div className="row" >
-        <div ClassName="col-md-12">
-        <Product item={item} key={item.id} />
+      {cat ? filteredProducts.map((item) => (
+        <div className="row" >
+          <div ClassName="col-md-12">
+            <Product item={item} key={item.id} />
+          </div>
         </div>
-      </div>     
+      )) : products.map((item) =>
+        <div className="row" >
+          <div ClassName="col-md-12">
+            <Product item={item} key={item.id} />
+          </div>
+        </div>
       )}
     </ContainerTwo>
   );
