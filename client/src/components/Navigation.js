@@ -33,16 +33,16 @@ const Navigation = () => {
                 <a href="/" className="logo"><img style={{ height: '40px', alignItems: 'left' }} src={logo} alt="logo" />PRO CARPORT BUILDINGS</a>
                  <ul className="nav-list" id="navlist">
                     <li>
-                        <b><a href="http://localhost:3000/products/Standard%20Buildings">Standard</a></b>
+                        <b><a href="/products/Standard%20Buildings">Standard</a></b>
                     </li>
                     <li>
-                        <b><a href="http://localhost:3000/products/Barn%20Buildings">Barn</a></b>
+                        <b><a href="/products/Barn%20Buildings">Barn</a></b>
                     </li>
                     <li>
-                        <b><a href="http://localhost:3000/products/Triple%20Buildings">Triple</a></b>
+                        <b><a href="/products/Triple%20Buildings">Triple</a></b>
                     </li>
                     <li>
-                        <b><a href="http://localhost:3000/products/Commercial%20Buildings">Commercial</a></b>
+                        <b><a href="/products/Commercial%20Buildings">Commercial</a></b>
                     </li>
                     <li>
                         <b><a href="/gallery">Gallery</a></b>
