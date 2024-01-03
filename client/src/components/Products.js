@@ -81,15 +81,26 @@ const Products = ({ cat, filters, sort }) => {
   }, [id])
 
   return (
-    <div className="row justify-content-center">
+    <div>
+    { cat ?
+      <div className="row justify-content-center">
       <ContainerTwo className="col-sm-12 mt-6 justify-content-center">
-      {cat ? filteredProducts.map((item) => (
+      {filteredProducts.map((item) => (
             <Product item={item} key={item._id} />
-      )) : products.map((item) =>
+      ))}
+      </ContainerTwo>
+      </div>
+      : 
+      
+      <div className="row justify-content-center">
+      <ContainerTwo className="col-sm-12 mt-6 justify-content-center"> 
+      { products.map((item) =>
             <Product item={item} key={item._id} />
       )}
-    </ContainerTwo>
-    </div>
+      </ContainerTwo>
+      </div>
+    }
+    </div>   
     
   );
 };
