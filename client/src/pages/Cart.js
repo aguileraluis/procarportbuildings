@@ -283,7 +283,7 @@ const Cart = () => {
       <Announcement />
  { filled ?
         <form  className="col-md-5 mt-5 justify-content-center cartform" style={{textAlign : 'center'}} onSubmit={sendEmail}>
-              <div className="bs">
+              <div>
                 <h2>Please Complete Form To Continue With Payment</h2>
                 <h4>First Name:</h4> 
                 <input type="text" className="form-control" name="first_name" placeholder="First Name" style={{textAlign : 'center'}}
