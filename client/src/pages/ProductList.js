@@ -143,7 +143,6 @@ const ProductList = () => {
       <Footer />
     </Container>
     </>
- 
   );
 };
 

@@ -10,14 +10,14 @@ import { mobile } from "../responsive";
 
 const ContainerTwo = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 2fr);
   text-align: center !important;
   margin-top: 2% !important;
   margin-left: 5%;
   margin-bottom: 1% !important;
   justify-content: space-between;
 
-  ${mobile({  marginRight: '20px', marginLeft: '55px', marginTop: '20px', flexDirection: "column", display: 'block', gap: '0px'})}
+  ${mobile({ marginRight: '20px', marginLeft: '55px', marginTop: '20px', flexDirection: "column", display: 'block', gap: '5px'})}
 `;
 
 const Products = ({ cat, filters, sort }) => {
