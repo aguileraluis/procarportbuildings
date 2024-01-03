@@ -9,15 +9,15 @@ import { publicRequest } from '../requestMethods';
 import { mobile } from "../responsive";
 
 const ContainerTwo = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  display: flex;
+  flex-direction: row;
   text-align: center !important;
   margin-top: 2% !important;
   margin-left: 5%;
   margin-bottom: 1% !important;
   justify-content: space-between;
 
-  ${mobile({ marginRight: '20px', marginLeft: '55px', marginTop: '20px', flexDirection: "column", display: 'block', gap: '5px'})}
+  ${mobile({ display: 'flex', flexDirection: "column", gap: '5px'})}
 `;
 
 const Products = ({ cat, filters, sort }) => {
@@ -28,12 +28,12 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(cat ? `/api/products?category=${cat}` : "/api/products");
-        setProducts(res.data)
+        const res = (await axios.get(cat ? `/api/products?category=${cat}` : "/api/products")).data;
+        setProducts(res)
       } catch (err) { };
     };
-    getProducts()
-  }, [cat]);
+    getProducts().catch(console.error);
+  }, []);
 
   useEffect(() => {
     cat &&
@@ -81,13 +81,16 @@ const Products = ({ cat, filters, sort }) => {
   }, [id])
 
   return (
-    <ContainerTwo>
+    <div className="row justify-content-center">
+      <ContainerTwo className="col-sm-12 mt-6 justify-content-center">
       {cat ? filteredProducts.map((item) => (
             <Product item={item} key={item._id} />
       )) : products.map((item) =>
             <Product item={item} key={item._id} />
       )}
     </ContainerTwo>
+    </div>
+    
   );
 };
 

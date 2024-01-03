@@ -58,16 +58,16 @@ const Option = styled.option`
 
 const ProductList = () => {
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   const location = useLocation();
   const cat = location.pathname.split("/")[2];
   const [ filters, setFilters ] = useState({});
   const [ sort, setsort ] = useState("newest");
   const [ enclosure, setenclosure ] = useState("");
   const [ selected, setselected ] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleFilters = (e) => {
     const value = e.target.value;
@@ -138,7 +138,9 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
+      <div className="row justify-content-center">
       <Products cat={cat} filters={filters} sort={sort} />
+      </div>
       <Newsletter />
       <Footer />
     </Container>
