@@ -13,6 +13,7 @@ import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import '../components/Product.css';
 import Products from '../components/Products';
+import axios from "axios";
 import { Link } from 'react-router-dom';
 
 let total = 0;
@@ -143,6 +144,8 @@ const Button = styled.button`
   padding: 15px;
   border: 2px solid teal;
   background-color: white;
+  margin-left: 20px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 500;
 
@@ -172,8 +175,9 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get("/products/find/" + id);
-        setProduct(res.data);
+        const res = (await axios.get("/api/products/" + id)).data;
+        setProduct(res);
+        console.log(product)
       } catch { }
     };
     getProduct();
