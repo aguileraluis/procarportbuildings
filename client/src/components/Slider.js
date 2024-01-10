@@ -77,19 +77,19 @@ const InfoContainer = styled.div`
   flex: 1;
   justify-content: center !important;
   text-align: center !important;
-  padding-top: 11%;
+  padding-top: 7%;
   ${mobile({position: 'absolute', top: 1, justifyContent: 'center', textAlign: 'center', margin: 'auto' })}
 `;
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 50px;
   color: teal;
   ${mobile({fontSize: '24px', margin: 'auto', marginTop: '180px', textAlign: 'center', backgroundColor: 'lightblue', color: 'black', padding: '10px'})}
 `;
 
 const Desc = styled.p`
-  margin: 50px 0px;
-  font-size: 30px;
+  margin: 40px 0px;
+  font-size: 20px;
   color: black;
   text-transform: capitalize;
   font-weight: 500;

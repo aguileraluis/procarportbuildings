@@ -277,7 +277,7 @@ li.move-right {
     .nav-list {
         display: none !important;
         position: fixed;
-        top: 60px;
+        top: 100px;
         left: 0;
         height: 100vh;
         flex-direction: column;
@@ -285,12 +285,18 @@ li.move-right {
         z-index: 1000;
         align-items: initial;
         overflow-y: scroll;
+        text-align: center;
+        padding-right: 20px;
         width: 100%;
     }
 
     .nav-list>li {
-        line-height: 3rem;
+        line-height: 2rem;
         text-decoration: none !important;
+    }
+    .nav-list>li:hover {
+        background-color: teal;
+        max-width: 100%;
     }
     .nav-list>li a {
         text-decoration: none !important;

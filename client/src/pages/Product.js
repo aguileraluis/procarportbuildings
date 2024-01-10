@@ -149,6 +149,8 @@ const Button = styled.button`
   &:hover {
     background-color: #f8f4f4;
   }
+
+  ${mobile({ marginRight: '9px', marginLeft: '9px', display: 'grid', justifyContent: 'center', textAlign: 'center',   borderRadius: '10px'})}
 `;
 
 const Product = () => {

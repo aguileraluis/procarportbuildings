@@ -6,16 +6,20 @@ import { Link } from 'react-router-dom';
 const Container = styled.div`
   flex: 1;
   text-align: center !important;
-  height: 70vh;
+  height: 60vh;
+  width: 40vw;
   position: relative;
-  ${mobile({ marginBottom: '-140px', width: '98vw', textAlign: 'center', marginRight: '25px'})}
+  margin-top: 20px;
+  margin-left: 130px;
+  margin-bottom: 260px;
+  ${mobile({ marginBottom: '-65px', width: '98vw', textAlign: 'center', marginLeft: '22px'})}
 `;
 
 const Image = styled.img`
   width: 90%;
   height: 70vh;
   object-fit: cover;
-  ${mobile({ height: "50vh" , marginRight: '10px'})}
+  ${mobile({ height: "50vh" , marginRight: '30px', textAlign: 'center'})}
 
 `;
 
@@ -29,6 +33,7 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${mobile({ textAlign: 'center', paddingRight: '30px'})}
 `;
 
 const Title = styled.h1`
@@ -37,7 +42,7 @@ const Title = styled.h1`
     font-weight: bolder;
     margin-bottom: 20px;
     text-align: center;
-    ${mobile({ fontSize: '30px' })}
+    ${mobile({ fontSize: '30px', textAlign: 'center' })}
 `;
 
 const Button = styled.button`
@@ -52,16 +57,17 @@ const Button = styled.button`
 `;
 
 const Product = ({item}) => {
+
   const scrollToTop = () => {
     window.scrollTo(0, 0)
   };
 
     return (
     <Container>
-      <Link to={`/product/${item.id}`}>
-      <Image src={item.img} />
+      <Link to={`/product/${item._id}`}>
+      <Image src={`${item.img}`} />
       <Info>
-        <Title>{item.title}</Title>
+        <Title>{`${item.title}`}</Title>
         <Button onClick={scrollToTop}>SHOP NOW</Button>
       </Info>
       </Link>

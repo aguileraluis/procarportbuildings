@@ -13,11 +13,11 @@ const ContainerTwo = styled.div`
   grid-template-columns: repeat(2, 2fr);
   /* margin-left: 11% !important;
   margin-right: 11% !important; */
-  margin-top: 2% !important;
-  margin-bottom: -40px !important;
+  margin-top: 5% !important;
+  margin-bottom: 1% !important;
   justify-content: space-between;
-  gap: 20px;
-  ${mobile({  marginRight: '20px', marginLeft: '8px', marginTop: '20px', flexDirection: "column", display: 'block', gap: '0px'})}
+  /* margin-left: 120px; */
+  ${mobile({ position: 'relative', marginRight: '5px', display: 'block', textAlign: 'center'})}
 `;
 
 const Products = ({ cat, filters, sort }) => {

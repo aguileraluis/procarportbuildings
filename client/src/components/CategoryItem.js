@@ -6,16 +6,20 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   flex: 1;
   text-align: center !important;
-  height: 70vh;
+  height: 60vh;
+  width: 40vw;
   position: relative;
-  ${mobile({ marginBottom: '-140px', width: '98vw', textAlign: 'center', marginRight: '25px'})}
+  margin-top: 20px;
+  margin-left: 130px;
+  margin-bottom: 260px;
+  ${mobile({ marginBottom: '-65px', width: '98vw', textAlign: 'center', marginLeft: '22px'})}
 `;
 
 const Image = styled.img`
   width: 90%;
   height: 70vh;
   object-fit: cover;
-  ${mobile({ height: "50vh" , marginRight: '10px'})}
+  ${mobile({ height: "50vh" , marginRight: '50px'})}
 
 `;
 
@@ -29,6 +33,8 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  ${mobile({ textAlign: 'center', paddingRight: '31px'})}
 `;
 
 const Title = styled.h1`
