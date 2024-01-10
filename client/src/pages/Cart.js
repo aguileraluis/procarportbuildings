@@ -81,7 +81,7 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 800px;
-  ${mobile({ height: "40vh", width: '95vw'})}
+  ${mobile({ height: "40vh", width: '95vw', marginLeft: '3px'})}
 
 `;
 
