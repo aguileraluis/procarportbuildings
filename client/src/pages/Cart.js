@@ -17,7 +17,10 @@ import Swal from 'sweetalert2';
 import { publicRequest } from "../requestMethods";
 import emailjs from '@emailjs/browser';
 
-const Container = styled.div``;
+const Container = styled.div`
+  height: 100%;
+  ${mobile({ height: "100%" })}
+`;
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -282,7 +285,10 @@ const Cart = () => {
       <Navbar />
       <Announcement />
  { filled ?
-        <form  className="col-md-5 mt-5 justify-content-center cartform" style={{textAlign : 'center'}} onSubmit={sendEmail}>
+ 
+ <Container>
+<Wrapper>
+ <form  className="col-md-5 mt-5 justify-content-center cartform" style={{textAlign : 'center'}} onSubmit={sendEmail}>
               <div>
                 <h2>Please Complete Form To Continue With Payment</h2>
                 <h4>First Name:</h4> 
@@ -352,14 +358,14 @@ const Cart = () => {
             email &&
             address &&
             phonenumber &&
-            totalprice &&
+            totalprice > 0 &&
             fifteenpercent ? <button style={{position: 'relative', marginTop: '40px'}} className="btn btn-primary mt-12" onClick={()=> setItems}>Confirm Details</button> : <></> }
-                
-                <br/>
-                <br/>
-                <br/>
               </div>
             </form>
+ </Wrapper>
+ </Container>
+
+       
             :   
       <Wrapper>
       <Title>YOUR BAG</Title>
