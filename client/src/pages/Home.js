@@ -12,20 +12,22 @@ import Hero from '../components/Hero';
 const Home = () => {
   return (
     <div>
-     <Navbar /> 
-     <Announcement />
-     <Hero />
-     <About />
-     <Categories />
+      <Navbar />
+      <Hero />
+      <About />
+      <Categories />
       <Demo />
-     <Testimonials />
-     <br/>
-     <br/>
-     <div className="mapdiv" style={{textAlign: 'center', justifyContent: 'center', marginTop: '20px'}}>
-     <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/rs4VycR4/servicemap.png" alt="boutiquepic"/>
-     </div>
-     <Newsletter />
-     <Footer />
+      <Testimonials />
+      <br />
+      <br />
+      <Announcement />
+      <br />
+      <br />
+      <div className="mapdiv" style={{ textAlign: 'center', justifyContent: 'center', marginTop: '20px' }}>
+        <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/rs4VycR4/servicemap.png" alt="boutiquepic" />
+      </div>
+      <Newsletter />
+      <Footer />
     </div>
   )
 }

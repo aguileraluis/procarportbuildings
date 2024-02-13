@@ -9,7 +9,7 @@ import {
   } from '@mui/icons-material';
   import styled from "styled-components";
   import { mobile } from "../responsive";
-  import logo from '../images/logocarport.png';
+  import logo from '../images/logo.PNG';
   import React from 'react';
   
   const Container = styled.div`
@@ -92,6 +92,7 @@ import {
     text-align: center !important;
     height: 100%;
     margin-bottom: 10px;
+    font-size: 15px;
     ${mobile({ flexDirection: "row", textAlign: 'center', marginBottom: '10px'})}
     color: white;
  
@@ -114,7 +115,7 @@ import {
       <Container>
     
         <Left>
-        <Logo><img style={{height: '30px'}} src={logo} alt="logo"/>Pro Carport Buildings</Logo>
+        <Logo>Pro Carport Buildings</Logo>
        
           {/* <Desc>
             There are many variations of passages of Lorem Ipsum available
@@ -137,13 +138,13 @@ import {
         </Left>
       
         <Right>
-          <Title>Contact :</Title>
+          <Title>Contact</Title>
     
-            <Room/> 622 Dixie Path , South Tobinchester 98336
-        <br/>
-            <Phone/> +1 234 56 78
-        <br/>
-            <MailOutline /> contact@lama.dev
+          <Room/> <Title>622 Dixie Path , South Tobinchester 98336</Title>
+       
+            <Phone/> <Title>3364664455</Title>
+       
+            <MailOutline /> <Title>contact@gmail.com</Title>
 
         </Right>
       </Container>

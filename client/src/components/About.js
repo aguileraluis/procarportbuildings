@@ -1,5 +1,5 @@
 import React from 'react';
-import john from '../images/logocarport.png';
+import john from '../images/logo.PNG'
 import './About.css';
 
 const About = () => {

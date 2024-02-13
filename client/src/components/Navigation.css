@@ -38,30 +38,27 @@ header {
 } */
 
 .menu-icons {
-display: none !important;
-align-items: center;
-justify-content: center;
-color: white;
-font-size: 2rem;
-position: absolute;
-top: 0.3% !important;
-right: -3% !important;
-transform: translateY(-50%);
--webkit-transform: translateY(-50%);
--moz-transform: translateY(-50%);
--ms-transform: translateY(-50%);
--o-transform: translateY(-50%);
-cursor: pointer;
-z-index: 1500;
+    display: none;
+    color: rgba(237, 167, 29, 0.897);
 
-@media screen and (max-width: 1680px) {
-    display: 'block'; 
-}
+    @media screen and (max-width: 768px) {
+        display: block;
+        background-image: url(${FaBars});
+        background-size: contain;
+        height: 40px;
+        width: 40px; 
+        cursor: pointer;
+        position: absolute; 
+        top: 0;
+        right: 0;
+        transform: translate(-50%, 25%);
+        color: white;
+    }
 }
 
 nav {
     width: 100% !important;
-    height: 200px !important;
+    height: 600px !important;
     border-radius: 1px solid rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 1px solid rgba(255, 255, 255, 0.1);
     -moz-border-radius: 1px solid rgba(255, 255, 255, 0.1);

@@ -1258,7 +1258,7 @@ const Product = () => {
     <>
       <Container>
         <Navbar />
-        <Announcement />
+       
         <Wrapper>
           <ImgContainer>
             <Image src={product.img} />
@@ -1956,7 +1956,7 @@ const Product = () => {
             </AddContainer>
           </InfoContainer>
         </Wrapper>
-
+        <Announcement />
       </Container>
       <Products />
       <Newsletter />

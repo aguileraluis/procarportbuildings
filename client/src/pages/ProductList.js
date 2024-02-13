@@ -113,10 +113,11 @@ const ProductList = () => {
     <>
     <Container>
     <Navbar />
-      <Announcement />
+ 
       <Slider item={item}/>
+      <Announcement />
       <FilterContainer>
-        <Filter>
+        {/* <Filter>
           <FilterText>Filter Carports:</FilterText>
           <Select name="size" onChange={handleFilters}>
             <Option disabled>
@@ -126,7 +127,7 @@ const ProductList = () => {
             <Option>Boxed Eave Roof Style</Option>
             <Option>Vertical Roof Style</Option>
           </Select>
-        </Filter>
+        </Filter> */}
         <Filter>
           <FilterText>Select Category:</FilterText>
           <Select onChange={changeLocation}>

@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 
 const Gallery = () => {
 
+
   const galleryImagesTwo = [
     {
       img: 'https://i.postimg.cc/ncg7RSn3/carport.jpg'
@@ -110,6 +111,8 @@ const Gallery = () => {
     <div style={{ textAlign: 'center', justifyContent: 'center' }}>
       <Navbar />
       {/* <img id="logopic" style={{ width: '30%', height: 'auto', textAlign: 'center', justifyContent: 'center', marginTop: '-3%', marginBottom: '-3%' }} src="https://i.postimg.cc/KvpGY2FL/Attachment-1.png" alt="boutiquepic" /> */}
+      <br/>
+      <br/>
       <br/>
       <br/>
       <h5 style={{ textAlign: 'center', color: 'teal', marginLeft: '10%', marginRight: '10%' }}> These are a few of the buildings that we have built.</h5>

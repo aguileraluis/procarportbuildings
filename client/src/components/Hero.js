@@ -11,7 +11,7 @@ function Hero() {
       <Carousel.Item interval={5000}>
         <img
           className="heroimg d-block w-100"
-          src="https://i.postimg.cc/9M5xhLtB/FB0106-1024x576.webp"
+          src="https://i.postimg.cc/HWwV8KD3/building-with-tree-front-it-1340-25506.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -22,7 +22,7 @@ function Hero() {
       <Carousel.Item interval={5000}>
         <img
           className="heroimg d-block w-100"
-          src="https://i.postimg.cc/LXK7nh42/carport23.jpg"
+          src="https://i.postimg.cc/J0zN2Wj3/carport22.jpg"
           alt="Second slide"
         />
         <Carousel.Caption>
@@ -33,7 +33,7 @@ function Hero() {
       <Carousel.Item interval={5000}> 
         <img
           className="heroimg d-block w-100"
-          src="https://i.postimg.cc/3NpYwSPJ/FB0216-1024x576.webp"
+          src="https://i.postimg.cc/Mp85BcLj/carolinabarn.webp"
           alt="Third slide"
         />
         <Carousel.Caption>
