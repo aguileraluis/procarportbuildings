@@ -23,11 +23,11 @@
   }
   
   .galleryWrap .single {
-    width: 115px;
+    width: 150px;
     cursor: pointer;
 
     @media screen and (min-width: 850px) {
-      width: 350px !important;
+      width: 400px !important;
       cursor: pointer;
     } 
 

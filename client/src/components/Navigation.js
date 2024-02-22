@@ -40,9 +40,17 @@ ${NavLink}
 color: #fff;
 font-style: italic;
 font-weight: bold;
-margin-top: 80px !important;
-margin-right: 60rem !important;
+margin-top: 22px !important;
+margin-right: 30rem;
 position: sticky;
+    @media screen and (max-width: 980px) {
+        display: inline-flex !important;
+        font-size: 2px;
+        justify-content: center;
+        text-align: center !important;
+        margin-right: 61rem;
+        padding-top: 5px;
+    }
 `;
 
     function toggleNavigation() {
@@ -63,7 +71,7 @@ position: sticky;
     return (
       
             <nav>
-                 <Logo to="/"><img src={logo} alt="logo" style={{position: "fixed", height: "170px", marginLeft: "80px", borderRadius: '90px'}}/></Logo>
+                 <Logo to="/"><img src={logo} alt="logo" style={{position: "fixed", height: "120px", marginLeft: "20px", borderRadius: '90px'}}/></Logo>
                 <div className="menu-icons" onClick={(toggleNavigation)} style={{display: 'flex', textAlign: 'center'}}>
                     <i className="fas fa-bars"></i>
                     <i className="fas fa-times"></i>
@@ -88,9 +96,9 @@ position: sticky;
                     <li>
                         <b><a href="/gallery">Gallery</a></b>
                     </li>
-                    <li>
+                    {/* <li>
                         <b><a href="/about">About</a></b>
-                    </li>
+                    </li> */}
                     {/* <li>
                         <h1 id="dropdownh1">Menu <i className="fas fa-caret-down"></i></h1>
                         <ul className="sub-menu">

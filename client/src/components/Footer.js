@@ -17,7 +17,7 @@ import {
     position: -webkit-sticky;
     bottom: 0 !important;
     width: 100%;
-    height: 200% !important;
+    height: 100% !important;
     padding-bottom: 30px;
     background-color: teal;
     text-align: center !important;
@@ -68,9 +68,10 @@ import {
     ${mobile({ display: "none" })}
   `;
   
-  const Title = styled.h3`
-    margin-bottom: 30px;
+  const Title = styled.h4`
+    margin-bottom: 5px;
     color: white;
+    padding: 10px;
   `;
   
   const List = styled.ul`
@@ -140,11 +141,11 @@ import {
         <Right>
           <Title>Contact</Title>
     
-          <Room/> <Title>622 Dixie Path , South Tobinchester 98336</Title>
+           <Title> <Room/> P.O Box 127, Boonville NC 27011</Title>
        
-            <Phone/> <Title>3364664455</Title>
+             <Title> <Phone/> 336.468.1131</Title>
        
-            <MailOutline /> <Title>contact@gmail.com</Title>
+             <Title> <MailOutline />procarportbuildings@gmail.com</Title>
 
         </Right>
       </Container>

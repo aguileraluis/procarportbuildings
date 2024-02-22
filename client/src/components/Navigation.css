@@ -75,7 +75,7 @@ nav {
     display: inline;
     font-size: 2rem;
     color: white;
-    margin-right: 4rem;
+    margin-right: 6rem;
     padding-top: 2rem;
     transition: color 650ms;
     text-transform: none;
@@ -262,7 +262,6 @@ li.move-right {
         justify-content: center;
         text-align: center !important;
         margin-left: 20px !important;
-        
         margin-bottom: 10px;
     }
 
@@ -288,7 +287,7 @@ li.move-right {
     }
 
     .nav-list>li {
-        line-height: 2rem;
+        line-height: 1.5rem;
         text-decoration: none !important;
     }
     .nav-list>li:hover {
