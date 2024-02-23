@@ -209,7 +209,7 @@ const Cart = () => {
         try{
           const res = await axios.post("/api/checkout/payment", {
               tokenId: stripeToken.id, 
-              amount: cart.total * 100,
+              amount: fifteenpercent * 100,
           });
             return res;
         } catch (error) {
