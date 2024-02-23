@@ -9,6 +9,12 @@ import Testimonials from "../components/Testimonials";
 import Demo from "../components/Demo";
 import Hero from '../components/Hero';
 import Photos from '../components/Photos';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration: 2000
+});
 
 const Home = () => {
 
@@ -61,10 +67,10 @@ const Home = () => {
       <Announcement />
       <br />
       <br />
-      <div className="mapdiv" style={{ textAlign: 'center', justifyContent: 'center', marginTop: '20px' }}>
+      <div className="mapdiv" style={{ textAlign: 'center', justifyContent: 'center', marginTop: '20px' }} data-aos="flip-up">
         <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/xdkf49m4/servicemap-overlay.png" alt="boutiquepic" />
       </div>
-      <Newsletter />
+      <Newsletter data-aos="flip-left"/>
       <Footer />
     </div>
   )

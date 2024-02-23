@@ -188,16 +188,17 @@ const Cart = () => {
   let item = cart.products[0];
   let fifteenpercent = (totalprice * 0.15).toFixed(2);
   let name = item.title;
+  const height = localStorage.getItem("height");
   let sideheight = localStorage.getItem("sideheight");
   let bothsidesclosed = localStorage.getItem("bothsidesclosed");
   let verticalsides = localStorage.getItem("verticalsides");
   let eachend = localStorage.getItem("eachend");
   const [filled, setfilled] = useState(true);
+  let totalamount = Number(totalprice) + Number(salestax);
+  
+  totalamount.toFixed(2);
 
-  console.log(sideheight);
-  console.log(bothsidesclosed);
-  console.log(verticalsides);
-  console.log(eachend);
+
   
 
 // let totalprice = useParams[0];
@@ -210,7 +211,7 @@ const Cart = () => {
               tokenId: stripeToken.id, 
               amount: cart.total * 100,
           });
-           Swal.fire('Congratulations, you have registered to our newsletter! Thank you!', 'success').then(result=>{
+           Swal.fire('Congratulations, we have recieved your order! Thank you for your payment!', 'Give us 24 hours to get back with you.').then(result=>{
                 return result;
             })
           history("/")
@@ -251,6 +252,7 @@ const Cart = () => {
             phonenumber,
             totalprice, 
             fifteenpercent,
+            height,
             sideheight,
             bothsidesclosed,
             verticalsides,
@@ -308,14 +310,29 @@ const Cart = () => {
                 <input type="text" className="form-control" name="carport_name" placeholder={item.title} style={{textAlign : 'center'}}
                 defaultValue={item.title} />              
                 <br/>
-                <h4>Total Amount:</h4> 
-                <input type="text" className="form-control" name="total_amount" placeholder={totalprice} style={{textAlign : 'center'}}
+                <h4>Subtotal:</h4> 
+                <input type="text" className="form-control" name="total_price" placeholder={totalprice} style={{textAlign : 'center'}}
                 defaultValue={totalprice} />
+                <br/>
+                <h4>Taxes:</h4> 
+                <input type="text" className="form-control" name="taxes" placeholder={salestax} style={{textAlign : 'center'}}
+                defaultValue={salestax} />
+                <br/>
+                <h4>Total:</h4> 
+                <input type="text" className="form-control" name="total_amount" placeholder={totalamount} style={{textAlign : 'center'}}
+                defaultValue={totalamount} />
                 <br/>
                 <h4>Fifteen Percent:</h4> 
                 <input type="text" className="form-control" name="fifteen_percent" placeholder={fifteenpercent} style={{textAlign : 'center'}}
                 defaultValue={fifteenpercent} />
                 <br/>
+                { height ?<>
+                  <h4>Roof Size:</h4> 
+                <input type="text" className="form-control" name="height" placeholder={height} style={{textAlign : 'center'}}
+                defaultValue={height} />
+                </> 
+                : <></>
+                }
                 { sideheight ?<>
                   <h4>Side Height:</h4> 
                 <input type="text" className="form-control" name="side_height" placeholder={sideheight} style={{textAlign : 'center'}}
@@ -366,6 +383,9 @@ const Cart = () => {
 
       <Wrapper>
       <Title>YOUR BAG</Title>
+      <SummaryItemText>Our payment processor charges 4.75% of the sale, if you would like to send us a check or pay cash please call us at 336.468.1131 to pay.</SummaryItemText>
+      <br/>
+      <SummaryItemText>Prices are subject to change if you add options, accessories and extras.</SummaryItemText>
       <Bottom>
         <Info>
           {cart.products.map((product) => (
@@ -405,27 +425,31 @@ const Cart = () => {
           <SummaryTitle>ORDER SUMMARY</SummaryTitle>
           <SummaryItem>
             <SummaryItemText>Subtotal</SummaryItemText>
-            <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+            <SummaryItemPrice>$ {Number(totalprice)}</SummaryItemPrice>
           </SummaryItem>
           <SummaryItem>
             <SummaryItemText>Taxes</SummaryItemText>
-            <SummaryItemPrice>$ {salestax}</SummaryItemPrice>
+            <SummaryItemPrice>$ {Number(salestax)}</SummaryItemPrice>
           </SummaryItem>
           <SummaryItem type="total">
             <SummaryItemText>Total</SummaryItemText>
-            <SummaryItemPrice>$ {totalprice}</SummaryItemPrice>
+            <SummaryItemPrice>$ {Number(totalamount)}</SummaryItemPrice>
+          </SummaryItem>
+          <SummaryItem type="total">
+            <SummaryItemText>Fifteen Percent</SummaryItemText>
+            <SummaryItemPrice>$ {Number(fifteenpercent)}</SummaryItemPrice>
           </SummaryItem>
           <StripeCheckout
-            name="Lama Shop"
-            image="https://avatars.githubusercontent.com/u/1486366?v=4"
+            name="Pro Carport Buildings"
+            image="https://i.postimg.cc/Qd1ZX4HD/logoprocarportb.png"
             billingAddress
             shippingAddress
-            description={`Your total is $${cart.total}`}
-            amount={cart.total * 100}
+            description={`Your 15% payment is $${fifteenpercent}`}
+            amount={fifteenpercent * 100}
             token={onToken}
-            stripeKey={"pk_test_51ODJPPL4eLMn0bBLySYrtbmRbOBSMcK2fF8QEb1rPGZJ8nCDCIGhkwYHml7zJ9TKCRMCztpSYwXSNoF1mTnb6Unq00xrUgj9Bu"}
+            stripeKey={"pk_live_51ODJPPL4eLMn0bBLYweEcXBtcc46TcbEjDy1wrSrJOQttOvQFjmF2xguALTYKrdrUM2QqjiqSNBjIx6aOr4Gl0FO00jsj19BJx"}
           >
-             { cart.total > 0 ? <Button>CHECKOUT NOW</Button> : <></> }
+             { totalamount> 0 ? <Button>CHECKOUT NOW</Button> : <></> }
           </StripeCheckout>
         </Summary>
       </Bottom>

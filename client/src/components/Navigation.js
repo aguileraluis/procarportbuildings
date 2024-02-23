@@ -96,9 +96,9 @@ position: sticky;
                     <li>
                         <b><a href="/gallery">Gallery</a></b>
                     </li>
-                    {/* <li>
+                    <li>
                         <b><a href="/about">About</a></b>
-                    </li> */}
+                    </li>
                     {/* <li>
                         <h1 id="dropdownh1">Menu <i className="fas fa-caret-down"></i></h1>
                         <ul className="sub-menu">

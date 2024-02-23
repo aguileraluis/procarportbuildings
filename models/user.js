@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema({
     sideheight : {
         type : String
     }, 
+    height : {
+        type : String
+    }, 
     bothsidesclosed : {
         type : String
     }, 

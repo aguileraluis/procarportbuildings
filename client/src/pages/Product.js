@@ -316,7 +316,7 @@ const Product = () => {
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
-    } else if (e === 215) {
+    } else if (e === 216) {
       total += e;
       settotalprice(total);
       sideheight = '9ft X 20ft';
@@ -358,7 +358,7 @@ const Product = () => {
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
-    } else if (e === 395) {
+    } else if (e === 396) {
       total += e;
       settotalprice(total);
       sideheight = '10ft X 25ft';
@@ -746,7 +746,7 @@ const Product = () => {
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
-    } else if (e === 540) {
+    } else if (e === 541) {
       total += e;
       settotalprice(total);
       sideheight = '11ft X 20ft';
@@ -851,7 +851,7 @@ const Product = () => {
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
-    } else if (e === 1295) {
+    } else if (e === 1296) {
       total += e;
       settotalprice(total);
       sideheight = '14ft X 20ft';
@@ -2189,12 +2189,12 @@ const Product = () => {
     else if (e === 2995) {
       total += e;
       settotalprice(total);
-      height = '22ft x 55ft x 6';
+      height = '22ft x 25ft x 6';
       setheightclicked(true);
       console.log(total);
       localStorage.setItem('height', height);
     }
-    else if (e === 3596) {
+    else if (e === 3597) {
       total += e;
       settotalprice(total);
       height = '22ft x 30ft x 6';
@@ -2485,7 +2485,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem('height', height);
     }
-    else if (e === 13995) {
+    else if (e === 13996) {
       total += e;
       settotalprice(total);
       height = '36ft x 40ft x 6';
@@ -2493,7 +2493,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem('height', height);
     }
-    else if (e === 15195) {
+    else if (e === 15196) {
       total += e;
       settotalprice(total);
       height = '36ft x 44ft x 6';
@@ -2944,7 +2944,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem('height', height);
     }
-    else if (e === 11495) {
+    else if (e === 11496) {
       total += e;
       settotalprice(total);
       height = '50ft x 20ft x 6';
@@ -4196,7 +4196,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("bothsidesclosed", bothsidesclosed);
     }
-    else if (e === 1850) {
+    else if (e === 1851) {
       total += e;
       settotalprice(total);
       bothsidesclosed = '12ft X 28ft'
@@ -4268,7 +4268,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("bothsidesclosed", bothsidesclosed);
     }
-    else if (e === 2050) {
+    else if (e === 2051) {
       total += e;
       settotalprice(total);
       bothsidesclosed = '14ft X 28ft'
@@ -4468,7 +4468,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("bothsidesclosed", bothsidesclosed);
     }
-    else if (e === 2905) {
+    else if (e === 2906) {
       total += e;
       settotalprice(total);
       bothsidesclosed = '20ft X 20ft'
@@ -4788,7 +4788,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 1200) {
+    else if (e === 1201) {
       total += e;
       settotalprice(total);
       eachend = '11ft - 12ft X 18ft Wide'
@@ -4860,7 +4860,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 1370) {
+    else if (e === 1371) {
       total += e;
       settotalprice(total);
       eachend = '14ft - 15ft X 12ft Wide'
@@ -4996,7 +4996,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 300) {
+    else if (e === 301) {
       total += e;
       settotalprice(total);
       eachend = 'Vertical Two Tone Per End X 20ft Wide'
@@ -5224,7 +5224,7 @@ const Product = () => {
     else if (e === 450) {
       total += e;
       settotalprice(total);
-      eachend = 'Vertical Two Tone Per End 26ft'
+      eachend = 'Vertical End Per End 26ft'
       seteachendclicked(true);
       console.log(total);
       localStorage.setItem("eachend", eachend);
@@ -5232,7 +5232,7 @@ const Product = () => {
     else if (e === 510) {
       total += e;
       settotalprice(total);
-      eachend = 'Vertical Two Tone Per End 28ft'
+      eachend = 'Vertical End Per End 28ft'
       seteachendclicked(true);
       console.log(total);
       localStorage.setItem("eachend", eachend);
@@ -5240,7 +5240,7 @@ const Product = () => {
     else if (e === 570) {
       total += e;
       settotalprice(total);
-      eachend = 'Vertical Two Tone Per End 30ft'
+      eachend = 'Vertical End Per End 30ft'
       seteachendclicked(true);
       console.log(total);
       localStorage.setItem("eachend", eachend);
@@ -5253,7 +5253,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 510) {
+    else if (e === 500) {
       total += e;
       settotalprice(total);
       eachend = 'Vertical Two Tone Per End 28ft'
@@ -5470,7 +5470,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3115) {
+    else if (e === 3116) {
       total += e;
       settotalprice(total);
       eachend = '38ft X 8ft'
@@ -5478,7 +5478,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3295) {
+    else if (e === 3296) {
       total += e;
       settotalprice(total);
       eachend = '38ft X 10ft'
@@ -5486,7 +5486,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3475) {
+    else if (e === 3476) {
       total += e;
       settotalprice(total);
       eachend = '38ft X 12ft'
@@ -5494,7 +5494,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3655) {
+    else if (e === 3656) {
       total += e;
       settotalprice(total);
       eachend = '38ft X 14ft'
@@ -5502,7 +5502,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3835) {
+    else if (e === 3836) {
       total += e;
       settotalprice(total);
       eachend = '38ft X 16ft'
@@ -5534,7 +5534,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3235) {
+    else if (e === 3236) {
       total += e;
       settotalprice(total);
       eachend = '40ft X 8ft'
@@ -5542,7 +5542,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3415) {
+    else if (e === 3416) {
       total += e;
       settotalprice(total);
       eachend = '40ft X 10ft'
@@ -5550,7 +5550,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3595) {
+    else if (e === 3596) {
       total += e;
       settotalprice(total);
       eachend = '40ft X 12ft'
@@ -5558,7 +5558,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3775) {
+    else if (e === 3776) {
       total += e;
       settotalprice(total);
       eachend = '40ft X 14ft'
@@ -5566,7 +5566,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3955) {
+    else if (e === 3956) {
       total += e;
       settotalprice(total);
       eachend = '40ft X 16ft'
@@ -5598,7 +5598,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3355) {
+    else if (e === 3356) {
       total += e;
       settotalprice(total);
       eachend = '42ft X 8ft'
@@ -5606,7 +5606,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3535) {
+    else if (e === 3536) {
       total += e;
       settotalprice(total);
       eachend = '42ft X 10ft'
@@ -5614,7 +5614,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3715) {
+    else if (e === 3716) {
       total += e;
       settotalprice(total);
       eachend = '42ft X 12ft'
@@ -5622,7 +5622,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3895) {
+    else if (e === 3896) {
       total += e;
       settotalprice(total);
       eachend = '42ft X 14ft'
@@ -5630,7 +5630,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4075) {
+    else if (e === 4076) {
       total += e;
       settotalprice(total);
       eachend = '42ft X 16ft'
@@ -5662,7 +5662,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3475) {
+    else if (e === 3477) {
       total += e;
       settotalprice(total);
       eachend = '44ft X 8ft'
@@ -5670,7 +5670,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3655) {
+    else if (e === 3657) {
       total += e;
       settotalprice(total);
       eachend = '44ft X 10ft'
@@ -5678,7 +5678,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3835) {
+    else if (e === 3837) {
       total += e;
       settotalprice(total);
       eachend = '44ft X 12ft'
@@ -5686,7 +5686,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4015) {
+    else if (e === 4016) {
       total += e;
       settotalprice(total);
       eachend = '44ft X 14ft'
@@ -5694,7 +5694,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4195) {
+    else if (e === 4196) {
       total += e;
       settotalprice(total);
       eachend = '44ft X 16ft'
@@ -5726,7 +5726,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3595) {
+    else if (e === 3597) {
       total += e;
       settotalprice(total);
       eachend = '46ft X 8ft'
@@ -5734,7 +5734,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3775) {
+    else if (e === 3777) {
       total += e;
       settotalprice(total);
       eachend = '46ft X 10ft'
@@ -5742,7 +5742,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3955) {
+    else if (e === 3957) {
       total += e;
       settotalprice(total);
       eachend = '46ft X 12ft'
@@ -5750,7 +5750,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4135) {
+    else if (e === 4137) {
       total += e;
       settotalprice(total);
       eachend = '46ft X 14ft'
@@ -5758,7 +5758,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4315) {
+    else if (e === 4316) {
       total += e;
       settotalprice(total);
       eachend = '46ft X 16ft'
@@ -5790,7 +5790,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3715) {
+    else if (e === 3718) {
       total += e;
       settotalprice(total);
       eachend = '48ft X 8ft'
@@ -5798,7 +5798,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3895) {
+    else if (e === 3897) {
       total += e;
       settotalprice(total);
       eachend = '48ft X 10ft'
@@ -5806,7 +5806,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4075) {
+    else if (e === 4077) {
       total += e;
       settotalprice(total);
       eachend = '48ft X 12ft'
@@ -5814,7 +5814,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4255) {
+    else if (e === 4256) {
       total += e;
       settotalprice(total);
       eachend = '48ft X 14ft'
@@ -5822,7 +5822,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4435) {
+    else if (e === 4436) {
       total += e;
       settotalprice(total);
       eachend = '48ft X 16ft'
@@ -5854,7 +5854,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3835) {
+    else if (e === 3838) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 8ft'
@@ -5862,7 +5862,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4015) {
+    else if (e === 4018) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 10ft'
@@ -5870,7 +5870,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4195) {
+    else if (e === 4197) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 12ft'
@@ -5878,7 +5878,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4375) {
+    else if (e === 4377) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 14ft'
@@ -5886,7 +5886,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4555) {
+    else if (e === 4556) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 16ft'
@@ -5894,7 +5894,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4735) {
+    else if (e === 4737) {
       total += e;
       settotalprice(total);
       eachend = '50ft X 18ft'
@@ -5918,7 +5918,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 3955) {
+    else if (e === 3958) {
       total += e;
       settotalprice(total);
       eachend = '52ft X 8ft'
@@ -5926,7 +5926,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4135) {
+    else if (e === 4138) {
       total += e;
       settotalprice(total);
       eachend = '52ft X 10ft'
@@ -5934,7 +5934,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4315) {
+    else if (e === 4318) {
       total += e;
       settotalprice(total);
       eachend = '52ft X 12ft'
@@ -5942,7 +5942,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4495) {
+    else if (e === 4498) {
       total += e;
       settotalprice(total);
       eachend = '52ft X 14ft'
@@ -5950,7 +5950,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4675) {
+    else if (e === 4678) {
       total += e;
       settotalprice(total);
       eachend = '52ft X 16ft'
@@ -5982,7 +5982,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4075) {
+    else if (e === 4078) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 8ft'
@@ -5990,7 +5990,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4255) {
+    else if (e === 4257) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 10ft'
@@ -5998,7 +5998,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4435) {
+    else if (e === 4437) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 12ft'
@@ -6006,7 +6006,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4615) {
+    else if (e === 4617) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 14ft'
@@ -6014,7 +6014,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4795) {
+    else if (e === 4797) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 16ft'
@@ -6022,7 +6022,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4975) {
+    else if (e === 4978) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 18ft'
@@ -6030,7 +6030,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 5155) {
+    else if (e === 5156) {
       total += e;
       settotalprice(total);
       eachend = '54ft X 20ft'
@@ -6046,7 +6046,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4195) {
+    else if (e === 4199) {
       total += e;
       settotalprice(total);
       eachend = '56ft X 8ft'
@@ -6054,7 +6054,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4375) {
+    else if (e === 4379) {
       total += e;
       settotalprice(total);
       eachend = '56ft X 10ft'
@@ -6062,7 +6062,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4555) {
+    else if (e === 4558) {
       total += e;
       settotalprice(total);
       eachend = '56ft X 12ft'
@@ -6070,7 +6070,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4735) {
+    else if (e === 4739) {
       total += e;
       settotalprice(total);
       eachend = '56ft X 14ft'
@@ -6078,7 +6078,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4915) {
+    else if (e === 4918) {
       total += e;
       settotalprice(total);
       eachend = '56ft X 16ft'
@@ -6110,7 +6110,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4315) {
+    else if (e === 4320) {
       total += e;
       settotalprice(total);
       eachend = '58ft X 8ft'
@@ -6118,7 +6118,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4495) {
+    else if (e === 4499) {
       total += e;
       settotalprice(total);
       eachend = '58ft X 10ft'
@@ -6126,7 +6126,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4675) {
+    else if (e === 4679) {
       total += e;
       settotalprice(total);
       eachend = '58ft X 12ft'
@@ -6134,7 +6134,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4855) {
+    else if (e === 4858) {
       total += e;
       settotalprice(total);
       eachend = '58ft X 14ft'
@@ -6142,7 +6142,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 5035) {
+    else if (e === 5036) {
       total += e;
       settotalprice(total);
       eachend = '58ft X 16ft'
@@ -6174,7 +6174,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4435) {
+    else if (e === 4438) {
       total += e;
       settotalprice(total);
       eachend = '60ft X 8ft'
@@ -6182,7 +6182,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4615) {
+    else if (e === 4618) {
       total += e;
       settotalprice(total);
       eachend = '60ft X 10ft'
@@ -6190,7 +6190,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4795) {
+    else if (e === 4798) {
       total += e;
       settotalprice(total);
       eachend = '60ft X 12ft'
@@ -6198,7 +6198,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 4975) {
+    else if (e === 4979) {
       total += e;
       settotalprice(total);
       eachend = '60ft X 14ft'
@@ -6206,7 +6206,7 @@ const Product = () => {
       console.log(total);
       localStorage.setItem("eachend", eachend);
     }
-    else if (e === 5155) {
+    else if (e === 5157) {
       total += e;
       settotalprice(total);
       eachend = '60ft X 16ft'
@@ -6480,7 +6480,7 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu" >
                                 <li className="listitem">
-                                  <button onClick={() => addTotal(215)} className="btn">20' LONG</button>
+                                  <button onClick={() => addTotal(216)} className="btn">20' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addTotal(305)} className="btn">25' LONG</button>
@@ -6504,7 +6504,7 @@ const Product = () => {
                                   <button onClick={() => addTotal(290)} className="btn">20' LONG</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addTotal(395)} className="btn">25' LONG</button>
+                                  <button onClick={() => addTotal(396)} className="btn">25' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addTotal(490)} className="btn">30' LONG</button>
@@ -7015,7 +7015,7 @@ const Product = () => {
                                   <button onClick={() => addEachEnd(1010)} className="btn">12' WIDE</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEnd(1200)} className="btn">18' WIDE</button>
+                                  <button onClick={() => addEachEnd(1201)} className="btn">18' WIDE</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEnd(1400)} className="btn">20' WIDE</button>
@@ -7054,7 +7054,7 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEnd(1370)} className="btn">12' WIDE</button>
+                                  <button onClick={() => addEachEnd(1371)} className="btn">12' WIDE</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEnd(1625)} className="btn">18' WIDE</button>
@@ -7123,7 +7123,7 @@ const Product = () => {
                                   <button onClick={() => addEachEnd(250)} className="btn">18' WIDE</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEnd(300)} className="btn">20' WIDE</button>
+                                  <button onClick={() => addEachEnd(301)} className="btn">20' WIDE</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEnd(350)} className="btn">22' WIDE</button>
@@ -7152,6 +7152,41 @@ const Product = () => {
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -7387,7 +7422,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu" >
                 <li className="listitem">
-                  <button onClick={() => addTotal(215)} className="btn">20' LONG</button>
+                  <button onClick={() => addTotal(216)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotal(305)} className="btn">25' LONG</button>
@@ -7411,7 +7446,7 @@ const Product = () => {
                   <button onClick={() => addTotal(290)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addTotal(395)} className="btn">25' LONG</button>
+                  <button onClick={() => addTotal(396)} className="btn">25' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotal(490)} className="btn">30' LONG</button>
@@ -7922,7 +7957,7 @@ const Product = () => {
                   <button onClick={() => addEachEnd(1010)} className="btn">12' WIDE</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEnd(1200)} className="btn">18' WIDE</button>
+                  <button onClick={() => addEachEnd(1201)} className="btn">18' WIDE</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEnd(1400)} className="btn">20' WIDE</button>
@@ -7961,7 +7996,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEnd(1370)} className="btn">12' WIDE</button>
+                  <button onClick={() => addEachEnd(1371)} className="btn">12' WIDE</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEnd(1625)} className="btn">18' WIDE</button>
@@ -8030,7 +8065,7 @@ const Product = () => {
                   <button onClick={() => addEachEnd(250)} className="btn">18' WIDE</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEnd(300)} className="btn">20' WIDE</button>
+                  <button onClick={() => addEachEnd(301)} className="btn">20' WIDE</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEnd(350)} className="btn">22' WIDE</button>
@@ -8053,6 +8088,41 @@ const Product = () => {
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -8212,7 +8282,7 @@ const Product = () => {
                                 <button onClick={() => addRoofStandardVertical(2995)} className="btn">25' LONG</button>
                               </li>
                               <li className="listitem">
-                                <button onClick={() => addRoofStandardVertical(3596)} className="btn">30' LONG</button>
+                                <button onClick={() => addRoofStandardVertical(3597)} className="btn">30' LONG</button>
                               </li>
                               <li className="listitem">
                                 <button onClick={() => addRoofStandardVertical(4195)} className="btn">35' LONG</button>
@@ -8270,735 +8340,770 @@ const Product = () => {
                 <></>
               }
 
-{addedtocart ?
+ {addedtocart ?
 
-<FilterContainer>
-  {clicked ?
-    <Filter>
-      <FilterTitle>Side Height : {sideheight}</FilterTitle>
-      <></>
-    </Filter>
-    :
-    <Filter>
-      {/* <FilterTitle>Side Height</FilterTitle> */}
+                <FilterContainer>
+                  {clicked ?
+                    <Filter>
+                      <FilterTitle>Side Height : {sideheight}</FilterTitle>
+                      <></>
+                    </Filter>
+                    :
+                    <Filter>
+                      {/* <FilterTitle>Side Height</FilterTitle> */}
 
-      <ul className="nav-listtwo">
-        <li>
-          <h1 id="dropdownh1">Side Height <i className="fas fa-caret-down"></i></h1>
-          <ul className="sub-menu">
-            <li>
-              <h1 id="dropdownh1">7' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addTotal(70)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(90)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(110)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(125)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(145)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">8' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(146)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(215)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(275)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(335)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(395)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">9' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(215)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(305)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(385)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(460)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(540)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">10' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(290)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(395)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(490)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(590)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(685)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">11' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(360)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(485)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(600)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(715)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(830)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">12' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(430)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(575)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(710)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(840)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(970)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">13' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(625)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(815)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(995)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(1175)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(1355)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">14' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(695)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(905)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(1105)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(1300)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(1500)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">15' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(1775)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(2230)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(2665)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(3095)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(3530)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">16' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu" >
-                <li className="listitem">
-                  <button onClick={() => addTotal(2015)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(2470)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(2905)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(3335)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addTotal(3770)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
+                      <ul className="nav-listtwo">
+                        <li>
+                          <h1 id="dropdownh1">Side Height <i className="fas fa-caret-down"></i></h1>
+                          <ul className="sub-menu">
+                            <li>
+                              <h1 id="dropdownh1">7' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(70)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(90)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(110)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(125)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(145)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">8' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(146)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(215)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(275)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(335)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(395)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">9' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(216)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(305)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(385)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(460)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(540)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">10' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(290)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(396)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(490)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(590)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(685)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">11' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(360)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(485)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(600)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(715)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(830)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">12' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(430)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(575)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(710)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(840)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(970)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">13' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(625)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(815)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(995)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1175)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1355)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">14' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(695)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(905)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1105)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1300)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1500)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">15' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(1775)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(2230)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(2665)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(3095)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(3530)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">16' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu" >
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(2015)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(2470)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(2905)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(3335)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addTotal(3770)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
 
-          </ul>
-        </li>
-      </ul>
-    </Filter>
-  }
-  {bothsidesclicked ?
-    <Filter>
-      <FilterTitle>Both Sides Closed : {bothsidesclosed}</FilterTitle>
-    </Filter>
-    :
-    <Filter>
-      {/* <FilterTitle>Both Sides Closed</FilterTitle> */}
-      <ul className="nav-listtwo">
-        <li>
-          <h1 id="dropdownh1">Both Sides Closed <i className="fas fa-caret-down"></i></h1>
-          <ul className="sub-menu">
-            <li>
-              <h1 id="dropdownh1">6' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(440)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(520)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(620)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(700)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(860)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">7' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(550)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(650)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(775)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(875)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1075)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">8' - 9' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(660)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(780)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(930)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1050)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1290)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">10' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(770)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(910)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1085)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1225)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1505)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">11' - 12' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(880)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1040)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1240)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1400)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1720)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">13' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(990)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1170)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1395)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1575)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1935)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">14' - 15' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1100)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1300)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1550)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1750)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(2150)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">16' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1210)} className="btn">20' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1430)} className="btn">25' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1705)} className="btn">30' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(1925)} className="btn">35' LONG</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addSideHeight(2365)} className="btn">40' LONG</button>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </Filter>
-  }
-  {verticalsidesclicked ?
-    <Filter>
-      <FilterTitle>Vertical Sides : {verticalsides}</FilterTitle>
-    </Filter>
-    :
-    <Filter>
-      {/* <FilterTitle>Vertical Sides Both Sides</FilterTitle> */}
-      {/* <ul className="nav-listtwo">
-  <li>
-    <h1 id="dropdownh1">Both Sides Closed<i className="fas fa-caret-down"></i></h1>
-    <ul className="sub-menu">
-      <li>
-        <h1 id="dropdownh1">6' - 10' Tall
-          <i className="fas fa-caret-down"></i></h1>
-        <ul className="sub-menu">
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(450)} className="btn">20' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(525)} className="btn">25' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(600)} className="btn">30' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(675)} className="btn">35' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(750)} className="btn">40' LONG</button>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h1 id="dropdownh1">11' - 15' Tall
-          <i className="fas fa-caret-down"></i></h1>
-        <ul className="sub-menu">
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(600)} className="btn">20' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(713)} className="btn">25' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(825)} className="btn">30' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(934)} className="btn">35' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(1050)} className="btn">40' LONG</button>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <h1 id="dropdownh1">16' Tall
-          <i className="fas fa-caret-down"></i></h1>
-        <ul className="sub-menu">
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(750)} className="btn">20' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(900)} className="btn">25' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(1050)} className="btn">30' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(1200)} className="btn">35' LONG</button>
-          </li>
-          <li className="listitem">
-            <button onClick={() => addVerticalSides(1350)} className="btn">40' LONG</button>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul> */}
-    </Filter>
-  }
-  {eachendclicked ?
-    <Filter>
-      <FilterTitle>Each End Closed : {eachend}</FilterTitle>
-    </Filter>
-    :
-    <Filter>
-      {/* <FilterTitle>Each End Closed</FilterTitle> */}
-      <ul className="nav-listtwo">
-        <li>
-          <h1 id="dropdownh1">Each End Closed <i className="fas fa-caret-down"></i></h1>
-          <ul className="sub-menu">
-            <li>
-              <h1 id="dropdownh1">6' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(540)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(650)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(755)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(865)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(970)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">7' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(640)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(725)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(840)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(960)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1075)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">8' - 9' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(685)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(815)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(940)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1076)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1200)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">10' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(830)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(980)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1130)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1285)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1435)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">11' - 12' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1010)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1200)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1400)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1590)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1790)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">13' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1150)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1370)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1585)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1800)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2015)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">14' - 15' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1370)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1625)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1885)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2150)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2405)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">16' Tall
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1475)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(1760)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2040)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2315)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(2600)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">Vertical End Per End
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(150)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(270)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(300)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(330)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(360)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h1 id="dropdownh1">Vertical Two Tone Per End
-                <i className="fas fa-caret-down"></i></h1>
-              <ul className="sub-menu">
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(200)} className="btn">12' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(250)} className="btn">18' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(300)} className="btn">20' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(350)} className="btn">22' WIDE</button>
-                </li>
-                <li className="listitem">
-                  <button onClick={() => addEachEnd(400)} className="btn">24' WIDE</button>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </Filter>
-  }
+                          </ul>
+                        </li>
+                      </ul>
+                    </Filter>
+                  }
+                  {bothsidesclicked ?
+                    <Filter>
+                      <FilterTitle>Both Sides Closed : {bothsidesclosed}</FilterTitle>
+                    </Filter>
+                    :
+                    <Filter>
+                      {/* <FilterTitle>Both Sides Closed</FilterTitle> */}
+                      <ul className="nav-listtwo">
+                        <li>
+                          <h1 id="dropdownh1">Both Sides Closed <i className="fas fa-caret-down"></i></h1>
+                          <ul className="sub-menu">
+                            <li>
+                              <h1 id="dropdownh1">6' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(440)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(520)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(620)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(700)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(860)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">7' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(550)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(650)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(775)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(875)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1075)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">8' - 9' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(660)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(780)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(930)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1050)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1290)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">10' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(770)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(910)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1085)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1225)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1505)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">11' - 12' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(880)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1040)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1240)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1400)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1720)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">13' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(990)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1170)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1395)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1575)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1935)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">14' - 15' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1100)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1300)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1550)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1750)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(2150)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">16' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1210)} className="btn">20' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1430)} className="btn">25' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1705)} className="btn">30' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(1925)} className="btn">35' LONG</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addSideHeight(2365)} className="btn">40' LONG</button>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </Filter>
+                  }
+                  {verticalsidesclicked ?
+                    <Filter>
+                      <FilterTitle>Vertical Sides : {verticalsides}</FilterTitle>
+                    </Filter>
+                    :
+                    <Filter>
+                      {/* <FilterTitle>Vertical Sides Both Sides</FilterTitle> */}
+                      {/* <ul className="nav-listtwo">
+                  <li>
+                    <h1 id="dropdownh1">Both Sides Closed<i className="fas fa-caret-down"></i></h1>
+                    <ul className="sub-menu">
+                      <li>
+                        <h1 id="dropdownh1">6' - 10' Tall
+                          <i className="fas fa-caret-down"></i></h1>
+                        <ul className="sub-menu">
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(450)} className="btn">20' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(525)} className="btn">25' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(600)} className="btn">30' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(675)} className="btn">35' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(750)} className="btn">40' LONG</button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <h1 id="dropdownh1">11' - 15' Tall
+                          <i className="fas fa-caret-down"></i></h1>
+                        <ul className="sub-menu">
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(600)} className="btn">20' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(713)} className="btn">25' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(825)} className="btn">30' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(934)} className="btn">35' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(1050)} className="btn">40' LONG</button>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <h1 id="dropdownh1">16' Tall
+                          <i className="fas fa-caret-down"></i></h1>
+                        <ul className="sub-menu">
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(750)} className="btn">20' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(900)} className="btn">25' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(1050)} className="btn">30' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(1200)} className="btn">35' LONG</button>
+                          </li>
+                          <li className="listitem">
+                            <button onClick={() => addVerticalSides(1350)} className="btn">40' LONG</button>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul> */}
+                    </Filter>
+                  }
+                  {eachendclicked ?
+                    <Filter>
+                      <FilterTitle>Each End Closed : {eachend}</FilterTitle>
+                    </Filter>
+                    :
+                    <Filter>
+                      {/* <FilterTitle>Each End Closed</FilterTitle> */}
+                      <ul className="nav-listtwo">
+                        <li>
+                          <h1 id="dropdownh1">Each End Closed <i className="fas fa-caret-down"></i></h1>
+                          <ul className="sub-menu">
+                            <li>
+                              <h1 id="dropdownh1">6' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(540)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(650)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(755)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(865)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(970)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">7' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(640)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(725)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(840)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(960)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1075)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">8' - 9' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(685)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(815)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(940)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1076)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1200)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">10' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(830)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(980)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1130)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1285)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1435)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">11' - 12' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1010)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1201)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1400)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1590)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1790)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">13' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1150)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1370)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1585)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1800)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2015)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">14' - 15' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1371)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1625)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1885)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2150)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2405)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">16' Tall
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1475)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(1760)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2040)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2315)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(2600)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">Vertical End Per End
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(150)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(270)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(300)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(330)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(360)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <h1 id="dropdownh1">Vertical Two Tone Per End
+                                <i className="fas fa-caret-down"></i></h1>
+                              <ul className="sub-menu">
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(200)} className="btn">12' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(250)} className="btn">18' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(301)} className="btn">20' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(350)} className="btn">22' WIDE</button>
+                                </li>
+                                <li className="listitem">
+                                  <button onClick={() => addEachEnd(400)} className="btn">24' WIDE</button>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </Filter>
+                  }
 
 
-</FilterContainer>
-: <></>
-}
+                </FilterContainer>
+                : <></>
+              }
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -9414,7 +9519,7 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu" >
                                 <li className="listitem">
-                                  <button onClick={() => addTotalTriple(540)} className="btn">20' LONG</button>
+                                  <button onClick={() => addTotalTriple(541)} className="btn">20' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addTotalTriple(660)} className="btn">25' LONG</button>
@@ -9477,7 +9582,7 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu" >
                                 <li className="listitem">
-                                  <button onClick={() => addTotalTriple(1295)} className="btn">20' LONG</button>
+                                  <button onClick={() => addTotalTriple(1296)} className="btn">20' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addTotalTriple(1500)} className="btn">25' LONG</button>
@@ -9958,7 +10063,7 @@ const Product = () => {
                                   <button onClick={() => addEachEndTriple(451)} className="btn">26' WIDE</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndTriple(510)} className="btn">28' WIDE</button>
+                                  <button onClick={() => addEachEndTriple(500)} className="btn">28' WIDE</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndTriple(550)} className="btn">30' WIDE</button>
@@ -9976,6 +10081,41 @@ const Product = () => {
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -10218,7 +10358,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu" >
                 <li className="listitem">
-                  <button onClick={() => addTotalTriple(540)} className="btn">20' LONG</button>
+                  <button onClick={() => addTotalTriple(541)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotalTriple(660)} className="btn">25' LONG</button>
@@ -10281,7 +10421,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu" >
                 <li className="listitem">
-                  <button onClick={() => addTotalTriple(1295)} className="btn">20' LONG</button>
+                  <button onClick={() => addTotalTriple(1296)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotalTriple(1500)} className="btn">25' LONG</button>
@@ -10762,7 +10902,7 @@ const Product = () => {
                   <button onClick={() => addEachEndTriple(451)} className="btn">26' WIDE</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndTriple(510)} className="btn">28' WIDE</button>
+                  <button onClick={() => addEachEndTriple(500)} className="btn">28' WIDE</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndTriple(550)} className="btn">30' WIDE</button>
@@ -10780,6 +10920,41 @@ const Product = () => {
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -11049,7 +11224,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu" >
                 <li className="listitem">
-                  <button onClick={() => addTotalTriple(540)} className="btn">20' LONG</button>
+                  <button onClick={() => addTotalTriple(541)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotalTriple(660)} className="btn">25' LONG</button>
@@ -11112,7 +11287,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu" >
                 <li className="listitem">
-                  <button onClick={() => addTotalTriple(1295)} className="btn">20' LONG</button>
+                  <button onClick={() => addTotalTriple(1296)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addTotalTriple(1500)} className="btn">25' LONG</button>
@@ -11593,7 +11768,7 @@ const Product = () => {
                   <button onClick={() => addEachEndTriple(451)} className="btn">26' WIDE</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndTriple(510)} className="btn">28' WIDE</button>
+                  <button onClick={() => addEachEndTriple(500)} className="btn">28' WIDE</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndTriple(550)} className="btn">30' WIDE</button>
@@ -11611,6 +11786,42 @@ const Product = () => {
              
             </InfoContainer>
           </Wrapper>
+
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -11618,7 +11829,7 @@ const Product = () => {
         <Footer />
       </>
     )
-  } else if (product.title === "40 Wide Commercial") {
+  } else if (product.title === "32' to 40' Wide Commercial") {
     return (
       <>
         <Container>
@@ -11766,10 +11977,10 @@ const Product = () => {
                                 <button onClick={() => addRoofCommercial40(12695)} className="btn">36' LONG</button>
                               </li>
                               <li className="listitem">
-                                <button onClick={() => addRoofCommercial40(13995)} className="btn">40' LONG</button>
+                                <button onClick={() => addRoofCommercial40(13996)} className="btn">40' LONG</button>
                               </li>
                               <li className="listitem">
-                                <button onClick={() => addRoofCommercial40(15195)} className="btn">44' LONG</button>
+                                <button onClick={() => addRoofCommercial40(15196)} className="btn">44' LONG</button>
                               </li>
                               <li className="listitem">
                                 <button onClick={() => addRoofCommercial40(16495)} className="btn">48' LONG</button>
@@ -12169,7 +12380,7 @@ const Product = () => {
                                   <button onClick={() => addSideHeightCommercial(1585)} className="btn">24' LONG</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addSideHeightCommercial(1850)} className="btn">28' LONG</button>
+                                  <button onClick={() => addSideHeightCommercial(1851)} className="btn">28' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addSideHeightCommercial(2110)} className="btn">32' LONG</button>
@@ -12202,7 +12413,7 @@ const Product = () => {
                                   <button onClick={() => addSideHeightCommercial(1755)} className="btn">24' LONG</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addSideHeightCommercial(2050)} className="btn">28' LONG</button>
+                                  <button onClick={() => addSideHeightCommercial(2051)} className="btn">28' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addSideHeightCommercial(2340)} className="btn">32' LONG</button>
@@ -12295,7 +12506,7 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addSideHeightCommercial(2905)} className="btn">20' LONG</button>
+                                  <button onClick={() => addSideHeightCommercial(2906)} className="btn">20' LONG</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addSideHeightCommercial(3485)} className="btn">24' LONG</button>
@@ -12548,19 +12759,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3115)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3116)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3295)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3296)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3475)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3476)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3655)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3656)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3835)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3836)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4015)} className="btn">18' Tall</button>
@@ -12578,19 +12789,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3235)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3236)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3415)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3416)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3595)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3596)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3775)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3776)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3955)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3956)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4135)} className="btn">18' Tall</button>
@@ -12608,19 +12819,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3355)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3356)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3535)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3536)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3715)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3716)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3895)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3896)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4075)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4076)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4255)} className="btn">18' Tall</button>
@@ -12638,19 +12849,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3475)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3477)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3655)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3657)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3835)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3837)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4015)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4016)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4195)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4196)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4375)} className="btn">18' Tall</button>
@@ -12668,19 +12879,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3595)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3597)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3775)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3777)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3955)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3957)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4135)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4137)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4315)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4316)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4495)} className="btn">18' Tall</button>
@@ -12698,19 +12909,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3715)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3718)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3895)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3897)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4075)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4077)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4255)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4256)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4435)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4436)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4615)} className="btn">18' Tall</button>
@@ -12728,22 +12939,22 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3835)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3838)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4015)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4018)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4195)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4197)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4375)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4377)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4555)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4556)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4735)} className="btn">18' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4737)} className="btn">18' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4915)} className="btn">20' Tall</button>
@@ -12758,19 +12969,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(3955)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(3958)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4135)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4138)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4315)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4318)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4495)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4498)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4675)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4678)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(4855)} className="btn">18' Tall</button>
@@ -12788,25 +12999,25 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4075)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4078)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4255)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4257)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4435)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4437)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4615)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4617)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4795)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4797)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4975)} className="btn">18' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4978)} className="btn">18' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(5155)} className="btn">20' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(5156)} className="btn">20' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(875)} className="btn">Two Tone 'Per End'</button>
@@ -12818,19 +13029,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4195)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4199)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4375)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4379)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4555)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4558)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4735)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4739)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4915)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4918)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(5095)} className="btn">18' Tall</button>
@@ -12848,19 +13059,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4315)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4320)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4495)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4499)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4675)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4679)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4855)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4858)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(5035)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(5036)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(5215)} className="btn">18' Tall</button>
@@ -12878,19 +13089,19 @@ const Product = () => {
                                 <i className="fas fa-caret-down"></i></h1>
                               <ul className="sub-menu">
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4435)} className="btn">8' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4438)} className="btn">8' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4615)} className="btn">10' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4618)} className="btn">10' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4795)} className="btn">12' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4798)} className="btn">12' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(4975)} className="btn">14' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(4979)} className="btn">14' Tall</button>
                                 </li>
                                 <li className="listitem">
-                                  <button onClick={() => addEachEndCommercial(5155)} className="btn">16' Tall</button>
+                                  <button onClick={() => addEachEndCommercial(5157)} className="btn">16' Tall</button>
                                 </li>
                                 <li className="listitem">
                                   <button onClick={() => addEachEndCommercial(5335)} className="btn">18' Tall</button>
@@ -12914,16 +13125,54 @@ const Product = () => {
               }
 
             </InfoContainer>
+            
           </Wrapper>
+
+            <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
+          
           <Announcement />
         </Container>
+        
         <Products />
         <Newsletter />
         <Footer />
       </>
     )
 
-  } else if (product.title === "50 Wide Commercial") {
+  } else if (product.title === "42' to 50' Wide Commercial") {
     return (
       <>
         <Container>
@@ -13121,7 +13370,7 @@ const Product = () => {
                               <i className="fas fa-caret-down"></i></h1>
                             <ul className="sub-menu">
                               <li className="listitem">
-                                <button onClick={() => addRoofCommercial50(11495)} className="btn">20' LONG'</button>
+                                <button onClick={() => addRoofCommercial50(11496)} className="btn">20' LONG'</button>
                               </li>
                               <li className="listitem">
                                 <button onClick={() => addRoofCommercial50(12795)} className="btn">24' LONG'</button>
@@ -13472,7 +13721,7 @@ const Product = () => {
                   <button onClick={() => addSideHeightCommercial(1585)} className="btn">24' LONG</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(1850)} className="btn">28' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(1851)} className="btn">28' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(2110)} className="btn">32' LONG</button>
@@ -13505,7 +13754,7 @@ const Product = () => {
                   <button onClick={() => addSideHeightCommercial(1755)} className="btn">24' LONG</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(2050)} className="btn">28' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(2051)} className="btn">28' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(2340)} className="btn">32' LONG</button>
@@ -13598,7 +13847,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(2905)} className="btn">20' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(2906)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(3485)} className="btn">24' LONG</button>
@@ -13851,19 +14100,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3115)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3116)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3295)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3296)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3475)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3476)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3655)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3656)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3836)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4015)} className="btn">18' Tall</button>
@@ -13881,19 +14130,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3235)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3236)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3415)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3416)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3595)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3596)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3775)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3776)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3956)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4135)} className="btn">18' Tall</button>
@@ -13911,19 +14160,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3355)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3356)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3535)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3536)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3715)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3716)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3895)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3896)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4076)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4255)} className="btn">18' Tall</button>
@@ -13941,19 +14190,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3475)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3477)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3655)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3657)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3837)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4015)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4016)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4196)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4375)} className="btn">18' Tall</button>
@@ -13971,19 +14220,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3595)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3597)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3775)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3777)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3957)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4135)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4137)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4316)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4495)} className="btn">18' Tall</button>
@@ -14001,19 +14250,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3715)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3718)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3895)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3897)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4077)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4255)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4256)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4436)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4615)} className="btn">18' Tall</button>
@@ -14031,22 +14280,22 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3838)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4015)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4018)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4197)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4375)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4377)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4555)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4556)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4735)} className="btn">18' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4737)} className="btn">18' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4915)} className="btn">20' Tall</button>
@@ -14061,19 +14310,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3958)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4135)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4138)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4318)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4495)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4498)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4675)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4678)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4855)} className="btn">18' Tall</button>
@@ -14091,25 +14340,25 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4078)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4255)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4257)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4437)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4615)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4617)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4795)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4797)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4975)} className="btn">18' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4978)} className="btn">18' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5155)} className="btn">20' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5156)} className="btn">20' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(875)} className="btn">Two Tone 'Per End'</button>
@@ -14121,19 +14370,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4199)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4375)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4379)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4555)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4558)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4735)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4739)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4915)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4918)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5095)} className="btn">18' Tall</button>
@@ -14151,19 +14400,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4320)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4495)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4499)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4675)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4679)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4855)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4858)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5035)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5036)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5215)} className="btn">18' Tall</button>
@@ -14181,19 +14430,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4438)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4615)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4618)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4795)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4798)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4975)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4979)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5155)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5157)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5335)} className="btn">18' Tall</button>
@@ -14218,6 +14467,41 @@ const Product = () => {
 
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />
@@ -14225,7 +14509,7 @@ const Product = () => {
         <Footer />
       </>
     )
-  } else if (product.title === "60 Wide Commercial") {
+  } else if (product.title === "52' to 60' Wide Commercial") {
     return (
       <>
         <Container>
@@ -14775,7 +15059,7 @@ const Product = () => {
                   <button onClick={() => addSideHeightCommercial(1585)} className="btn">24' LONG</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(1850)} className="btn">28' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(1851)} className="btn">28' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(2110)} className="btn">32' LONG</button>
@@ -14808,7 +15092,7 @@ const Product = () => {
                   <button onClick={() => addSideHeightCommercial(1755)} className="btn">24' LONG</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(2050)} className="btn">28' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(2051)} className="btn">28' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(2340)} className="btn">32' LONG</button>
@@ -14901,7 +15185,7 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addSideHeightCommercial(2905)} className="btn">20' LONG</button>
+                  <button onClick={() => addSideHeightCommercial(2906)} className="btn">20' LONG</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addSideHeightCommercial(3485)} className="btn">24' LONG</button>
@@ -15154,19 +15438,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3115)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3116)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3295)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3296)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3475)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3476)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3655)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3656)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3836)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4015)} className="btn">18' Tall</button>
@@ -15184,19 +15468,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3235)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3236)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3415)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3416)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3595)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3596)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3775)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3776)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3956)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4135)} className="btn">18' Tall</button>
@@ -15214,19 +15498,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3355)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3356)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3535)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3536)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3715)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3716)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3895)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3896)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4076)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4255)} className="btn">18' Tall</button>
@@ -15244,19 +15528,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3475)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3477)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3655)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3657)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3837)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4015)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4016)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4196)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4375)} className="btn">18' Tall</button>
@@ -15274,19 +15558,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3595)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3597)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3775)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3777)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3957)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4135)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4137)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4316)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4495)} className="btn">18' Tall</button>
@@ -15304,19 +15588,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3715)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3718)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3895)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3897)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4077)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4255)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4256)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4436)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4615)} className="btn">18' Tall</button>
@@ -15334,22 +15618,22 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3835)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3838)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4015)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4018)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4197)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4375)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4377)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4555)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4556)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4735)} className="btn">18' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4737)} className="btn">18' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4915)} className="btn">20' Tall</button>
@@ -15364,19 +15648,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(3955)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(3958)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4135)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4138)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4318)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4495)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4498)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4675)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4678)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(4855)} className="btn">18' Tall</button>
@@ -15394,25 +15678,25 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4075)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4078)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4255)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4257)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4437)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4615)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4617)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4795)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4797)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4975)} className="btn">18' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4978)} className="btn">18' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5155)} className="btn">20' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5156)} className="btn">20' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(875)} className="btn">Two Tone 'Per End'</button>
@@ -15424,19 +15708,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4195)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4199)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4375)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4379)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4555)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4558)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4735)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4739)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4915)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4918)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5095)} className="btn">18' Tall</button>
@@ -15454,19 +15738,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4315)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4320)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4495)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4499)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4675)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4679)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4855)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4858)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5035)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5036)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5215)} className="btn">18' Tall</button>
@@ -15484,19 +15768,19 @@ const Product = () => {
                 <i className="fas fa-caret-down"></i></h1>
               <ul className="sub-menu">
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4435)} className="btn">8' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4438)} className="btn">8' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4615)} className="btn">10' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4618)} className="btn">10' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4795)} className="btn">12' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4798)} className="btn">12' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(4975)} className="btn">14' Tall</button>
+                  <button onClick={() => addEachEndCommercial(4979)} className="btn">14' Tall</button>
                 </li>
                 <li className="listitem">
-                  <button onClick={() => addEachEndCommercial(5155)} className="btn">16' Tall</button>
+                  <button onClick={() => addEachEndCommercial(5157)} className="btn">16' Tall</button>
                 </li>
                 <li className="listitem">
                   <button onClick={() => addEachEndCommercial(5335)} className="btn">18' Tall</button>
@@ -15520,6 +15804,41 @@ const Product = () => {
 }
             </InfoContainer>
           </Wrapper>
+          
+          <InfoContainer>   
+          <AddContainer style={{textAlign: 'center'}}>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer>
+              </InfoContainer>
           <Announcement />
         </Container>
         <Products />

@@ -1,9 +1,15 @@
 import React from 'react';
 import './Testimonials.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration: 2000
+});
 
 const Testimonials = () => {
     return (
-        <div className='testimonials' id='testimonials'>
+        <div className='testimonials' id='testimonials' data-aos="flip-left">
             <div className='container'>
                 <h2 className="testi">Testimonials</h2>
                 <span className='line'></span>

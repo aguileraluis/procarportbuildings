@@ -1,10 +1,16 @@
 import React from 'react';
 import john from '../images/logo.PNG'
 import './About.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration: 2000
+});
 
 const About = () => {
     return (
-        <div className='about' id='about'>
+        <div className='about' id='about' data-aos="flip-right">
             <div className='container'>
                 <img className="aboutimg" src={john} alt='john' />
                 <div className='col-2'>
