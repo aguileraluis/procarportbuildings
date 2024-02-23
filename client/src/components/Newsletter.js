@@ -73,9 +73,8 @@ const Newsletter = () => {
 
       try {
    
-        const result = await userRequest.post('/api/signedupusers/signupfornewsletter', user).data
+        const result = await userRequest.post('/signedupusers/signupfornewsletter', user).data
         Swal.fire('Thank you! You are registered to our newsletter!', 'success').then(result=>{
-          window.location.href="/about";
           return result;
       })
         return result;
