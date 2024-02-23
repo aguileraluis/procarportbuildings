@@ -74,7 +74,7 @@ const Newsletter = () => {
 
       try {
    
-        const result = await axios.post('/signedupusers/signupfornewsletter', user).data
+        const result = await axios.post('/api/signedupusers/signupfornewsletter', user).data
         Swal.fire('Thank you! You are registered to our newsletter!', 'success')
         return result;
       } catch (error) {
