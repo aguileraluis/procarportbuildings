@@ -7190,7 +7190,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -8126,7 +8126,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -9107,7 +9107,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -9165,7 +9165,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -9222,7 +9222,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -9281,7 +9281,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -10119,7 +10119,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -10958,7 +10958,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -11825,7 +11825,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -13167,7 +13167,7 @@ const Product = () => {
         </Container>
         
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -14505,7 +14505,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
@@ -15842,7 +15842,7 @@ const Product = () => {
           <Announcement />
         </Container>
         <Products />
-        <Newsletter />
+        {/* <Newsletter /> */}
         <Footer />
       </>
     )
