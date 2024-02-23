@@ -91,8 +91,8 @@ const GetQuote = () => {
   return (
     <Container>
       <Title>Get A Quote Today!</Title>
-      <Desc>If you are interested in this barn building please provide your details below.</Desc>
-      <InputContainer>
+      <Desc>If you are interested in this barn building please call us at  336.468.1131 to get started.</Desc>
+      {/* <InputContainer>
         <Input placeholder="Name" value={name} onChange={(e)=> setname(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
       <InputContainer>
@@ -105,7 +105,7 @@ const GetQuote = () => {
       <Button onClick={Register}>
         <Send />
         </Button>
-      </InputContainer>
+      </InputContainer> */}
     </Container>
   );
 };
