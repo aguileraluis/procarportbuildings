@@ -70,7 +70,7 @@ const Home = () => {
       <div className="mapdiv" style={{ textAlign: 'center', justifyContent: 'center', marginTop: '20px' }} data-aos="flip-up">
         <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/xdkf49m4/servicemap-overlay.png" alt="boutiquepic" />
       </div>
-   
+      <Newsletter/> 
       <Footer />
     </div>
   )
