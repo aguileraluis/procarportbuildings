@@ -73,11 +73,10 @@ const Newsletter = () => {
 
       try {
    
-        const result = await userRequest.post('/signedupusers/signupfornewsletter', user).data
+        const result = await userRequest.post('/api/signedupusers/signupfornewsletter', user).data
         Swal.fire('Thank you! You are registered to our newsletter!', 'success').then(result=>{
           return result;
       })
-        return result;
       } catch (error) {
         console.log(error)
         Swal.fire('OOps', 'Something went wrong', 'error');
