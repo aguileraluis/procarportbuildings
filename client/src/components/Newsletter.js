@@ -5,6 +5,7 @@ import { mobile } from "../responsive";
 import { userRequest } from "../requestMethods";
 import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser';
+import axios from "axios";
 
 const Container = styled.form`
   height: 60vh;
@@ -73,12 +74,14 @@ const Newsletter = () => {
 
       try {
    
-        const result = await userRequest.post('/api/signedupusers/signupfornewsletter', user).data
+        const result = await axios.post('/api/signedupusers/signupfornewsletter', user).data
         Swal.fire('Thank you! You are registered to our newsletter!', 'success').then(result=>{
+          window.location.href="/about";
           return result;
       })
+        return result;
       } catch (error) {
-        console.log(error)
+        console.log(error)3
         Swal.fire('OOps', 'Something went wrong', 'error');
       }
     } 
