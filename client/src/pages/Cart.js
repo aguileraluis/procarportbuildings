@@ -211,9 +211,6 @@ const Cart = () => {
               tokenId: stripeToken.id, 
               amount: cart.total * 100,
           });
-           Swal.fire('Congratulations, we have recieved your order! Thank you for your payment!', 'Give us 24 hours to get back with you.').then(result=>{
-            window.location.href="/"    
-            })
             return res;
         } catch (error) {
           console.log(error)

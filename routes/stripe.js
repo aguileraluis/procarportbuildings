@@ -1,5 +1,4 @@
 const router = require("express").Router();
- const { v4: uuidv4 } = require('uuid');
 const KEY = process.env.STRIPE_KEY
 const stripe = require("stripe")(KEY);
 
@@ -19,10 +18,6 @@ router.post("/payment", async (req, res) => {
       amount: req.body.amount,
       currency: "usd",
     },
-
-    {
-      idempotencyKey : uuidv4()
-  },
 
     (stripeErr, stripeRes) => {
       if (stripeErr) {
