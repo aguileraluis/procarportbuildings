@@ -1,6 +1,4 @@
 const router = require("express").Router();
-import { config } from "dotenv"; 
- config();
  const { v4: uuidv4 } = require('uuid');
 const KEY = process.env.STRIPE_KEY
 const stripe = require("stripe")(KEY);
