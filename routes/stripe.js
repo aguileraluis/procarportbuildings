@@ -1,11 +1,12 @@
 const router = require("express").Router();
-const dotenv = require("dotenv"); 
- dotenv.config();
+import { config } from "dotenv"; 
+ config();
+ const { v4: uuidv4 } = require('uuid');
 const KEY = process.env.STRIPE_KEY
 const stripe = require("stripe")(KEY);
-// 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
 
-router.post("/api/payment", async (req, res) => {
+
+router.post("/payment", async (req, res) => {
   try {
 
     const customer = await stripe.customers.create({
@@ -13,13 +14,18 @@ router.post("/api/payment", async (req, res) => {
       source : token.id
   })
 
-  await stripe.charges.create(
+    await stripe.charges.create(
     {
       customer : customer.id,
       source: req.body.tokenId,
       amount: req.body.amount,
       currency: "usd",
     },
+
+    {
+      idempotencyKey : uuidv4()
+  },
+
     (stripeErr, stripeRes) => {
       if (stripeErr) {
         res.status(500).json(stripeErr);
@@ -34,4 +40,4 @@ router.post("/api/payment", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

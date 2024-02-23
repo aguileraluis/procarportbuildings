@@ -207,7 +207,7 @@ const Cart = () => {
 
     const makeRequest = async ()=> {
         try{
-          const res = await axios.post("/checkout/payment", {
+          const res = await axios.post("/api/checkout/payment", {
               tokenId: stripeToken.id, 
               amount: cart.total * 100,
           });
@@ -219,8 +219,8 @@ const Cart = () => {
           console.log(error)
           Swal.fire('OOps', 'Something went wrong', 'error');}
     };
-    stripeToken && cart.total >= 1 && makeRequest();
-  }, [stripeToken, cart.total, history])
+    stripeToken && makeRequest();
+  }, [stripeToken])
 
   
   async function onToken(token) {

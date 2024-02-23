@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-require('dotenv').config({ path: "./config.env" });
-dotenv.config();
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/usersRoute");
@@ -13,6 +10,9 @@ const path = require("path");
 const usersRoute= require('./routes/usersRoute');
 const signedRoute = require('./routes/signedRoute');
 mongoose.set('strictQuery', true);
+const dotenv = require("dotenv");
+require('dotenv').config({ path: "./config.env" });
+dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_URI, { useUnifiedTopology : true, useNewUrlParser : true } )
@@ -45,6 +45,6 @@ if(process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 5000;
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(port || 5000, () => {
   console.log("Backend server is running!");
 });
