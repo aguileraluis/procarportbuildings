@@ -81,7 +81,7 @@ const Newsletter = () => {
       })
         return result;
       } catch (error) {
-        console.log(error)3
+        console.log(error)
         Swal.fire('OOps', 'Something went wrong', 'error');
       }
     } 
