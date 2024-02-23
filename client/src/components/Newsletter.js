@@ -75,10 +75,7 @@ const Newsletter = () => {
       try {
    
         const result = await axios.post('/signedupusers/signupfornewsletter', user).data
-        Swal.fire('Thank you! You are registered to our newsletter!', 'success').then(result=>{
-          window.location.href="/about";
-          return result;
-      })
+        Swal.fire('Thank you! You are registered to our newsletter!', 'success')
         return result;
       } catch (error) {
         console.log(error)
