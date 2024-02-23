@@ -212,6 +212,7 @@ const Cart = () => {
               amount: cart.total * 100,
           });
            Swal.fire('Congratulations, we have recieved your order! Thank you for your payment!', 'Give us 24 hours to get back with you.').then(result=>{
+            window.location.href="/"
                 return result;
             })
           history("/")
@@ -262,7 +263,7 @@ const Cart = () => {
     
           try {
        
-            const result = await userRequest.post('/api/users/signup', user).data
+            const result = await axios.post('/api/users/signup', user).data
             localStorage.clear();
             // Swal.fire('Congratulations, you have registered to our newsletter! Thank you!', 'success').then(result=>{
             //     window.location.href="/about";
