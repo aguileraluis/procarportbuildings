@@ -207,14 +207,14 @@ const Cart = () => {
 
     const makeRequest = async ()=> {
         try{
-          const res = await axios.post("/checkout/payment", {
+          const res = await axios.post("/api/checkout/payment", {
               tokenId: stripeToken.id, 
               amount: cart.total * 100,
           });
            Swal.fire('Congratulations, we have recieved your order! Thank you for your payment!', 'Give us 24 hours to get back with you.').then(result=>{
-            window.location.href="/"
-                return res;
+            window.location.href="/"    
             })
+            return res;
           history("/")
         } catch {}
     };
