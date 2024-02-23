@@ -88,8 +88,8 @@ const Newsletter = () => {
 }
   return (
     <Container>
-      <Title>Newsletter</Title>
-      <Desc>Sign up to stay up to date on our yearly discounts for you and your loved ones.</Desc>
+      <Title>Get A Quote Today!</Title>
+      <Desc>Sign up today to receive a free quote and recieve our yearly email.</Desc>
       <InputContainer>
         <Input placeholder="Name" value={name} onChange={(e)=> setname(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
