@@ -1,24 +1,13 @@
 const router = require("express").Router();
-const KEY = process.env.STRIPE_KEY
-const stripe = require("stripe")(KEY);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-
-router.post("/payment", async (req, res) => {
-  try {
-
-    const customer = await stripe.customers.create({
-      email : token.email,
-      source : token.id
-  })
-
-    await stripe.charges.create(
+router.post("/payment", (req, res) => {
+  stripe.charges.create(
     {
-      customer : customer.id,
       source: req.body.tokenId,
       amount: req.body.amount,
       currency: "usd",
     },
-
     (stripeErr, stripeRes) => {
       if (stripeErr) {
         res.status(500).json(stripeErr);
@@ -27,10 +16,6 @@ router.post("/payment", async (req, res) => {
       }
     }
   );
-  res.send('Payment successful, thank you!')
-  } catch (error) {
-    return res.status(400).json({ error })
-  }
 });
 
-export default router;
+module.exports = router;
