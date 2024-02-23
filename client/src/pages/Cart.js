@@ -263,7 +263,7 @@ const Cart = () => {
     
           try {
        
-            const result = await axios.post('/users/signup', user).data
+            const result = await axios.post('/api/users/signup', user).data
             localStorage.clear();
             // Swal.fire('Congratulations, you have registered to our newsletter! Thank you!', 'success').then(result=>{
             //     window.location.href="/about";
@@ -388,7 +388,7 @@ const Cart = () => {
       <Bottom>
         <Info>
           {cart.products.map((product) => (
-            <Product>
+            <Product key={product._id}>
               <ProductDetail>
                 <Image src={product.img} />
                 <Details>
