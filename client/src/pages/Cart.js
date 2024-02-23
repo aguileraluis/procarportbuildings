@@ -213,7 +213,7 @@ const Cart = () => {
           });
            Swal.fire('Congratulations, we have recieved your order! Thank you for your payment!', 'Give us 24 hours to get back with you.').then(result=>{
             window.location.href="/"
-                return result;
+                return res;
             })
           history("/")
         } catch {}
