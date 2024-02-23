@@ -207,7 +207,7 @@ const Cart = () => {
 
     const makeRequest = async ()=> {
         try{
-          const res = await userRequest.post("/checkout/payment", {
+          const res = await userRequest.post("api/checkout/payment", {
               tokenId: stripeToken.id, 
               amount: cart.total * 100,
           });
@@ -262,7 +262,7 @@ const Cart = () => {
     
           try {
        
-            const result = await userRequest.post('/users/signup', user).data
+            const result = await userRequest.post('/api/users/signup', user).data
             localStorage.clear();
             // Swal.fire('Congratulations, you have registered to our newsletter! Thank you!', 'success').then(result=>{
             //     window.location.href="/about";
