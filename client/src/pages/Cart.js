@@ -383,9 +383,7 @@ const Cart = () => {
 
       <Wrapper>
       <Title>YOUR BAG</Title>
-      <SummaryItemText>Our payment processor charges 4.75% of the sale, if you would like to send us a check or pay cash please call us at 336.468.1131 to pay.</SummaryItemText>
-      <br/>
-      <SummaryItemText>Prices are subject to change if you add options, accessories and extras.</SummaryItemText>
+     
       <Bottom>
         <Info>
           {cart.products.map((product) => (
@@ -451,8 +449,12 @@ const Cart = () => {
           >
              { totalamount> 0 ? <Button>CHECKOUT NOW</Button> : <></> }
           </StripeCheckout>
+          <SummaryItemText>Our payment processor charges 4.75% of the sale, if you would like to send us a check or pay cash please call us at 336.468.1131 to pay.</SummaryItemText>
+      <br/>
+      <SummaryItemText>Prices are subject to change if you add options, accessories and extras.</SummaryItemText>
         </Summary>
       </Bottom>
+     
     </Wrapper>
 }   
 
