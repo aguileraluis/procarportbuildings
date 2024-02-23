@@ -210,7 +210,10 @@ const Cart = () => {
           const res = await axios.post("/api/checkout/payment", {
               tokenId: stripeToken.id, 
               amount: fifteenpercent * 100,
-          });
+          })
+          Swal.fire('Thank you for your payment!', 'Please give us 24 hours to get back in touch with you').then(result => {
+            window.location.href="/"
+          })
             return res;
         } catch (error) {
           console.log(error)
