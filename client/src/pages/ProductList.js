@@ -142,7 +142,7 @@ const ProductList = () => {
       <div className="row justify-content-center">
       <Products cat={cat} filters={filters} sort={sort} />
       </div>
-      <Newsletter />
+     
       <Footer />
     </Container>
     </>
