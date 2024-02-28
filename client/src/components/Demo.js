@@ -18,7 +18,7 @@ const Demo = () => {
                     
                     <h1 style={{fontSize:'35px'}}>Why Us?</h1>
                     <h3><CircleIcon/>Family Owned</h3>
-                    <h3><CircleIcon/>Materials Made in he USA</h3>
+                    <h3><CircleIcon/>Materials Made in the USA</h3>
                     <h3><CircleIcon/>Durable Steel Material</h3>
                     <h3><CircleIcon/>20+ Years of Experience</h3>
                     <h3><CircleIcon/>Competitive Prices</h3>
