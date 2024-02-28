@@ -22,7 +22,7 @@ function Hero() {
       <Carousel.Item interval={5000}>
         <img
           className="heroimg d-block w-100"
-          src="https://i.postimg.cc/J0zN2Wj3/carport22.jpg"
+          src="https://i.postimg.cc/fyXFWRYd/carport31-fotor-20240227122911.jpg"
           alt="Second slide"
         />
         <Carousel.Caption>

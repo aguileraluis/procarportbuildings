@@ -16,7 +16,7 @@ const Container = styled.div`
 const Announcement = () => {
   return (
     <Container>
-        Get Started Today! We Have THE Best Prices You Will Find Within The Area! 
+        Get Started Today! Call now 336.468.1131 
     </Container>
   )
 }

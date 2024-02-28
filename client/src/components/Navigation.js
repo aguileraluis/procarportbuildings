@@ -71,7 +71,7 @@ position: sticky;
     return (
       
             <nav>
-                 <Logo to="/"><img src={logo} alt="logo" style={{position: "fixed", height: "120px", marginLeft: "20px", borderRadius: '90px'}}/></Logo>
+                 <Logo to="/"><img src='https://i.postimg.cc/SxFZ1pYv/LOGO.jpg' alt="logo" style={{position: "fixed", height: '160px', marginLeft: "50px", marginTop: '60px', borderRadius: '230px'}}/></Logo>
                 <div className="menu-icons" onClick={(toggleNavigation)} style={{display: 'flex', textAlign: 'center'}}>
                     <i className="fas fa-bars"></i>
                     <i className="fas fa-times"></i>

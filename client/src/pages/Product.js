@@ -5,7 +5,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navigation";
 
-import GetQuote from "../components/GetQuote";
+import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -54,8 +54,8 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
-  font-size: 20px !important;
+  font-weight: 800;
+  font-size: 70px !important;
   padding: 1px;
 `;
 
@@ -6262,6 +6262,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
               <AddContainer>
 
                 <Price>Total $ {total}</Price>
@@ -7207,6 +7208,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -8143,6 +8145,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -9125,8 +9128,9 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
-              <GetQuote />
+              <Newsletter />
 
               {/* <AddContainer>
                 <Price>Total Price $ {total}</Price>
@@ -9182,8 +9186,9 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
-              <GetQuote />
+              <Newsletter />
 
 {/* <AddContainer>
   <Price>Total Price $ {total}</Price>
@@ -9240,9 +9245,10 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
 
-              <GetQuote />
+              <Newsletter />
 
 {/* <AddContainer>
   <Price>Total Price $ {total}</Price>
@@ -9298,6 +9304,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -10137,6 +10144,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -10976,6 +10984,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -11842,6 +11851,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -13185,6 +13195,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -14522,6 +14533,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
+              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>

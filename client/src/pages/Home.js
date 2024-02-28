@@ -20,35 +20,41 @@ const Home = () => {
 
   const galleryImagesTwo = [
     {
-      img: 'https://i.postimg.cc/zBXDChPn/carport31.jpg'
+      img: 'https://i.postimg.cc/hPQNdPTJ/403012-Garage.jpg'
+    },
+    {
+      img: 'https://i.postimg.cc/RhksRKKW/carolinabarn-fotor-2024022712307.jpg'
+    },
+    {
+      img: 'https://i.postimg.cc/SRNNKbHQ/carport6-fotor-2024022712163.png'
+    },
+    {
+      img: 'https://i.postimg.cc/76frt1G9/carport12-fotor-20240227121112.jpg'
     }, 
     {
-      img: 'https://i.postimg.cc/K8PmCf6P/carport32.jpg'
+      img: 'https://i.postimg.cc/1XFhs9KN/carport15-fotor-20240227122115.png'
     },
     {
-      img: 'https://i.postimg.cc/VvkSkp8P/carport29.jpg'
+      img: 'https://i.postimg.cc/cL0yGGtr/carport16-fotor-20240227121811.png'
     },
     {
-      img: 'https://i.postimg.cc/V69TkbkC/carport17.jpg'
+      img: 'https://i.postimg.cc/d3rXg5q2/carport18-fotor-20240227121316.png'
     },
     {
-      img: 'https://i.postimg.cc/Rh6PyPD4/carport25.jpg'
-    }, 
-    {
-      img: 'https://i.postimg.cc/BQjghKfB/carport19.jpg'
+      img: 'https://i.postimg.cc/65xFCx0Y/carport19-1-fotor-2024022712250.jpg'
     },
     {
-      img: 'https://i.postimg.cc/DzTPypJx/carport20.jpg'
+      img: 'https://i.postimg.cc/sf440Fzn/IMG-4964-fotor-20240223163224.jpg'
     },
     {
-      img: 'https://i.postimg.cc/hjCLsSCY/carport21.jpg'
+      img: 'https://i.postimg.cc/5yKYdSnt/IMG-5068-fotor-20240223162519.jpg'
     },
     {
-      img: 'https://i.postimg.cc/ncV8MT7c/carport15.jpg'
+      img: 'https://i.postimg.cc/g2ZwQRRY/IMG-5262-fotor-2024022685533.jpg'
     },
     {
-      img: 'https://i.postimg.cc/FH12VRDM/carport16.jpg'
-    }
+      img: 'https://i.postimg.cc/43vYNgBq/IMG-5284-fotor-20240223165928.jpg'
+    },
   ]
 
   return (
@@ -68,7 +74,7 @@ const Home = () => {
       <br />
       <br />
       <div className="mapdiv" style={{ textAlign: 'center', justifyContent: 'center', marginTop: '20px' }} data-aos="flip-up">
-        <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/xdkf49m4/servicemap-overlay.png" alt="boutiquepic" />
+        <img id="logopic" style={{ width: '90%', height: 'auto', textAlign: 'center', justifyContent: 'center' }} src="https://i.postimg.cc/5NFh31KT/Coverage-Area-1.png" alt="boutiquepic" />
       </div>
       <Newsletter/> 
       <Footer />

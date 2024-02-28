@@ -1,18 +1,26 @@
 const mongoose = require("mongoose");
 
 const SignedSchema = mongoose.Schema({
-    name : {
+    fname : {
         type : String, 
     },
-
+    lname : {
+        type : String, 
+    },
+    style : {
+        type : String, 
+    },
+    size : {
+        type : String, 
+    },
     email : {
         type : String, 
-        // required : true
     },
-
     phonenumber : {
         type : String, 
-        // required : true
+    },
+    zipcode : {
+        type : String, 
     }
 
 } , {

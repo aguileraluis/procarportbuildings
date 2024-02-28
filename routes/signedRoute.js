@@ -6,9 +6,14 @@ const router = express.Router();
 router.post("/signupfornewsletter", async(req, res) => {
 
   const newuser = new Signed({
-    name : req.body.name,
+    fname : req.body.fname,
+    lname : req.body.lname,
     email : req.body.email,
-    phonenumber : req.body.phonenumber    
+    phonenumber : req.body.phonenumber,
+    zipcode : req.body.zipcode,
+    style : req.body.style,
+    size : req.body.size,
+
   });
 
   try {

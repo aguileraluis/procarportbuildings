@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { userRequest } from "../requestMethods";
 import Swal from 'sweetalert2';
-import emailjs from '@emailjs/browser';
 import axios from "axios";
+import emailjs from '@emailjs/browser';
 
 const Container = styled.form`
   height: 60vh;
@@ -61,43 +61,73 @@ const Newsletter = () => {
 
   const [email, setemail] = useState('');
   const [phonenumber, setphonenumber] = useState('');
-  const [name, setname] = useState('');
+  const [fname, setfname] = useState('');
+  const [lname, setlname] = useState('');
+  const [zipcode, setzipcode] = useState('');
+  const [style, setstyle] = useState('');
+  const [size, setsize] = useState('');
+
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_l4lv5jf', 'template_yzilc6b', e.target, 'cMXHSu-UWF1vCpXXl');
+    console.log("email sent");
+    localStorage.clear();
+  }
+
 
   const Register = async ()=> {
 
-    if (name && email && phonenumber){
+    if (fname && email && phonenumber && lname && zipcode && style && size){
   const user = {
-        name,
+        fname,
+        lname,
         email, 
-        phonenumber
+        phonenumber,
+        zipcode,
+        style,
+        size
       }
 
       try {
    
         const result = await axios.post('/api/signedupusers/signupfornewsletter', user).data
-        Swal.fire('Thank you! You are registered to our newsletter!', 'success')
+        Swal.fire('We will get back in touch with you with a quote!', 'Thank you!')
+        window.location.href="/";
         return result;
       } catch (error) {
         console.log(error)
-        Swal.fire('OOps', 'Something went wrong', 'error');
+        Swal.fire('OOps', 'Please fill out the information', 'Please provide additional details');
       }
     } 
     else {
-        Swal.fire('OOps', 'Something went wrong', 'error');
+        Swal.fire('OOps', 'Pleae fill out information', 'Please provide additional details');
     }
 }
   return (
-    <Container>
+    <Container onSubmit={sendEmail}>
       <Title>Get A Quote Today!</Title>
       <Desc>Sign up today to receive a free quote and recieve our yearly email.</Desc>
       <InputContainer>
-        <Input placeholder="Name" value={name} onChange={(e)=> setname(e.target.value)} style={{fontSize: '30px'}}/>
+        <Input placeholder="First Name" value={fname} name="first_name" onChange={(e)=> setfname(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
       <InputContainer>
-        <Input placeholder="Email" value={email} onChange={(e)=> setemail(e.target.value)} style={{fontSize: '30px'}}/>
+        <Input placeholder="Last Name" value={lname} name="last_name" onChange={(e)=> setlname(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
       <InputContainer>
-        <Input placeholder="Phone Number" value={phonenumber} onChange={(e)=> setphonenumber(e.target.value)} style={{fontSize: '30px'}}/>
+        <Input placeholder="Email" value={email} name="email" onChange={(e)=> setemail(e.target.value)} style={{fontSize: '30px'}}/>
+      </InputContainer>
+      <InputContainer>
+        <Input placeholder="Phone Number" value={phonenumber} name="phone_number" onChange={(e)=> setphonenumber(e.target.value)} style={{fontSize: '30px'}}/>
+      </InputContainer>
+      <InputContainer>
+        <Input placeholder="Zipcode" value={zipcode} name="zipcode" onChange={(e)=> setzipcode(e.target.value)} style={{fontSize: '30px'}}/>
+      </InputContainer>
+      <InputContainer>
+        <Input placeholder="Building Style" value={style} name="style" onChange={(e)=> setstyle(e.target.value)} style={{fontSize: '30px'}}/>
+      </InputContainer>
+      <InputContainer>
+        <Input placeholder="Building Size" value={size} name="size" onChange={(e)=> setsize(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
       <InputContainer>
       <Button onClick={Register}>
