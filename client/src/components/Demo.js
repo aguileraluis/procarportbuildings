@@ -12,23 +12,22 @@ AOS.init({
 const Demo = () => {
 
     return (
-        <div className='demo' id='demo' >
+        <div className='demo' id='demo' data-aos="flip-down">
             <div className='container'>
-                <div className='col-1' data-aos="flip-down">
-                    
-                    <h1 style={{fontSize:'35px'}}>Why Us?</h1>
-                    <h3><CircleIcon/>Family Owned</h3>
-                    <h3><CircleIcon/>Materials Made in the USA</h3>
-                    <h3><CircleIcon/>Durable Steel Material</h3>
-                    <h3><CircleIcon/>20+ Years of Experience</h3>
-                    <h3><CircleIcon/>Competitive Prices</h3>
-                    <h3><CircleIcon/>Fastest Installation Guaranteed</h3>
-                    <h3><CircleIcon/>We Build Certified Buildings</h3>
-                    <h3><CircleIcon/>Bilingual</h3>
-                    <h5 id="p1">We provide 20 years of warranty on all material</h5>
+                <div className='col-1'>
+                    <p id="p1">We know that your money is important to you. Let us give you the biggest bang for your buck.</p>
+                    <p style={{fontSize:'35px'}}>Why Us?</p>
+                    <p><CircleIcon/>Family Owned</p>
+                    <p><CircleIcon/>Materials Made in he USA</p>
+                    <p><CircleIcon/>Durable Steel Material</p>
+                    <p><CircleIcon/>20+ Years of Experience</p>
+                    <p><CircleIcon/>Competitive Prices</p>
+                    <p><CircleIcon/>Fastest Installation Guaranteed</p>
+                    <p><CircleIcon/>We Build Certified Buildings</p>
+                    <p><CircleIcon/>Bilingual</p>
                     {/* <button className='button'>Get your free financial analysis</button> */}
                 </div>
-                <div className='col-2' data-aos="flip-up">
+                <div className='col-2'>
                     <video controls muted width='570' height='320' src={video} title='Youtube video player' frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
                 </div>
             </div>

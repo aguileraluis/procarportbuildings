@@ -19,6 +19,11 @@ import { Link } from 'react-router-dom';
 import Photos from '../components/Photos';
 
 let total = 0;
+let sidetotal = 0;
+let bothsidesclosedtotal = 0;
+let verticalsidestotal = 0;
+let eachendtotal = 0;
+let heighttotal = 0;
 let salestax = 0;
 let sideheight = '';
 let bothsidesclosed = '';
@@ -30,7 +35,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 50px;
+  padding: 10px;
   display: flex;
   ${mobile({ display: 'flex', padding: "10px", flexDirection: "column" })}
 `;
@@ -49,19 +54,25 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   text-align: center;
   flex: 1;
-  padding: 0px 50px;
+  margin: auto;
+
   ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
   font-weight: 800;
-  font-size: 70px !important;
+  font-size: 50px !important;
+  margin-right: 40px !important;
+  text-align: center !important;
   padding: 1px;
+  ${mobile({textAlign: 'center', fontSize: '30px', marginRight: '40px'})}
+ 
 `;
 
 const Desc = styled.p`
-  margin: 10px 0px;
+  margin-right: 30px !important;
   font-size: 20px;
+  ${mobile({textAlign: 'center', fontSize: '15px', marginRight: '90px'})}
 `;
 
 const Price = styled.span`
@@ -72,21 +83,20 @@ const Price = styled.span`
 const FilterContainer = styled.div`
  display: grid;
  text-align: center;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(auto, auto, auto, auto);
   /* margin-left: 11% !important;
   margin-right: 11% !important; */
   margin-top: 2% !important;
   margin-bottom: 1% !important;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
   ${mobile({ marginBottom: '2px', display: 'grid', justifyContent: 'center', textAlign: 'center', borderRadius: '10px' })}
 `;
 
 const Filter = styled.div`
-  display: grid;
+  display: flex;
   align-items: center;
   text-align: center;
-  
 
 `;
 
@@ -94,10 +104,10 @@ const FilterTitle = styled.span`
   text-align: center;
   font-size: 20px;
   font-weight: 200;
-  width: 100%;
+  width: 80%;
   color: white;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 2px;
+  border-radius: 10px;
   background-color: teal;
   padding-bottom: 10px !important;
 `;
@@ -120,11 +130,12 @@ const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
   margin: 10px;
-  width: 100%;
+  width: 70%;
   display: flex;
-  align-items: center;
-  text-align: center !important;
-  justify-content: space-between;
+  align-items: right;
+  text-align: right !important;
+  justify-content: center;
+
   ${mobile({ width: "100%", textAlign: 'center' })}
 `;
 
@@ -250,6 +261,7 @@ const Product = () => {
       total += e;
       settotalprice(total);
       sideheight = '7ft X 20ft';
+      
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
@@ -257,6 +269,7 @@ const Product = () => {
       total += e;
       settotalprice(total);
       sideheight = '7ft X 25ft';
+      
       setclicked(true);
       console.log(total);
       localStorage.setItem('sideheight', sideheight);
@@ -6252,28 +6265,25 @@ const Product = () => {
       <>
         <Container>
           <Navbar />
-
           <Wrapper>
-
-
             <ImgContainer>
               <Image src={product.img} />
             </ImgContainer>
             <InfoContainer>
+            
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
-              <AddContainer>
-
+              <Desc>Prices are subject to change with add ons.</Desc>
+              <AddContainer style={{textAlign: 'center'}}>
                 <Price>Total $ {total}</Price>
                 <br />
                 <br />
                 {addedtocart ?
                   <>
-                    <br />
+                    {/* <br />
                     <Button onClick={handleClick}>ADD TO CART</Button>
                     <br />
-                    <br />
+                    <br /> */}
                     <Button onClick={clear}>CLEAR</Button>
                   </>
 
@@ -6296,6 +6306,38 @@ const Product = () => {
                   </>
                 }
               </AddContainer>
+
+              {/* <AddContainer>
+                <Price>Total $ {total}</Price>
+                <br />
+                <br />
+                {addedtocart ?
+                  <>
+                    <br />
+                    <Button onClick={handleClick}>ADD TO CART</Button>
+                    <br />
+                    <br />
+                    <Button onClick={clear}>CLEAR</Button>
+                  </>
+
+                  :
+                  <></>
+                }
+
+                {addedtocart ?
+                  <></>
+                  :
+                  <>
+                    <br />
+                    <Link to={`/cart/${total}/${salestax}`} className="btn-primary room-link">
+                      <Button onClick={handleDelete}>GO TO CART</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button onClick={goBack}>GO BACK</Button>
+                  </>
+                }
+              </AddContainer> */}
 
 
 
@@ -6334,7 +6376,7 @@ const Product = () => {
                           <li>
                             <h1 id="dropdownh1">18'
                               <i className="fas fa-caret-down"></i></h1>
-                            <ul className="sub-menu" >
+                            <ul className="sub-menu"  >
                               <li className="listitem">
                                 <button onClick={() => addRoofStandardRegular(1395)} className="btn">20' LONG</button>
                               </li>
@@ -6410,13 +6452,13 @@ const Product = () => {
                 }
               </FilterContainer>
 
-              {addedtocart ?
+              {/* {addedtocart ?
                 <div style={{ margin: '20px' }}>
 
                   <FilterTitle>Select Sizes</FilterTitle>
                 </div> :
                 <></>
-              }
+              } */}
 
               {addedtocart ?
 
@@ -7150,12 +7192,7 @@ const Product = () => {
               <Photos galleryImages={gallery} style={{ marginTop: '-20px' }} /> */}
 
               {/* </div> */}
-
-            </InfoContainer>
-          </Wrapper>
-          
-          <InfoContainer>   
-          <AddContainer style={{textAlign: 'center'}}>
+              <AddContainer style={{textAlign: 'center'}}>
                 <Price>Total $ {total}</Price>
                 <br />
                 <br />
@@ -7165,7 +7202,7 @@ const Product = () => {
                     <Button onClick={handleClick}>ADD TO CART</Button>
                     <br />
                     <br />
-                    <Button onClick={clear}>CLEAR</Button>
+                    {/* <Button onClick={clear}>CLEAR</Button> */}
                   </>
 
 
@@ -7187,6 +7224,11 @@ const Product = () => {
                   </>
                 }
               </AddContainer>
+            </InfoContainer>
+          </Wrapper>
+          
+          <InfoContainer>   
+       
               </InfoContainer>
           <Announcement />
         </Container>
@@ -7208,7 +7250,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -8145,7 +8187,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -9128,7 +9170,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <Newsletter />
 
@@ -9186,7 +9228,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <Newsletter />
 
@@ -9245,7 +9287,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
 
               <Newsletter />
@@ -9304,7 +9346,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -10144,7 +10186,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -10984,7 +11026,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -11851,7 +11893,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
               <AddContainer>
                 <Price>Total $ {total}</Price>
                 <br />
@@ -13195,7 +13237,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
@@ -14533,7 +14575,7 @@ const Product = () => {
             <InfoContainer>
               <Title>{product.title}</Title>
               <Desc>{product.desc}</Desc>
-              <Desc>Prices are subject to change if you add options, accessories and extras.</Desc>
+              <Desc>Prices are subject to change with add ons.</Desc>
 
               <AddContainer>
                 <Price>Total $ {total}</Price>
