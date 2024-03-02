@@ -6,8 +6,8 @@
     justify-content: center;
     max-width: 2500px;
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @media screen and (max-width: 850px) {
       width: '200px';
@@ -86,21 +86,21 @@
   .sliderWrap .btnClose {
     top: 40px;
     right: 40px;
-    color: darkorange
+    color: teal;
   }
   
   .sliderWrap .btnPrev {
     top: 50%;
     transform: translateY(-50%);
     left: 30px;
-    color: darkorange;
+    color: teal;
   }
   
   .sliderWrap .btnNext {
     top: 50%;
     transform: translateY(-50%);
     right: 30px;
-    color: darkorange;
+    color: teal;
   }
   
   .fullScreenImage {

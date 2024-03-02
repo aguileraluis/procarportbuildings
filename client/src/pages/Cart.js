@@ -193,6 +193,7 @@ const Cart = () => {
   let bothsidesclosed = localStorage.getItem("bothsidesclosed");
   let verticalsides = localStorage.getItem("verticalsides");
   let eachend = localStorage.getItem("eachend");
+  let bothends = localStorage.getItem("bothends");
   const [filled, setfilled] = useState(true);
   let totalamount = Number(totalprice) + Number(salestax);
   
@@ -258,7 +259,8 @@ const Cart = () => {
             sideheight,
             bothsidesclosed,
             verticalsides,
-            eachend
+            eachend, 
+            bothends
     
           }
     
@@ -360,6 +362,13 @@ const Cart = () => {
                   <h4>Each End:</h4> 
                 <input type="text" className="form-control" name="each_end" placeholder={eachend} style={{textAlign : 'center'}}
                 defaultValue={eachend} />
+                </>
+                : <></>
+                }              
+                { bothends ? <>
+                  <h4>Both Ends:</h4> 
+                <input type="text" className="form-control" name="both_ends" placeholder={bothends} style={{textAlign : 'center'}}
+                defaultValue={bothends} />
                 </>
                 : <></>
                 }              
