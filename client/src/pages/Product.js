@@ -201,25 +201,25 @@ const Product = () => {
   const galleryImagesTwo = [
   
     {
-      img: 'https://i.postimg.cc/WzffDy1n/image0.jpg'
+      img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
     },
  
     {
-      img: 'https://i.postimg.cc/mZ6dy0T3/image2.jpg'
+      img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
     },
    
     {
-      img: 'https://i.postimg.cc/1z9cQH95/image4.jpg'
+      img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
     },
     {
-      img: 'https://i.postimg.cc/FFf689WC/IMG-2882.jpg'
+      img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
     }
     ,
     {
-      img: 'https://i.postimg.cc/T1htXcJW/image1.jpg'
+      img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
     },
     {
-      img: 'https://i.postimg.cc/xCpPgzVj/image3.jpg'
+      img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
     }, 
   
   ]
@@ -7313,9 +7313,10 @@ const Product = () => {
 <br/>
 <br/>
 <br/>
-        <Photos  galleryImages={galleryImagesTwo} /> 
-        <br/>
+ 
+ <Photos  galleryImages={galleryImagesTwo} /> 
 
+  
 <br/>
 <br/>
           </InfoContainer>
