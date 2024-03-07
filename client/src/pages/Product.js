@@ -201,25 +201,32 @@ const Product = () => {
   const galleryImagesTwo = [
   
     {
-      img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
+
+      img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
+      // img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
     },
  
     {
-      img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
+      img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
+      // img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
     },
    
     {
-      img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
+      img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
+      // img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
     },
     {
-      img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
+      img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
+      // img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
     }
     ,
     {
-      img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
+      img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
+      // img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
     },
     {
-      img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
+      img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
+      // img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
     }, 
   
   ]
@@ -3068,7 +3075,7 @@ const Product = () => {
   };
 
   function addRoofCommercial60(e) {
-    if (e === 1195) {
+    if (e === 11995) {
       total += e;
       settotalprice(total);
       height = '52ft x 20ft x 6';
@@ -14862,7 +14869,7 @@ const Product = () => {
                               <i className="fas fa-caret-down"></i></h1>
                             <ul className="sub-menu">
                               <li className="listitem">
-                                <button onClick={() => addRoofCommercial60(1195)} className="btn">20' LONG</button>
+                                <button onClick={() => addRoofCommercial60(11995)} className="btn">20' LONG</button>
                               </li>
                               <li className="listitem">
                                 <button onClick={() => addRoofCommercial60(13295)} className="btn">24' LONG</button>

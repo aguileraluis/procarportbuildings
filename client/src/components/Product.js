@@ -2,6 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+  duration: 3000
+});
 
 const Container = styled.div`
   flex: 1;
@@ -63,7 +69,7 @@ const Product = ({item}) => {
   };
 
     return (
-    <Container>
+    <Container data-aos="flip-right">
       <Link to={`/product/${item._id}`}>
       <Image src={`${item.img}`} />
       <Info>

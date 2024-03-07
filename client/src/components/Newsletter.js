@@ -105,10 +105,10 @@ const Newsletter = () => {
     }
 }
   return (
-    <Container onSubmit={sendEmail}>
-      <Title>Get A Quote Today!</Title>
-      <Desc>Sign up today to receive a free quote and get on our email list.</Desc>
-      <InputContainer>
+    <Container  onSubmit={sendEmail}>
+      <Title data-aos="flip-right">Get A Quote Today!</Title>
+      <Desc data-aos="flip-left">Sign up today to receive a free quote and get on our email list.</Desc>
+      <InputContainer data-aos="flip-up">
         <Input placeholder="First Name" value={fname} name="first_name" onChange={(e)=> setfname(e.target.value)} style={{fontSize: '30px'}}/>
       </InputContainer>
       <InputContainer>
