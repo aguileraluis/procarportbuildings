@@ -9,6 +9,7 @@ import Testimonials from "../components/Testimonials";
 import Demo from "../components/Demo";
 import Hero from '../components/Hero';
 import Photos from '../components/Photos';
+import video from '../videos/video.mp4';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -66,7 +67,19 @@ const Home = () => {
       <br/>
       <Photos galleryImages={galleryImagesTwo} />
       <Categories />
+      <br/>
+        <br/>
+        <br/>
       <Demo />
+
+     <br/>
+     <br/>
+     <br/>
+     <br/>
+      <div style={{textAlign: 'center'}}> 
+      <video controls muted width='570' height='320' src={video} title='Youtube video player' frameBorder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+      </div>
+     
       <Testimonials />
       <br />
       <br />

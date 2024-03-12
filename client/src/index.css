@@ -123,3 +123,11 @@ code {
 
   }
 }
+.room {
+  box-shadow: var(--lightShadow);
+  transition: var(--mainTransition);
+  margin-bottom: 1rem;
+}
+.room:hover {
+  box-shadow: var(--darkShadow);
+}

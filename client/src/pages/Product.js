@@ -202,30 +202,32 @@ const Product = () => {
   
     {
 
-      img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
+      img: ' https://i.postimg.cc/QtXYBtDX/procarportbuildingsfour.png'
       // img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
+     
+      // https://i.postimg.cc/xjBVcvXg/procarportbuildingsone.png
     },
  
     {
-      img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
-      // img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
+      // img: 'https://i.postimg.cc/JnZ7hp1w/procarportbuildingstwo.png'
+      img: 'https://i.postimg.cc/9fqCxLw4/procarportbuildingsthree.png'
     },
    
     {
-      img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
+      img: 'https://i.postimg.cc/c13TswwQ/procarportbuildingssix.png'
       // img: 'https://i.postimg.cc/GtCZChZP/STD-B.png'
     },
     {
-      img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
+      img: 'https://i.postimg.cc/fT0CRXdc/procarportbuildingsfive.png'
       // img: 'https://i.postimg.cc/MGf4fQwb/STD-F.png'
     }
     ,
     {
-      img: 'https://i.postimg.cc/bJWwHbSy/COMM-B.png'
+      img: 'https://i.postimg.cc/JnZ7hp1w/procarportbuildingstwo.png'
       // img: 'https://i.postimg.cc/SNQv75qK/TRIPLE-B.png'
     },
     {
-      img: 'https://i.postimg.cc/BnS4FN75/COMM.png'
+      img: 'https://i.postimg.cc/xjBVcvXg/procarportbuildingsone.png'
       // img: 'https://i.postimg.cc/J7xTnqJC/TRIPLE-F.png'
     }, 
   
