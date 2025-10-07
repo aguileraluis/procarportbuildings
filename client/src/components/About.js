@@ -1,5 +1,5 @@
 import React from 'react';
-import john from '../images/logo.PNG'
+import john from '../images/logo.png'
 import './About.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

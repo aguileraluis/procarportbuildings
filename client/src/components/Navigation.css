@@ -43,7 +43,6 @@ header {
 
     @media screen and (max-width: 768px) {
         display: block;
-        background-image: url(${FaBars});
         background-size: contain;
         height: 40px;
         width: 40px; 

@@ -1,11 +1,12 @@
 import React from 'react';
 import './Navigation.css';
-import logo from '../images/logo.PNG';
+import logo from '../images/logo.png';
 import { Badge } from "@material-ui/core";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navigation = () => {
 
@@ -73,8 +74,8 @@ position: sticky;
             <nav>
                  <Logo to="/"><img src='https://i.postimg.cc/K8m6BPQ6/LOGO-modified.png' alt="logo" style={{position: "fixed", height: '130px', marginLeft: "80px", marginTop: '50px', borderRadius: '230px'}}/></Logo>
                 <div className="menu-icons" onClick={(toggleNavigation)} style={{display: 'flex', textAlign: 'center'}}>
-                    <i className="fas fa-bars"></i>
-                    <i className="fas fa-times"></i>
+                    <FaBars />
+                    <FaTimes />
                 </div>
                
                  <ul className="nav-list" id="navlist">
