@@ -159,7 +159,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <BrandSection>
-          <CompanyName>Pro Carport Buildings</CompanyName>
+          <CompanyName>ProCarport Buildings</CompanyName>
           <StaffBadge>Staff Order System</StaffBadge>
           <Description>
             Internal order management platform for processing customer carport 
@@ -193,7 +193,7 @@ const Footer = () => {
       
       <BottomSection>
         <Copyright>
-          © {currentYear} Pro Carport Buildings. All rights reserved.
+          © {currentYear} ProCarport Buildings. All rights reserved.
         </Copyright>
         <SystemNote>
           Staff Use Only - Internal Order Management System

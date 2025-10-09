@@ -183,10 +183,10 @@ const Navigation = () => {
         <BrandSection to="/" onClick={closeMenu}>
           <Logo 
             src="https://i.postimg.cc/K8m6BPQ6/LOGO-modified.png" 
-            alt="Pro Carport Buildings Logo" 
+            alt="ProCarport Buildings Logo" 
           />
           <BrandText>
-            <CompanyName>Pro Carport Buildings</CompanyName>
+            <CompanyName>ProCarport Buildings</CompanyName>
             <StaffBadge>Staff System</StaffBadge>
           </BrandText>
         </BrandSection>
