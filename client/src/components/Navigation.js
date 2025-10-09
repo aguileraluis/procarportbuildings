@@ -1,240 +1,202 @@
-import React from 'react';
-import './Navigation.css';
-import logo from '../images/logo.png';
-import { Badge } from "@material-ui/core";
-import { ShoppingCartOutlined } from "@material-ui/icons";
-import { useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-const Navigation = () => {
-
-    const NavLink = css`
-    color: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    height: 10rem;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 25px;
-    z-index: 5;
-    &:hover {
-        color: orange;
-    }
-
-    @media screen and (max-width: 768px) {
-        display: inline-flex;
-        height: 100px !important;
-        margin-left: 45rem;
-        cursor: pointer;
-        position: sticky; 
-        z-index: 5;
-        color: white;
-    }
-`
-
-    const Logo = styled(Link)`
-${NavLink}
-color: #fff;
-font-style: italic;
-font-weight: bold;
-margin-top: 22px !important;
-margin-right: 30rem;
-position: sticky;
-    @media screen and (max-width: 980px) {
-        display: inline-flex !important;
-        font-size: 2px;
-        justify-content: center;
-        text-align: center !important;
-        margin-right: 61rem;
-        padding-top: 5px;
-    }
+const Nav = styled.nav`
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #28a745;
 `;
 
-    function toggleNavigation() {
+const NavContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
 
-        let nav = document.querySelector('nav');
+  @media screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
 
-        let navList = document.getElementById('navlist');
+const BrandSection = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 
-        console.log(nav)
-        nav.classList.toggle('active')
-        
-        nav.classList.value === "active" ? navList.style.display = "flex" : navList.style.display = "none"
-        return;
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 10px;
+  }
+`;
+
+const Logo = styled.img`
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  @media screen and (max-width: 768px) {
+    height: 45px;
+    width: 45px;
+  }
+`;
+
+const BrandText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+const CompanyName = styled.h1`
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  letter-spacing: -0.5px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+const StaffBadge = styled.span`
+  font-size: 11px;
+  font-weight: 600;
+  color: #28a745;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(40, 167, 69, 0.15);
+  padding: 3px 8px;
+  border-radius: 10px;
+  width: fit-content;
+`;
+
+const MenuToggle = styled.div`
+  display: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const NavMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    top: 80px;
+    left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    gap: 0;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+`;
+
+const NavItem = styled.li`
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 20px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #28a745;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 18px 20px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+
+    &:hover {
+      transform: none;
+      background: rgba(255, 255, 255, 0.1);
     }
+  }
+`;
 
-    const quantity = useSelector(state=> state.cart.quantity);
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    return (
-      
-            <nav>
-                 <Logo to="/"><img src='https://i.postimg.cc/K8m6BPQ6/LOGO-modified.png' alt="logo" style={{position: "fixed", height: '130px', marginLeft: "80px", marginTop: '50px', borderRadius: '230px'}}/></Logo>
-                <div className="menu-icons" onClick={(toggleNavigation)} style={{display: 'flex', textAlign: 'center'}}>
-                    <FaBars />
-                    <FaTimes />
-                </div>
-               
-                 <ul className="nav-list" id="navlist">
-                    <li>
-                        <b><a href="/">Home</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/products/Standard%20Buildings">Standard</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/products/Barn%20Buildings">Barn</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/products/Triple%20Buildings">Triple</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/products/Commercial%20Buildings">Commercial</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/gallery">Gallery</a></b>
-                    </li>
-                    <li>
-                        <b><a href="/about">About</a></b>
-                    </li>
-                    {/* <li>
-                        <h1 id="dropdownh1">Menu <i className="fas fa-caret-down"></i></h1>
-                        <ul className="sub-menu">
-                            <li>
-                                <a href="/">Navel</a>
-                            </li>
-                            <li>
-                                <h1 id="dropdownh1">Mandarine
-                                    <i className="fas fa-caret-down"></i></h1>
-                                <ul className="sub-menu">
-                                    <li>
-                                        <a href="/">Cara Cara</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Tangerine</a>
-                                    </li>
-                                    <li>
-                                        <h1 id="dropdownh1" href="/">Others
-                                            <i className="fas fa-caret-down"></i>
-                                        </h1>
-                                        <ul className="sub-menu">
-                                            <li>
-                                                <a href="/">Lima</a>
-                                            </li>
-                                            <li>
-                                                <a href="/">Seville</a>
-                                            </li>
-                                            <li>
-                                                <a href="/">Lime</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/">Tangelos</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                       <h1 id="dropdownh1">Gallery
-                            <i className="fas fa-caret-down"></i>
-                        </h1>
-                        <ul className="sub-menu">
-                            <li>
-                                <a href="/">Yellow Oranges</a>
-                            </li>
-                            <li>
-                                <h1 id="dropdownh1">Green Oranges
-                                    <i className="fas fa-caret-down"></i></h1>
-                                <ul className="sub-menu">
-                                    <li>
-                                        <a href="/">For Health</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Sweet Oranges</a>
-                                    </li>
-                                    <li>
-                                        <a href="/">Bitter Oranges
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/">Dinner</a>
-                            </li>
-                        </ul>
-                    </li> */}
-                    {/* <li>
-                        <Link to="/cart/0/0">
-                    <div style={{color: 'black'}}>
-                    <Badge badgeContent={quantity} color="white">
-                    <ShoppingCartOutlined className="cart"/>
-                    </Badge>
-                    </div>
-    
-                </Link>
-                    </li> */}
-                </ul>
-                
-            </nav>
-     
-        //    <div classNameName="container">
-        //     <nav>
-        //          <a href="/" className="logo"><img style={{height: '40px', alignItems: 'left'}} src={logo} alt="logo"/>PRO CARPORT BUILDINGS</a>
-        //         <div className="menu-icons">
-        //             <i className="fas fa-bars"></i>
-        //             <i className="fas fa-times"></i>
-        //         </div>    
-        //         <ul className="nav-list">
-        //             <li>
-        //                 <a href="/">Home ◾</a>
-        //             </li>
-        //             <li>
-        //                 <a href="/">Menu <i className="fas fa-caret-down"></i></a>
-        //                 <ul className="sub-menu"></ul>
-        //                     <li>
-        //                         <a href="/">Navel</a>
-        //                     </li>
-        //                     <li>
-        //                         <a href="/">Mandarine
-        //                             <i className="fas fa-caret-down"></i>
-        //                         </a>
-        //                         <ul className="sub-menu">
-        //                             <li>
-        //                                 <a href="/">Cara Cara</a>
-        //                             </li>
-        //                             <li>
-        //                                 <a href="/">Tangerine</a>
-        //                             </li>
-        //                             <li>
-        //                                 <a href="/">Others
-        //                                     <li className="fas fa-caret-down"></li>
-        //                                 </a>
-        //                                 <ul className="sub-menu">
-        //                                     <li>
-        //                                         <a href="/">Lima</a>
-        //                                     </li>
-        //                                     <li>
-        //                                         <a href="/">Lima</a>
-        //                                     </li>
-        //                                     <li>
-        //                                         <a href="/">Lima</a>
-        //                                     </li>
-        //                                 </ul>
-        //                             </li>
-        //                         </ul>
-        //                     </li>
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-        //             </li>
-        //         </ul>
-        //     </nav>      
-        // </div>   
-    )
-    
-}
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <Nav>
+      <NavContainer>
+        <BrandSection to="/" onClick={closeMenu}>
+          <Logo 
+            src="https://i.postimg.cc/K8m6BPQ6/LOGO-modified.png" 
+            alt="Pro Carport Buildings Logo" 
+          />
+          <BrandText>
+            <CompanyName>Pro Carport Buildings</CompanyName>
+            <StaffBadge>Staff System</StaffBadge>
+          </BrandText>
+        </BrandSection>
+
+        <MenuToggle onClick={toggleMenu}>
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </MenuToggle>
+      </NavContainer>
+    </Nav>
+  );
+};
 
 export default Navigation;

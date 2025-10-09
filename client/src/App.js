@@ -1,28 +1,35 @@
+// client/src/App.js
+// SIMPLIFIED - Staff Order Application Only
+
 import React from 'react';
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import OrderBuilder from './pages/OrderBuilder';
 import Cart from './pages/Cart';
-import Product from './pages/Product';
-import Home from './pages/Home';
-import ProductList from './pages/ProductList';
-import Success from './pages/Success';
-import About from './pages/About';
-import Gallery from './pages/Gallery';
 
 function App() {
-
   return (
-    <>
-      <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/gallery" element={<Gallery />} />
-          <Route path="/cart/:totalprice/:salestax" element={<Cart />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/products/:category" element={<ProductList />} />
-      </Routes>
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+            {/* Main staff order interface */}
+            <Route path="/order" element={<OrderBuilder />} />
+            
+            {/* Payment/checkout page */}
+            <Route path="/cart/:total/:tax" element={<Cart />} />
+            
+            {/* Redirect root to order page */}
+            <Route path="/" element={<Navigate to="/order" replace />} />
+            
+            {/* Catch all - redirect to order */}
+            <Route path="*" element={<Navigate to="/order" replace />} />
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 

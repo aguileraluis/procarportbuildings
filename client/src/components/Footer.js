@@ -1,155 +1,206 @@
-import {
-    Facebook,
-    Instagram,
-    MailOutline,
-    Phone,
-    Pinterest,
-    Room,
-    Twitter,
-  } from '@mui/icons-material';
-  import styled from "styled-components";
-  import { mobile } from "../responsive";
-  import logo from '../images/logo.png';
-  import React from 'react';
-  
-  const Container = styled.div`
-    position: sticky;
-    position: -webkit-sticky;
-    bottom: 0 !important;
-    width: 100%;
-    height: 100% !important;
-    padding-bottom: 30px;
-    background-color: teal;
-    text-align: center !important;
-    ${mobile({ flexDirection: "column", textAlign: 'center', height: '130%'})}
-  `;
-  
-  const Left = styled.div`
-       text-align: center !important;
-    height: 100%;
-    margin-bottom: 10px;
-    ${mobile({ flexDirection: "row", textAlign: 'center', marginBottom: '10px'})}
-    color: white;
-  `;
-  
-  const Logo = styled.h1`
-  font-size: 50px;
-  color: black;
-  text-align: center !important;
-  `;
-  
-  const Desc = styled.p`
-    margin: 20px 0px;
-    font-size: '20px'!important;
-    color: white;
-  `;
-  
-  const SocialContainer = styled.div`
-    text-align: center;
-    display: flex;
-    ${mobile({ flexDirection: "row", textAlign: 'center', marginLeft: '80px', marginBottom: '30px' })}
-  `;
-  
-  const SocialIcon = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    background-color: #${(props) => props.color};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-  `;
-  
-  const Center = styled.div`
-    flex: 1;
-    padding: 20px;
-    ${mobile({ display: "none" })}
-  `;
-  
-  const Title = styled.h4`
-    margin-bottom: 5px;
-    color: white;
-    padding: 10px;
-  `;
-  
-  const List = styled.ul`
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-  `;
-  
-  const ListItem = styled.li`
-    width: 50%;
-    margin-bottom: 0;
-    text-align: center !important;
-    color: white;
-  `;
-  
-  const Right = styled.div`
-    text-align: center !important;
-    height: 100%;
-    margin-bottom: 10px;
-    font-size: 15px;
-    ${mobile({ flexDirection: "row", textAlign: 'center', marginBottom: '10px'})}
-    color: white;
- 
-  
-  `;
-  
-  const ContactItem = styled.div`
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    text-align: center !important;
-  `;
-  
-  const Payment = styled.img`
-      width: 50%;
-  `;
-  
-  const Footer = () => {
-    return (
-      <Container>
-    
-        <Left>
-        <Logo>Pro Carport Buildings</Logo>
-       
-          {/* <Desc>
-            There are many variations of passages of Lorem Ipsum available
-          </Desc> */}
-          
-          {/* <SocialContainer>
-            <SocialIcon color="3B5999">
-              <Facebook />
-            </SocialIcon>
-            <SocialIcon color="E4405F">
-              <Instagram />
-            </SocialIcon>
-            <SocialIcon color="55ACEE">
-              <Twitter />
-            </SocialIcon>
-            <SocialIcon color="E60023">
-              <Pinterest />
-            </SocialIcon>
-          </SocialContainer> */}
-        </Left>
-      
-        <Right>
-          <Title>Contact</Title>
-    
-           <Title> <Room/> P.O Box 127, Boonville NC 27011</Title>
-       
-             <Title> <Phone/> 336.468.1131</Title>
-       
-             <Title> <MailOutline />procarportbuildings@gmail.com</Title>
+import React from 'react';
+import styled from 'styled-components';
+import { Phone, MailOutline, Room } from '@mui/icons-material';
+import { mobile } from '../responsive';
 
-        </Right>
-      </Container>
-    );
-  };
- 
-  export default Footer;
+const FooterContainer = styled.footer`
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 50px 30px 30px;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  
+  ${mobile({ padding: '40px 20px 20px' })}
+`;
+
+const FooterContent = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+  
+  ${mobile({ 
+    gridTemplateColumns: '1fr',
+    gap: '35px'
+  })}
+`;
+
+const BrandSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const CompanyName = styled.h2`
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  
+  ${mobile({ fontSize: '26px' })}
+`;
+
+const StaffBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  background: rgba(40, 167, 69, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: fit-content;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  color: #28a745;
+`;
+
+const Description = styled.p`
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 500px;
+  
+  ${mobile({ fontSize: '14px' })}
+`;
+
+const ContactSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const SectionTitle = styled.h3`
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.5px;
+  
+  ${mobile({ fontSize: '16px' })}
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.95;
+  transition: all 0.2s ease;
+  padding: 8px 0;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: #28a745;
+      transform: translateX(3px);
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+  
+  ${mobile({ fontSize: '14px' })}
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  margin: 30px 0 20px;
+`;
+
+const BottomSection = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const Copyright = styled.div`
+  font-size: 14px;
+  opacity: 0.8;
+  
+  ${mobile({ fontSize: '13px' })}
+`;
+
+const SystemNote = styled.div`
+  font-size: 12px;
+  opacity: 0.6;
+  font-style: italic;
+  
+  ${mobile({ fontSize: '11px' })}
+`;
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <FooterContainer>
+      <FooterContent>
+        <BrandSection>
+          <CompanyName>Pro Carport Buildings</CompanyName>
+          <StaffBadge>Staff Order System</StaffBadge>
+          <Description>
+            Internal order management platform for processing customer carport 
+            orders, quotes, and customer service requests.
+          </Description>
+        </BrandSection>
+        
+        <ContactSection>
+          <SectionTitle>Contact Information</SectionTitle>
+          
+          <ContactItem>
+            <Room />
+            <span>P.O Box 127, Boonville NC 27011</span>
+          </ContactItem>
+          
+          <ContactItem>
+            <Phone />
+            <a href="tel:3364681131">336.468.1131</a>
+          </ContactItem>
+          
+          <ContactItem>
+            <MailOutline />
+            <a href="mailto:procarportbuildings@gmail.com">
+              procarportbuildings@gmail.com
+            </a>
+          </ContactItem>
+        </ContactSection>
+      </FooterContent>
+      
+      <Divider />
+      
+      <BottomSection>
+        <Copyright>
+          © {currentYear} Pro Carport Buildings. All rights reserved.
+        </Copyright>
+        <SystemNote>
+          Staff Use Only - Internal Order Management System
+        </SystemNote>
+      </BottomSection>
+    </FooterContainer>
+  );
+};
+
+export default Footer;
