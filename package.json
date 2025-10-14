@@ -1,7 +1,7 @@
 {
   "name": "ecommerceapi",
   "version": "1.0.0",
-  "description": "Pro Carport Buildings Staff System",
+  "description": "ProCarport Buildings Staff System",
   "main": "server.js",
   "engines": {
     "node": "18.x",

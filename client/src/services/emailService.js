@@ -129,7 +129,7 @@ export const sendThankYouEmail = async (customerData) => {
       If you have any questions, please don't hesitate to call us at (336) 468-1131.
       
       Best regards,
-      Pro Carport Buildings Team
+      ProCarport Buildings Team
     `,
   };
 

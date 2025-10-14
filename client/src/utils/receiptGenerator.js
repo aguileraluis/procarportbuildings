@@ -38,7 +38,7 @@ export const generateReceiptHTML = (orderData) => {
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Order Receipt - Pro Carport Buildings</title>
+  <title>Order Receipt - ProCarport Buildings</title>
   <style>
     * {
       margin: 0;

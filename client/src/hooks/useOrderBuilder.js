@@ -1,150 +1,162 @@
 // client/src/hooks/useOrderBuilder.js
-// Custom hook for managing order state
-
-import { useState, useMemo, useCallback } from 'react';
-import { calculateTotal, calculateSubtotal } from '../utils/priceCalculator';
+import { useState, useMemo } from 'react';
 import pricingData from '../data/pricingData';
+
+const { SALES_TAX_RATE, carportPricing, roofPricing } = pricingData;
 
 export const useOrderBuilder = () => {
   const [order, setOrder] = useState({
     carportType: 'standard',
     carportSize: '',
-    carportPrice: 0,
     carportLabel: '',
-    roofType: '',
+    roofType: 'regular',
     roofSize: '',
-    roofPrice: 0,
     roofLabel: '',
     options: {
-      bothSidesClosed: { selected: false, price: 200, label: 'Both Sides Closed' },
-      verticalSides: { selected: false, price: 300, label: 'Vertical Sides' },
-      eachEnd: { selected: false, price: 150, label: 'Each End' },
-      bothEnds: { selected: false, price: 280, label: 'Both Ends' },
+      bothSidesClosed: { selected: false, price: 0 },
+      verticalSides: { selected: false, price: 0 },
+      eachEnd: { selected: false, price: 0 },
+      bothEnds: { selected: false, price: 0 },
     },
   });
 
-  // Get current carport pricing table
+  // Get current pricing tables based on selected type
   const currentCarportPricing = useMemo(() => {
-    return pricingData.carportPricing[order.carportType] || pricingData.carportPricing.standard;
+    return carportPricing[order.carportType] || {};
   }, [order.carportType]);
 
-  // Get current roof pricing table
   const currentRoofPricing = useMemo(() => {
-    if (!order.roofType) return {};
-    return pricingData.roofPricing[order.roofType] || {};
-  }, [order.roofType]);
+    const carportType = order.carportType;
+    const roofType = order.roofType;
 
-  // Calculate prices
+    if (carportType === 'standard') {
+      if (roofType === 'regular') return roofPricing.standardRegular;
+      if (roofType === 'boxed') return roofPricing.standardBoxed;
+      if (roofType === 'vertical') return roofPricing.standardVertical;
+    } else if (carportType === 'triple') {
+      if (roofType === 'regular') return roofPricing.tripleRegular;
+      if (roofType === 'boxed') return roofPricing.tripleBoxed;
+      if (roofType === 'vertical') return roofPricing.tripleVertical;
+    } else if (carportType === 'commercial') {
+      if (roofType === '40') return roofPricing.commercial40;
+      if (roofType === '50') return roofPricing.commercial50;
+    }
+
+    return {};
+  }, [order.carportType, order.roofType]);
+
+  // Calculate totals
   const calculations = useMemo(() => {
-    const subtotal = calculateSubtotal({
-      carportPrice: order.carportPrice,
-      roofPrice: order.roofPrice,
-      options: order.options,
-    });
-    return calculateTotal(subtotal);
-  }, [order.carportPrice, order.roofPrice, order.options]);
+    let subtotal = 0;
 
-  // Set carport type
-  const setCarportType = useCallback((type) => {
-    setOrder(prev => ({
-      ...prev,
+    // Add carport base price
+    if (order.carportSize && currentCarportPricing[order.carportSize]) {
+      subtotal += currentCarportPricing[order.carportSize].price;
+    }
+
+    // Add roof price
+    if (order.roofSize && currentRoofPricing[order.roofSize]) {
+      subtotal += currentRoofPricing[order.roofSize].price;
+    }
+
+    // Add options
+    Object.values(order.options).forEach((option) => {
+      if (option.selected) {
+        subtotal += option.price;
+      }
+    });
+
+    const tax = subtotal * SALES_TAX_RATE;
+    const total = subtotal + tax;
+    const deposit = total * 0.15;
+
+    return {
+      subtotal: subtotal.toFixed(2),
+      tax: tax.toFixed(2),
+      total: total.toFixed(2),
+      deposit: deposit.toFixed(2),
+    };
+  }, [order, currentCarportPricing, currentRoofPricing]);
+
+  // Set carport type and reset selections
+  const setCarportType = (type) => {
+    setOrder({
       carportType: type,
       carportSize: '',
-      carportPrice: 0,
       carportLabel: '',
-    }));
-  }, []);
+      roofType: type === 'commercial' ? '40' : 'regular',
+      roofSize: '',
+      roofLabel: '',
+      options: {
+        bothSidesClosed: { selected: false, price: 0 },
+        verticalSides: { selected: false, price: 0 },
+        eachEnd: { selected: false, price: 0 },
+        bothEnds: { selected: false, price: 0 },
+      },
+    });
+  };
 
   // Set carport size
-  const setCarportSize = useCallback((sizeKey) => {
-    const priceData = currentCarportPricing[sizeKey];
-    if (priceData) {
-      setOrder(prev => ({
-        ...prev,
-        carportSize: sizeKey,
-        carportPrice: priceData.price,
-        carportLabel: priceData.label,
-      }));
-    }
-  }, [currentCarportPricing]);
+  const setCarportSize = (size) => {
+    const pricing = currentCarportPricing[size];
+    setOrder((prev) => ({
+      ...prev,
+      carportSize: size,
+      carportLabel: pricing ? pricing.label : '',
+    }));
+  };
 
   // Set roof type
-  const setRoofType = useCallback((roofType) => {
-    setOrder(prev => ({
+  const setRoofType = (type) => {
+    setOrder((prev) => ({
       ...prev,
-      roofType,
+      roofType: type,
       roofSize: '',
-      roofPrice: 0,
       roofLabel: '',
     }));
-  }, []);
+  };
 
   // Set roof size
-  const setRoofSize = useCallback((sizeKey) => {
-    const priceData = currentRoofPricing[sizeKey];
-    if (priceData) {
-      setOrder(prev => ({
-        ...prev,
-        roofSize: sizeKey,
-        roofPrice: priceData.price,
-        roofLabel: priceData.label,
-      }));
-    } else if (sizeKey === '') {
-      setOrder(prev => ({
-        ...prev,
-        roofSize: '',
-        roofPrice: 0,
-        roofLabel: '',
-      }));
-    }
-  }, [currentRoofPricing]);
+  const setRoofSize = (size) => {
+    const pricing = currentRoofPricing[size];
+    setOrder((prev) => ({
+      ...prev,
+      roofSize: size,
+      roofLabel: pricing ? pricing.label : '',
+    }));
+  };
 
   // Toggle option
-  const toggleOption = useCallback((optionKey) => {
-    setOrder(prev => ({
+  const toggleOption = (optionKey, price = 0) => {
+    setOrder((prev) => ({
       ...prev,
       options: {
         ...prev.options,
         [optionKey]: {
-          ...prev.options[optionKey],
           selected: !prev.options[optionKey].selected,
+          price: !prev.options[optionKey].selected ? price : 0,
         },
       },
     }));
-  }, []);
+  };
 
   // Reset order
-  const resetOrder = useCallback(() => {
+  const resetOrder = () => {
     setOrder({
       carportType: 'standard',
       carportSize: '',
-      carportPrice: 0,
       carportLabel: '',
-      roofType: '',
+      roofType: 'regular',
       roofSize: '',
-      roofPrice: 0,
       roofLabel: '',
       options: {
-        bothSidesClosed: { selected: false, price: 200, label: 'Both Sides Closed' },
-        verticalSides: { selected: false, price: 300, label: 'Vertical Sides' },
-        eachEnd: { selected: false, price: 150, label: 'Each End' },
-        bothEnds: { selected: false, price: 280, label: 'Both Ends' },
+        bothSidesClosed: { selected: false, price: 0 },
+        verticalSides: { selected: false, price: 0 },
+        eachEnd: { selected: false, price: 0 },
+        bothEnds: { selected: false, price: 0 },
       },
     });
-  }, []);
-
-  // Get order summary for cart
-  const getOrderSummary = useCallback(() => {
-    return {
-      carportType: order.carportType,
-      carportSize: order.carportLabel,
-      roofSize: order.roofLabel,
-      selectedOptions: Object.keys(order.options)
-        .filter(key => order.options[key].selected)
-        .map(key => order.options[key].label),
-      pricing: calculations,
-    };
-  }, [order, calculations]);
+  };
 
   return {
     order,
@@ -157,8 +169,5 @@ export const useOrderBuilder = () => {
     setRoofSize,
     toggleOption,
     resetOrder,
-    getOrderSummary,
   };
 };
-
-export default useOrderBuilder;

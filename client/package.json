@@ -22,7 +22,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^5.1.7",
     "aos": "^2.3.4",
-    "axios": "^1.6.2",
+    "axios": "^1.12.2",
     "bootstrap": "^5.3.2",
     "emailjs": "^4.0.3",
     "framer-motion": "^10.16.4",
@@ -35,7 +35,7 @@
     "react-icons": "^4.12.0",
     "react-redux": "^8.1.3",
     "react-responsive-masonry": "^2.1.7",
-    "react-router-dom": "^6.20.0",
+    "react-router-dom": "^6.30.1",
     "react-scripts": "^5.0.1",
     "react-spinners": "^0.13.6",
     "react-stripe-checkout": "^2.6.3",
@@ -43,16 +43,16 @@
     "react-video-js-player": "^1.1.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.0.0-rc.2",
-    "sweetalert2": "^11.6.13",
+    "sweetalert2": "^11.25.0",
     "web-vitals": "^1.0.1",
     "yarn": "^1.22.19"
   },
   "scripts": {
-  "start": "set CHOKIDAR_USEPOLLING=true && react-scripts start",
-  "build": "rm -rf node_modules package-lock.json && npm install --build-from-source",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
+    "start": "set CHOKIDAR_USEPOLLING=true && react-scripts start",
+    "build": "rm -rf node_modules package-lock.json && npm install --build-from-source",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app"
