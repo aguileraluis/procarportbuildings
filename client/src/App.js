@@ -1,4 +1,6 @@
-// 1. ✅ ALL IMPORTS (Lines 1-9)
+// client/src/App.js
+// ✅ YOUR ORIGINAL ROUTES - RESTORED!
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -10,22 +12,17 @@ import Login from './pages/Login';
 import OrderBuilder from './pages/OrderBuilder';
 import Cart from './pages/Cart';
 
-// 2. ✅ COMPLETE APP COMPONENT (Lines 11-42)
 function App() {
   return (
-    // 3. ✅ REDUX PROVIDER - Wraps everything for state management
     <Provider store={store}>
-      {/* 4. ✅ PERSIST GATE - Keeps Redux state after refresh */}
       <PersistGate loading={null} persistor={persistor}>
-        {/* 5. ✅ AUTH PROVIDER - Provides login/logout functionality */}
         <AuthProvider>
-          {/* 6. ✅ ROUTER - Handles navigation */}
           <Router>
             <Routes>
-              {/* 7. ✅ PUBLIC ROUTE - Login page (no auth needed) */}
+              {/* PUBLIC ROUTE - Login page */}
               <Route path="/login" element={<Login />} />
               
-              {/* 8. ✅ PROTECTED ROUTE - Order page (auth required) */}
+              {/* PROTECTED ROUTE - Order Builder */}
               <Route 
                 path="/order" 
                 element={
@@ -35,7 +32,7 @@ function App() {
                 } 
               />
               
-              {/* 9. ✅ PROTECTED ROUTE - Cart page (auth required) */}
+              {/* PROTECTED ROUTE - Cart page */}
               <Route 
                 path="/cart/:total/:tax" 
                 element={
@@ -45,10 +42,10 @@ function App() {
                 } 
               />
               
-              {/* 10. ✅ ROOT REDIRECT - / goes to /login */}
+              {/* ROOT REDIRECT */}
               <Route path="/" element={<Navigate to="/login" replace />} />
               
-              {/* 11. ✅ CATCH ALL - Any unknown route goes to /login */}
+              {/* CATCH ALL */}
               <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
           </Router>
@@ -58,5 +55,4 @@ function App() {
   );
 }
 
-// 12. ✅ EXPORT (Line 44)
 export default App;

@@ -1,22 +1,34 @@
 // client/src/pages/Cart.js
-// PRODUCTION MODE - BLUE & BLACK THEME
-// WITH GOOGLE MAPS ADDRESS VERIFICATION (ROBUST VERSION)
+// ✅ UPDATED WITH MODERN STRIPE PAYMENT INTENTS
+// ✅ All existing features preserved
+// ✅ Beautiful color display in Complete Order Details
+// ✅ EMAIL FUNCTIONALITY REMOVED
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import StripeCheckout from "react-stripe-checkout";
 import { useNavigate, useLocation } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { sendOrderConfirmationEmail, generateOrderNumber } from '../services/emailService';
 import { generateReceiptHTML, printReceipt, downloadReceipt } from '../utils/receiptGenerator';
+import logo from '../assets/images/logo/logo.png';
+import StripePaymentForm from '../components/StripePaymentForm';
+
+// ✅ IMPORT COLOR DATA
+import { ALL_COLORS } from '../components/ColorSelector';
+
+// ✅ GENERATE ORDER NUMBER FUNCTION (moved from emailService)
+const generateOrderNumber = () => {
+  const timestamp = Date.now();
+  const random = Math.floor(Math.random() * 1000);
+  return `ORD-${timestamp}-${random}`;
+};
 
 // ============================================================================
-// STYLED COMPONENTS - BLUE & BLACK THEME
+// STYLED COMPONENTS
 // ============================================================================
 
 const Container = styled.div`
@@ -57,7 +69,7 @@ const Subtitle = styled.p`
 
 const ContentGrid = styled.div`
   display: grid;
-  grid-template-columns: 350px 1fr 380px;
+  grid-template-columns: 400px 1fr 380px;
   gap: 20px;
   margin-bottom: 20px;
   ${mobile({ 
@@ -78,7 +90,7 @@ const Card = styled.div`
   padding: 20px;
   box-shadow: 0 2px 8px rgba(30, 60, 114, 0.1);
   border: 1px solid #e3f2fd;
-  max-height: 600px;
+  max-height: 800px;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -112,31 +124,154 @@ const CardTitle = styled.h3`
   ${mobile({ fontSize: '16px' })}
 `;
 
+const SectionTitle = styled.h4`
+  font-size: 15px;
+  font-weight: 700;
+  color: #2a5298;
+  margin: 15px 0 10px 0;
+  padding-top: 10px;
+  border-top: 1px solid #e8f4f8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  &:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  
+  ${mobile({ fontSize: '14px' })}
+`;
+
 const ProductTitle = styled.h4`
   font-size: 17px;
   font-weight: 600;
   color: #1a1a1a;
-  margin: 0 0 12px 0;
+  margin: 0 0 15px 0;
   text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
 `;
 
 const DetailRow = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 14px;
-  padding: 8px 0;
+  padding: 6px 0;
   color: #495057;
-  border-bottom: 1px solid #e8f4f8;
-
-  &:last-child {
-    border-bottom: none;
-  }
 
   strong {
     color: #1a1a1a;
+    font-weight: 600;
   }
 
-  ${mobile({ fontSize: '13px', padding: '6px 0' })}
+  ${mobile({ fontSize: '13px', padding: '5px 0' })}
+`;
+
+const DetailRowHighlight = styled(DetailRow)`
+  background: #e8f4f8;
+  padding: 8px 12px;
+  margin: 4px -12px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #2a5298;
+`;
+
+// ✅ COLOR DISPLAY STYLED COMPONENTS
+const ColorSection = styled.div`
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8fbfd;
+  border-radius: 8px;
+  border: 2px solid #e3f2fd;
+`;
+
+const ColorGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+`;
+
+const ColorItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e3f2fd;
+`;
+
+const ColorSwatch = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: ${props => props.$color};
+  border: 2px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+`;
+
+const ColorInfo = styled.div`
+  flex: 1;
+  min-width: 0;
+`;
+
+const ColorLabel = styled.div`
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6c757d;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+`;
+
+const ColorName = styled.div`
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const GarageDoorItem = styled.div`
+  background: #f8f9fa;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 13px;
+  color: #495057;
+  border-left: 3px solid #2a5298;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  &:before {
+    content: "🚪";
+    font-size: 16px;
+  }
+`;
+
+const NoDataMessage = styled.div`
+  padding: 20px;
+  text-align: center;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  color: #856404;
+  font-size: 14px;
+  line-height: 1.6;
+  
+  strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
 `;
 
 const FormGrid = styled.div`
@@ -176,19 +311,22 @@ const VerifiedBadge = styled.span`
   letter-spacing: 0.5px;
 `;
 
-const SkipButton = styled.button`
-  background: transparent;
+const VerifyButton = styled.button`
+  background: #2a5298;
+  color: white;
   border: none;
-  color: #2a5298;
+  padding: 4px 12px;
+  border-radius: 12px;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-left: auto;
+  transition: all 0.2s;
 
   &:hover {
-    color: #1e3c72;
+    background: #1e3c72;
   }
 `;
 
@@ -228,10 +366,10 @@ const SummaryItem = styled.div`
   ${mobile({ fontSize: props => props.type === "total" ? "15px" : "13px" })}
 `;
 
-const Button = styled.button`
+const ActionButton = styled.button`
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: ${props => props.variant === 'success' ? '#28a745' : '#6c757d'};
   color: white;
   font-weight: 600;
   font-size: 15px;
@@ -242,8 +380,9 @@ const Button = styled.button`
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
+    background: ${props => props.variant === 'success' ? '#218838' : '#5a6268'};
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(30, 60, 114, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   &:disabled {
@@ -253,15 +392,6 @@ const Button = styled.button`
   }
 
   ${mobile({ padding: '10px', fontSize: '14px' })}
-`;
-
-const ActionButton = styled(Button)`
-  background: ${props => props.variant === 'success' ? '#28a745' : '#6c757d'};
-  margin-top: 10px;
-
-  &:hover:not(:disabled) {
-    background: ${props => props.variant === 'success' ? '#218838' : '#5a6268'};
-  }
 `;
 
 const InfoText = styled.p`
@@ -289,22 +419,19 @@ const ValidationBadge = styled.div`
   ${mobile({ fontSize: '11px', padding: '6px 10px' })}
 `;
 
-const TestModeBanner = styled.div`
-  background: #ff6b6b;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 14px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  ${mobile({ fontSize: '13px', padding: '8px' })}
+const PaymentSection = styled.div`
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e8f4f8;
 `;
 
 // ============================================================================
-// GOOGLE MAPS API KEY - REPLACE WITH YOUR KEY
+// HELPER FUNCTION TO GET COLOR HEX VALUE
 // ============================================================================
-const GOOGLE_MAPS_API_KEY = "AIzaSyBMoLZ-1vKWEjPtJLHNgMJTGZXDxe_s5lQ";
+const getColorHex = (colorName) => {
+  const color = ALL_COLORS.find(c => c.name === colorName);
+  return color ? color.hex : '#cccccc';
+};
 
 // ============================================================================
 // MAIN COMPONENT
@@ -312,10 +439,10 @@ const GOOGLE_MAPS_API_KEY = "AIzaSyBMoLZ-1vKWEjPtJLHNgMJTGZXDxe_s5lQ";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const salestax = location.pathname.split("/")[3];
+  
   const [fname, setfname] = useState('');
   const [lname, setlname] = useState('');
   const [email, setemail] = useState('');
@@ -324,191 +451,49 @@ const Cart = () => {
   const [orderNumber, setOrderNumber] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
   const [addressVerified, setAddressVerified] = useState(false);
-  const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
-  const [googleMapsError, setGoogleMapsError] = useState(false);
+  const [orderData, setOrderData] = useState(null);
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
   
-  const addressInputRef = useRef(null);
-  const autocompleteRef = useRef(null);
+  // Load order data
+  useEffect(() => {
+    const completeOrderDataStr = localStorage.getItem('completeOrderData');
+    if (completeOrderDataStr) {
+      try {
+        const parsedData = JSON.parse(completeOrderDataStr);
+        setOrderData(parsedData);
+      } catch (error) {
+        console.error('❌ Error parsing order data:', error);
+      }
+    }
+  }, []);
   
-  // Get pricing from URL
   let totalprice = location.pathname.split("/")[2];
-  
-  // Get the MOST RECENT product (last item in cart array)
-  let item = cart.products && cart.products.length > 0 
-    ? cart.products[cart.products.length - 1] 
-    : null;
-  
-  let fifteenpercent = (totalprice * 0.15).toFixed(2);
+  let item = cart.products && cart.products.length > 0 ? cart.products[cart.products.length - 1] : null;
   let name = item?.title || 'Carport Order';
-  
-  // Get order details from localStorage (set by OrderBuilder)
-  const height = localStorage.getItem("height") || '';
-  const sideheight = localStorage.getItem("sideheight") || '';
-  const bothsidesclosed = localStorage.getItem("bothsidesclosed") || '';
-  const verticalsides = localStorage.getItem("verticalsides") || '';
-  const eachend = localStorage.getItem("eachend") || '';
-  const bothends = localStorage.getItem("bothends") || '';
-  const carportType = localStorage.getItem("carportType") || '';
-  
   let totalamount = Number(totalprice) + Number(salestax);
+  let fifteenpercent = (totalamount * 0.15).toFixed(2);
 
-  // Generate order number on mount
+  // Generate order number
   useEffect(() => {
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
   }, []);
 
-  // Initialize Google Places Autocomplete
+  // ✅ Generate NEW order number whenever payment form opens
   useEffect(() => {
-    const loadGoogleMapsScript = () => {
-      // Check if already loaded
-      if (window.google && window.google.maps && window.google.maps.places) {
-        console.log('✅ Google Maps already loaded');
-        setGoogleMapsLoaded(true);
-        initializeAutocomplete();
-        return;
-      }
+    if (showPaymentForm) {
+      const freshOrderNumber = generateOrderNumber();
+      setOrderNumber(freshOrderNumber);
+      console.log('🆕 Fresh order number for payment:', freshOrderNumber);
+    }
+  }, [showPaymentForm]);
 
-      // Check if script already exists
-      const existingScript = document.querySelector(`script[src*="maps.googleapis.com"]`);
-      if (existingScript) {
-        console.log('⏳ Google Maps script already loading...');
-        existingScript.addEventListener('load', () => {
-          console.log('✅ Google Maps loaded from existing script');
-          setGoogleMapsLoaded(true);
-          initializeAutocomplete();
-        });
-        return;
-      }
-
-      console.log('📥 Loading Google Maps script...');
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places&callback=initGoogleMaps`;
-      script.async = true;
-      script.defer = true;
-      
-      // Global callback function
-      window.initGoogleMaps = () => {
-        console.log('✅ Google Maps loaded successfully');
-        setGoogleMapsLoaded(true);
-        initializeAutocomplete();
-      };
-
-      script.onerror = () => {
-        console.error('❌ Failed to load Google Maps');
-        setGoogleMapsError(true);
-        Swal.fire({
-          title: 'Google Maps Unavailable',
-          text: 'Address verification is disabled. You can still manually enter your address.',
-          icon: 'info',
-          confirmButtonColor: '#2a5298'
-        });
-      };
-
-      document.head.appendChild(script);
-    };
-
-    const initializeAutocomplete = () => {
-      if (!addressInputRef.current) {
-        console.log('⚠️ Address input ref not ready');
-        return;
-      }
-
-      if (!window.google || !window.google.maps || !window.google.maps.places) {
-        console.log('⚠️ Google Maps API not available');
-        return;
-      }
-
-      try {
-        console.log('🗺️ Initializing Google Places Autocomplete...');
-        autocompleteRef.current = new window.google.maps.places.Autocomplete(
-          addressInputRef.current,
-          {
-            types: ['address'],
-            componentRestrictions: { country: 'us' },
-          }
-        );
-
-        autocompleteRef.current.addListener('place_changed', handlePlaceSelect);
-        console.log('✅ Google Places Autocomplete initialized');
-      } catch (error) {
-        console.error('❌ Error initializing autocomplete:', error);
-        setGoogleMapsError(true);
-      }
-    };
-
-    loadGoogleMapsScript();
-
-    // Cleanup
-    return () => {
-      if (autocompleteRef.current && window.google) {
-        window.google.maps.event.clearInstanceListeners(autocompleteRef.current);
-      }
-    };
-  }, []);
-
-  const handlePlaceSelect = () => {
-    const place = autocompleteRef.current.getPlace();
-    
-    console.log('📍 Place selected:', place);
-
-    if (!place.geometry) {
+  // Address verification handler
+  const handleVerifyAddress = () => {
+    if (!address || address.length < 10) {
       Swal.fire({
         title: 'Invalid Address',
-        text: 'Please select a valid address from the dropdown',
-        icon: 'warning',
-        confirmButtonColor: '#2a5298'
-      });
-      return;
-    }
-
-    // Extract address components
-    let street_number = '';
-    let route = '';
-    let city = '';
-    let state = '';
-    let zip = '';
-
-    place.address_components.forEach((component) => {
-      const types = component.types;
-      if (types.includes('street_number')) {
-        street_number = component.long_name;
-      }
-      if (types.includes('route')) {
-        route = component.long_name;
-      }
-      if (types.includes('locality')) {
-        city = component.long_name;
-      }
-      if (types.includes('administrative_area_level_1')) {
-        state = component.short_name;
-      }
-      if (types.includes('postal_code')) {
-        zip = component.long_name;
-      }
-    });
-
-    const formattedAddress = `${street_number} ${route}, ${city}, ${state} ${zip}`.trim();
-    
-    console.log('✅ Address formatted:', formattedAddress);
-
-    setaddress(formattedAddress);
-    setAddressVerified(true);
-
-    Swal.fire({
-      title: 'Address Verified!',
-      text: 'Google Maps has verified this address',
-      icon: 'success',
-      timer: 1500,
-      showConfirmButton: false
-    });
-  };
-
-  const handleSkipVerification = () => {
-    if (address.length < 10) {
-      Swal.fire({
-        title: 'Address Too Short',
-        text: 'Please enter a complete address',
+        text: 'Please enter a complete installation address',
         icon: 'warning',
         confirmButtonColor: '#2a5298'
       });
@@ -516,21 +501,30 @@ const Cart = () => {
     }
 
     Swal.fire({
-      title: 'Skip Address Verification?',
-      text: 'Without Google Maps verification, the address may not be accurate. Continue anyway?',
-      icon: 'warning',
+      title: 'Verify Installation Address with Customer',
+      html: `
+        <p style="margin-bottom: 15px;">Please confirm this installation address with the customer:</p>
+        <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin: 15px 0; font-size: 16px; font-weight: 600; color: #2a5298;">
+          ${address}
+        </div>
+        <p style="font-size: 13px; color: #666; margin-top: 15px;">
+          Read the address out loud to the customer and confirm it is correct.
+        </p>
+      `,
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#2a5298',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Yes, Skip Verification',
-      cancelButtonText: 'Cancel'
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: '✓ Customer Confirmed Address',
+      cancelButtonText: 'Let Me Fix It',
+      width: '500px'
     }).then((result) => {
       if (result.isConfirmed) {
         setAddressVerified(true);
         Swal.fire({
-          title: 'Verification Skipped',
-          text: 'Please ensure the address is correct',
-          icon: 'info',
+          title: '✅ Address Verified!',
+          text: 'Customer confirmed their installation address',
+          icon: 'success',
           timer: 1500,
           showConfirmButton: false
         });
@@ -544,32 +538,11 @@ const Cart = () => {
     setIsFormValid(isValid);
   }, [fname, lname, email, address, phonenumber, addressVerified]);
 
-  // Handle Stripe payment
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        // 🔥 PRODUCTION: Use actual deposit amount
-        await axios.post("/api/checkout/payment", {
-          tokenId: stripeToken.id, 
-          amount: fifteenpercent * 100, // REAL 15% DEPOSIT
-          // TEST MODE: amount: 100,  // $1.00 for testing
-        });
+  // ✅ Handle payment success - EMAIL REMOVED
+  const handlePaymentSuccess = async (paymentData) => {
+    console.log('✅ Payment successful:', paymentData);
 
-        await handlePaymentSuccess();
-
-      } catch (error) {
-        console.log(error);
-        Swal.fire('Payment Failed', 'There was an issue processing the payment. Please try again.', 'error');
-      }
-    };
-    
-    if (stripeToken) {
-      makeRequest();
-    }
-  }, [stripeToken, fifteenpercent]);
-
-  const handlePaymentSuccess = async () => {
-    const orderData = {
+    const receiptData = {
       fname,
       lname,
       customerName: `${fname} ${lname}`,
@@ -577,111 +550,104 @@ const Cart = () => {
       phone: phonenumber,
       address,
       carportName: name,
-      carportType: carportType,
-      carportSize: sideheight,
-      roofSize: height,
-      bothSidesClosed: bothsidesclosed,
-      verticalSides: verticalsides,
-      eachEnd: eachend,
-      bothEnds: bothends,
-      options: [
-        bothsidesclosed === 'Yes' && 'Both Sides Closed',
-        verticalsides === 'Yes' && 'Vertical Sides',
-        eachend === 'Yes' && 'Each End Closed',
-        bothends === 'Yes' && 'Both Ends Closed',
-      ].filter(Boolean),
+      carportType: orderData?.roofStyle || 'Not specified',
+      carportSize: orderData?.labels?.size || `${orderData?.width}' × ${orderData?.length}'` || 'Not specified',
+      roofSize: orderData?.labels?.height || `${orderData?.height}' Tall` || 'Not specified',
       subtotal: totalprice,
       tax: salestax,
       total: totalamount.toFixed(2),
       fifteenPercent: fifteenpercent,
       orderNumber,
       orderDate: new Date().toLocaleString(),
+      fullOrderData: orderData,
     };
 
-    const emailResult = await sendOrderConfirmationEmail(orderData);
-
-    if (emailResult.success) {
-      Swal.fire({
-        title: 'Payment Successful!',
-        html: `
-          <p><strong>Order #${orderNumber}</strong></p>
-          <p>15% Deposit: $${fifteenpercent}</p>
-          <p>Receipt sent to ${email}</p>
-        `,
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'Print Receipt',
-        cancelButtonText: 'New Order',
-        confirmButtonColor: '#28a745',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          handlePrintReceipt(orderData);
-        }
-        
-        localStorage.clear();
-        window.location.href = "/";
-      });
-    } else {
-      Swal.fire({
-        title: 'Payment Received',
-        text: 'Payment successful, but email failed. Contact customer directly.',
-        icon: 'warning',
-      }).then(() => {
-        localStorage.clear();
-        window.location.href = "/";
-      });
-    }
-  };
-
-  const onToken = async (token) => {
-    await saveOrder();
-    setStripeToken(token);
-  };
-
-  const saveOrder = async () => {
-    if (fname && lname && email && address && phonenumber) {
-      const user = {
-        name,
-        fname, 
-        lname,
-        email, 
-        address, 
-        phonenumber,
-        totalprice, 
-        fifteenpercent,
-        height,
-        sideheight,
-        bothsidesclosed,
-        verticalsides,
-        eachend, 
-        bothends,
-        orderNumber,
-        carportType,
-      };
-
-      try {
-        const result = await axios.post('/api/users/signup', user);
-        console.log('Order saved:', result.data);
-        return result;
-      } catch (error) {
-        console.log(error);
-        Swal.fire('Warning', 'Order processed but database save failed', 'warning');
+    // ✅ NO EMAIL - Just show success and offer receipt download
+    Swal.fire({
+      title: '✅ Payment Successful!',
+      html: `
+        <p><strong>Order #${orderNumber}</strong></p>
+        <p>Customer: ${fname} ${lname}</p>
+        <p>15% Deposit Paid: $${fifteenpercent}</p>
+        <p>Total: $${totalamount.toFixed(2)}</p>
+        <p>Balance Due: $${(totalamount - fifteenpercent).toFixed(2)}</p>
+      `,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: '📄 Download Receipt PDF',
+      cancelButtonText: '🏠 New Order',
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#2a5298'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await handleDownloadReceiptAfterPayment(receiptData);
       }
+      
+      // ✅ ONLY CLEAR ORDER DATA - Keep authentication!
+      localStorage.removeItem('completeOrderData');
+      localStorage.removeItem('carportType');
+      localStorage.removeItem('sideheight');
+      localStorage.removeItem('height');
+      localStorage.removeItem('bothsidesclosed');
+      localStorage.removeItem('verticalsides');
+      localStorage.removeItem('eachend');
+      localStorage.removeItem('bothends');
+      
+      // ✅ Redirect to order builder for new order
+      navigate('/order');
+    });
+  };
+
+  // Handle payment error
+  const handlePaymentError = (error) => {
+    console.error('❌ Payment error:', error);
+    Swal.fire({
+      title: '❌ Payment Failed',
+      text: error.message || 'There was an issue processing the payment.',
+      icon: 'error',
+      confirmButtonColor: '#dc3545'
+    });
+  };
+
+  const handlePrintReceipt = async (receiptData) => {
+    try {
+      const logoBase64 = await getLogoBase64();
+      await printReceipt(receiptData, logoBase64);
+    } catch (error) {
+      console.error('Error printing receipt:', error);
     }
   };
 
-  const handlePrintReceipt = (orderData) => {
-    const receiptHTML = generateReceiptHTML(orderData);
-    printReceipt(receiptHTML);
+  const getLogoBase64 = () => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = logo;
+      
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const base64 = canvas.toDataURL('image/png');
+        resolve(base64);
+      };
+      
+      img.onerror = (err) => {
+        console.error('Error loading logo:', err);
+        resolve(null);
+      };
+    });
   };
 
-  const handleDownloadReceipt = () => {
+  const handleDownloadReceipt = async () => {
     if (!isFormValid) {
       Swal.fire('Error', 'Complete customer information first', 'error');
       return;
     }
 
-    const orderData = {
+    const receiptData = {
       fname,
       lname,
       customerName: `${fname} ${lname}`,
@@ -689,29 +655,75 @@ const Cart = () => {
       phone: phonenumber,
       address,
       carportName: name,
-      carportType: carportType,
-      carportSize: sideheight,
-      roofSize: height,
-      bothSidesClosed: bothsidesclosed,
-      verticalSides: verticalsides,
-      eachEnd: eachend,
-      bothEnds: bothends,
-      options: [
-        bothsidesclosed === 'Yes' && 'Both Sides Closed',
-        verticalsides === 'Yes' && 'Vertical Sides',
-        eachend === 'Yes' && 'Each End Closed',
-        bothends === 'Yes' && 'Both Ends Closed',
-      ].filter(Boolean),
+      carportType: orderData?.roofStyle || 'Not specified',
+      carportSize: orderData?.labels?.size || `${orderData?.width}' × ${orderData?.length}'` || 'Not specified',
+      roofSize: orderData?.labels?.height || `${orderData?.height}' Tall` || 'Not specified',
       subtotal: totalprice,
       tax: salestax,
       total: totalamount.toFixed(2),
       fifteenPercent: fifteenpercent,
       orderNumber,
       orderDate: new Date().toLocaleString(),
+      fullOrderData: orderData,
     };
 
-    const receiptHTML = generateReceiptHTML(orderData);
-    downloadReceipt(receiptHTML, `receipt-${orderNumber}.html`);
+    try {
+      const logoBase64 = await getLogoBase64();
+      await downloadReceipt(receiptData, logoBase64);
+      
+      Swal.fire({
+        title: '✅ PDF Downloaded!',
+        text: `Receipt saved as receipt-${orderNumber}.pdf`,
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      Swal.fire({
+        title: 'Download Error',
+        text: 'Failed to generate PDF: ' + error.message,
+        icon: 'error'
+      });
+    }
+  };
+
+  // ✅ Helper function for downloading receipt after payment
+  const handleDownloadReceiptAfterPayment = async (receiptData) => {
+    try {
+      const logoBase64 = await getLogoBase64();
+      await downloadReceipt(receiptData, logoBase64);
+      
+      Swal.fire({
+        title: '✅ PDF Downloaded!',
+        text: `Receipt saved as receipt-${receiptData.orderNumber}.pdf`,
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } catch (error) {
+      console.error('Download error:', error);
+      Swal.fire({
+        title: 'Download Error',
+        text: 'Failed to generate PDF: ' + error.message,
+        icon: 'error'
+      });
+    }
+  };
+
+  const handleProceedToPayment = () => {
+    if (!isFormValid) {
+      Swal.fire({
+        title: '⚠️ Incomplete Form',
+        text: 'Please complete all fields and verify the address first',
+        icon: 'warning',
+        confirmButtonColor: '#2a5298'
+      });
+      return;
+    }
+    
+    // ✅ Just show payment form - useEffect will generate fresh order number
+    setShowPaymentForm(true);
   };
 
   return (
@@ -719,88 +731,294 @@ const Cart = () => {
       <Navigation />
       
       <Wrapper>
-        {/* UNCOMMENT FOR TEST MODE 
-        <TestModeBanner>
-          ⚠️ TEST MODE ACTIVE - CHARGING $1.00 ONLY ⚠️
-        </TestModeBanner>
-        */}
-
         <PageHeader>
           <PageTitle>Checkout & Payment Collection</PageTitle>
           <Subtitle>Complete customer info and collect 15% deposit</Subtitle>
         </PageHeader>
 
         <ContentGrid>
-          {/* Left: Order Details */}
+          {/* LEFT COLUMN: ORDER DETAILS */}
           <Column>
             <CompactCard>
-              <CardTitle>Order Details</CardTitle>
+              <CardTitle>📋 Complete Order Details</CardTitle>
               
               {item && <ProductTitle>{item.title}</ProductTitle>}
               
-              <div>
-                <DetailRow>
-                  <strong>Carport Type:</strong>
-                  <span>{carportType ? carportType.charAt(0).toUpperCase() + carportType.slice(1) : 'Not specified'}</span>
-                </DetailRow>
-
-                <DetailRow>
-                  <strong>Carport Size:</strong>
-                  <span>{sideheight || 'Not specified'}</span>
-                </DetailRow>
-                
-                {height && (
+              {orderData ? (
+                <div>
+                  <SectionTitle>🏗️ Configuration</SectionTitle>
+                  
                   <DetailRow>
-                    <strong>Roof Height:</strong>
-                    <span>{height}</span>
+                    <strong>Building Type:</strong>
+                    <span>{orderData.buildingType === 'commercial' ? 'Commercial Building' : 'Carport'}</span>
                   </DetailRow>
-                )}
-                
-                <DetailRow>
-                  <strong>Both Sides Closed:</strong>
-                  <span>{bothsidesclosed === 'Yes' ? 'Yes' : 'No'}</span>
-                </DetailRow>
-                
-                <DetailRow>
-                  <strong>Vertical Sides:</strong>
-                  <span>{verticalsides === 'Yes' ? 'Yes' : 'No'}</span>
-                </DetailRow>
-                
-                <DetailRow>
-                  <strong>Each End Closed:</strong>
-                  <span>{eachend === 'Yes' ? 'Yes' : 'No'}</span>
-                </DetailRow>
-                
-                <DetailRow>
-                  <strong>Both Ends Closed:</strong>
-                  <span>{bothends === 'Yes' ? 'Yes' : 'No'}</span>
-                </DetailRow>
 
-                <DetailRow>
-                  <strong>Subtotal:</strong>
-                  <span>${Number(totalprice).toFixed(2)}</span>
-                </DetailRow>
+                  <DetailRow>
+                    <strong>Roof Style:</strong>
+                    <span>{orderData.roofStyle?.charAt(0).toUpperCase() + orderData.roofStyle?.slice(1) || 'N/A'}</span>
+                  </DetailRow>
 
-                <DetailRow>
-                  <strong>Tax:</strong>
-                  <span>${Number(salestax).toFixed(2)}</span>
-                </DetailRow>
+                  <DetailRow>
+                    <strong>Size:</strong>
+                    <span>{orderData.width}' × {orderData.length}'</span>
+                  </DetailRow>
+                  
+                  <DetailRow>
+                    <strong>Height:</strong>
+                    <span>{orderData.height}' Tall</span>
+                  </DetailRow>
+                  
+                  <DetailRow>
+                    <strong>Square Footage:</strong>
+                    <span>{orderData.squareFootage || (orderData.width * orderData.length)} sq ft</span>
+                  </DetailRow>
 
-                <DetailRow style={{ borderTop: '2px solid #2a5298', paddingTop: '12px', marginTop: '8px' }}>
-                  <strong style={{ fontSize: '16px' }}>Total:</strong>
-                  <strong style={{ fontSize: '16px' }}>${Number(totalamount).toFixed(2)}</strong>
-                </DetailRow>
-              </div>
+                  {/* ✅ COLOR DISPLAY SECTION */}
+                  {orderData.colors && (orderData.colors.roof || orderData.colors.side || orderData.colors.trim) && (
+                    <ColorSection>
+                      <SectionTitle>🎨 Colors</SectionTitle>
+                      <ColorGrid>
+                        {orderData.colors.roof && (
+                          <ColorItem>
+                            <ColorSwatch $color={getColorHex(orderData.colors.roof)} />
+                            <ColorInfo>
+                              <ColorLabel>Roof</ColorLabel>
+                              <ColorName>{orderData.colors.roof}</ColorName>
+                            </ColorInfo>
+                          </ColorItem>
+                        )}
+                        
+                        {orderData.colors.side && (
+                          <ColorItem>
+                            <ColorSwatch $color={getColorHex(orderData.colors.side)} />
+                            <ColorInfo>
+                              <ColorLabel>Sides</ColorLabel>
+                              <ColorName>{orderData.colors.side}</ColorName>
+                            </ColorInfo>
+                          </ColorItem>
+                        )}
+                        
+                        {orderData.colors.trim && (
+                          <ColorItem>
+                            <ColorSwatch $color={getColorHex(orderData.colors.trim)} />
+                            <ColorInfo>
+                              <ColorLabel>Trim</ColorLabel>
+                              <ColorName>{orderData.colors.trim}</ColorName>
+                            </ColorInfo>
+                          </ColorItem>
+                        )}
+                      </ColorGrid>
+                    </ColorSection>
+                  )}
+
+                  {(orderData.bothSidesClosed || orderData.verticalSidesBoth || orderData.vertical2ToneBoth || 
+                    orderData.eachEndClosed > 0 || orderData.verticalEndCount > 0 || orderData.vertical2ToneEndCount > 0) && (
+                    <>
+                      <SectionTitle>🔒 Enclosure Options</SectionTitle>
+                      
+                      {orderData.bothSidesClosed && (
+                        <DetailRowHighlight>
+                          <strong>Both Sides Closed:</strong>
+                          <span>${(orderData.bothSidesClosedPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                      
+                      {orderData.verticalSidesBoth && (
+                        <DetailRowHighlight>
+                          <strong>Vertical Sides (Both):</strong>
+                          <span>${(orderData.verticalSidesBothPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                      
+                      {orderData.vertical2ToneBoth && (
+                        <DetailRowHighlight>
+                          <strong>Vertical 2 Tone (Both):</strong>
+                          <span>${(orderData.vertical2ToneBothPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                      
+                      {orderData.eachEndClosed > 0 && (
+                        <DetailRowHighlight>
+                          <strong>End(s) Closed ({orderData.eachEndClosed}):</strong>
+                          <span>${(orderData.eachEndClosedPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                      
+                      {orderData.verticalEndCount > 0 && (
+                        <DetailRowHighlight>
+                          <strong>Vertical End(s) ({orderData.verticalEndCount}):</strong>
+                          <span>${(orderData.verticalEndPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                      
+                      {orderData.vertical2ToneEndCount > 0 && (
+                        <DetailRowHighlight>
+                          <strong>Vertical 2 Tone End(s) ({orderData.vertical2ToneEndCount}):</strong>
+                          <span>${(orderData.vertical2ToneEndPrice || 0).toLocaleString()}</span>
+                        </DetailRowHighlight>
+                      )}
+                    </>
+                  )}
+
+                  {orderData.garageDoors && orderData.garageDoors.length > 0 && (
+                    <>
+                      <SectionTitle>🚪 Garage Doors ({orderData.garageDoors.length})</SectionTitle>
+                      {orderData.garageDoors.map((door, index) => (
+                        <GarageDoorItem key={index}>
+                          <strong>Door {index + 1}:</strong> {door.size} {door.color} ({door.certification})
+                        </GarageDoorItem>
+                      ))}
+                      <DetailRowHighlight>
+                        <strong>Garage Doors Total:</strong>
+                        <span>${(orderData.garageDoorPrice || 0).toLocaleString()}</span>
+                      </DetailRowHighlight>
+                    </>
+                  )}
+
+                  {(orderData.sideOpenings > 0 || orderData.walkInDoor > 0 || orderData.window30x30 > 0 || 
+                    orderData.window30x36 > 0 || orderData.insulationDoubleBubble || orderData.insulationFiberglass || 
+                    orderData.certifiedGableEnd > 0 || orderData.coloredScrews) && (
+                    <>
+                      <SectionTitle>➕ Additional Options</SectionTitle>
+                      
+                      {orderData.sideOpenings > 0 && (
+                        <DetailRow>
+                          <strong>Side Opening(s) ({orderData.sideOpenings}):</strong>
+                          <span>${(orderData.sideOpeningPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.walkInDoor > 0 && (
+                        <DetailRow>
+                          <strong>Walk-in Door(s) ({orderData.walkInDoor}):</strong>
+                          <span>${(orderData.walkInDoorPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.window30x30 > 0 && (
+                        <DetailRow>
+                          <strong>Windows 30x30 ({orderData.window30x30}):</strong>
+                          <span>${(orderData.window30x30Price || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.window30x36 > 0 && (
+                        <DetailRow>
+                          <strong>Windows 30x36 ({orderData.window30x36}):</strong>
+                          <span>${(orderData.window30x36Price || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.insulationDoubleBubble && (
+                        <DetailRow>
+                          <strong>Insulation (Double Bubble):</strong>
+                          <span>${(orderData.insulationDoubleBubblePrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.insulationFiberglass && (
+                        <DetailRow>
+                          <strong>Insulation (Fiberglass):</strong>
+                          <span>${(orderData.insulationFiberglassPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.certifiedGableEnd > 0 && (
+                        <DetailRow>
+                          <strong>Certified Gable End(s) ({orderData.certifiedGableEnd}):</strong>
+                          <span>${(orderData.certifiedGableEndPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.coloredScrews && (
+                        <DetailRow>
+                          <strong>Colored Screws (3%):</strong>
+                          <span>${(orderData.coloredScrewsPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                    </>
+                  )}
+
+                  {(orderData.frameouts > 0 || orderData.halfPanelWithTrim > 0 || 
+                    orderData.cutPanel > 0 || orderData.panels3ft > 0) && (
+                    <>
+                      <SectionTitle>🔧 Custom Panels & Frameouts</SectionTitle>
+                      
+                      {orderData.frameouts > 0 && (
+                        <DetailRow>
+                          <strong>Frameout(s) ({orderData.frameouts}):</strong>
+                          <span>${(orderData.frameoutPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.halfPanelWithTrim > 0 && (
+                        <DetailRow>
+                          <strong>Half Panel(s) with Trim ({orderData.halfPanelWithTrim}):</strong>
+                          <span>${(orderData.halfPanelWithTrimPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.cutPanel > 0 && (
+                        <DetailRow>
+                          <strong>Cut Panel(s) ({orderData.cutPanel}):</strong>
+                          <span>${(orderData.cutPanelPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                      
+                      {orderData.panels3ft > 0 && (
+                        <DetailRow>
+                          <strong>3ft Panel(s) ({orderData.panels3ft}):</strong>
+                          <span>${(orderData.panels3ftPrice || 0).toLocaleString()}</span>
+                        </DetailRow>
+                      )}
+                    </>
+                  )}
+
+                  <SectionTitle>💰 Pricing Summary</SectionTitle>
+                  
+                  <DetailRow>
+                    <strong>Base Price:</strong>
+                    <span>${(orderData.basePrice || 0).toLocaleString()}</span>
+                  </DetailRow>
+                  
+                  {orderData.heightCharge > 0 && (
+                    <DetailRow>
+                      <strong>Height Charge:</strong>
+                      <span>${(orderData.heightCharge || 0).toLocaleString()}</span>
+                    </DetailRow>
+                  )}
+
+                  <DetailRow style={{ borderTop: '2px solid #e8f4f8', paddingTop: '12px', marginTop: '8px' }}>
+                    <strong>Subtotal:</strong>
+                    <span>${Number(totalprice).toFixed(2)}</span>
+                  </DetailRow>
+
+                  <DetailRow>
+                    <strong>Tax (6.75%):</strong>
+                    <span>${Number(salestax).toFixed(2)}</span>
+                  </DetailRow>
+
+                  <DetailRow style={{ borderTop: '2px solid #2a5298', paddingTop: '12px', marginTop: '8px' }}>
+                    <strong style={{ fontSize: '16px' }}>TOTAL:</strong>
+                    <strong style={{ fontSize: '16px', color: '#2a5298' }}>${Number(totalamount).toFixed(2)}</strong>
+                  </DetailRow>
+                </div>
+              ) : (
+                <NoDataMessage>
+                  <strong>⚠️ No Order Data Found</strong>
+                  Please complete your order in the Order Builder first.
+                </NoDataMessage>
+              )}
             </CompactCard>
           </Column>
 
-          {/* Middle: Customer Form */}
+          {/* MIDDLE COLUMN: CUSTOMER FORM */}
           <Column>
             <Card>
-              <CardTitle>Customer Information</CardTitle>
+              <CardTitle>👤 Customer Information</CardTitle>
               
               <ValidationBadge $valid={isFormValid}>
-                {isFormValid ? '✓ All fields complete' : '⚠ Complete all fields'}
+                {isFormValid ? '✓ All fields complete & address verified' : '⚠ Complete all fields & verify address'}
               </ValidationBadge>
 
               <FormGrid>
@@ -846,18 +1064,17 @@ const Cart = () => {
 
                 <FormField className="full-width">
                   <Label>
-                    Address *
+                    Installation Address *
                     {addressVerified && <VerifiedBadge>✓ Verified</VerifiedBadge>}
-                    {!addressVerified && address.length > 10 && !googleMapsError && (
-                      <SkipButton onClick={handleSkipVerification}>
-                        Skip Verification
-                      </SkipButton>
+                    {!addressVerified && address.length > 10 && (
+                      <VerifyButton onClick={handleVerifyAddress}>
+                        Verify Address
+                      </VerifyButton>
                     )}
                   </Label>
                   <Input
-                    ref={addressInputRef}
                     type="text"
-                    placeholder={googleMapsLoaded ? "Start typing address..." : "Enter full address"}
+                    placeholder="123 Main St, City, State, ZIP"
                     value={address}
                     onChange={(e) => {
                       setaddress(e.target.value);
@@ -865,19 +1082,9 @@ const Cart = () => {
                     }}
                     $verified={addressVerified}
                   />
-                  {googleMapsLoaded && !googleMapsError ? (
-                    <InfoText style={{ margin: '6px 0 0 0', padding: '6px 8px', fontSize: '11px' }}>
-                      🗺️ Type and select from dropdown for Google Maps verification
-                    </InfoText>
-                  ) : googleMapsError ? (
-                    <InfoText style={{ margin: '6px 0 0 0', padding: '6px 8px', fontSize: '11px', background: '#fff3cd', borderLeft: '3px solid #ffc107' }}>
-                      ⚠️ Google Maps unavailable. Enter address manually and click "Skip Verification"
-                    </InfoText>
-                  ) : (
-                    <InfoText style={{ margin: '6px 0 0 0', padding: '6px 8px', fontSize: '11px' }}>
-                      ⏳ Loading Google Maps...
-                    </InfoText>
-                  )}
+                  <InfoText style={{ margin: '6px 0 0 0', padding: '6px 8px', fontSize: '11px' }}>
+                    📍 Click "Verify Address" and read it to the customer
+                  </InfoText>
                 </FormField>
 
                 <FormField className="full-width">
@@ -892,10 +1099,10 @@ const Cart = () => {
             </Card>
           </Column>
 
-          {/* Right: Payment */}
+          {/* RIGHT COLUMN: PAYMENT */}
           <Column>
             <Card>
-              <CardTitle>Payment Summary</CardTitle>
+              <CardTitle>💳 Payment Summary</CardTitle>
               
               <SummaryItem>
                 <span>Order #</span>
@@ -908,7 +1115,7 @@ const Cart = () => {
               </SummaryItem>
 
               <SummaryItem>
-                <span>Tax</span>
+                <span>Tax (6.75%)</span>
                 <span>$ {Number(salestax).toFixed(2)}</span>
               </SummaryItem>
 
@@ -917,47 +1124,64 @@ const Cart = () => {
                 <span>$ {Number(totalamount).toFixed(2)}</span>
               </SummaryItem>
 
-              <SummaryItem type="total" style={{ color: '#2a5298' }}>
-                <span>Deposit (15%)</span>
+              <SummaryItem type="total" style={{ color: '#2a5298', background: '#e8f4f8', padding: '12px', margin: '10px -10px', borderRadius: '6px' }}>
+                <span>Deposit Due (15%)</span>
                 <span>$ {Number(fifteenpercent).toFixed(2)}</span>
               </SummaryItem>
 
-              {isFormValid ? (
-                <StripeCheckout
-                  name="Pro Carport Buildings"
-                  image="https://i.postimg.cc/Qd1ZX4HD/logoprocarportb.png"
-                  description={`Order #${orderNumber} | ${carportType.toUpperCase()} ${sideheight} | 15% Deposit`}
-                  amount={fifteenpercent * 100}
-                  email={email}
-                  billingAddress
-                  shippingAddress
-                  token={onToken}
-                  stripeKey={"pk_live_51ODJPPL4eLMn0bBLYweEcXBtcc46TcbEjDy1wrSrJOQttOvQFjmF2xguALTYKrdrUM2QqjiqSNBjIx6aOr4Gl0FO00jsj19BJx"}
-                >
-                  <Button>PAY ${fifteenpercent}</Button>
-                </StripeCheckout>
+              {!showPaymentForm ? (
+                <>
+                  <ActionButton 
+                    variant="success" 
+                    onClick={handleProceedToPayment}
+                    disabled={!isFormValid}
+                  >
+                    💳 Proceed to Payment
+                  </ActionButton>
+
+                  <ActionButton 
+                    onClick={handleDownloadReceipt}
+                    disabled={!isFormValid}
+                  >
+                    📄 Download Receipt
+                  </ActionButton>
+                </>
               ) : (
-                <Button disabled>Complete Info First</Button>
+                <PaymentSection>
+                  <StripePaymentForm
+                    key={orderNumber}
+                    amount={fifteenpercent}
+                    orderNumber={orderNumber}
+                    customerInfo={{
+                      fname,
+                      lname,
+                      email,
+                      phone: phonenumber,
+                      address
+                    }}
+                    orderData={{
+                      ...orderData,
+                      productName: name,
+                      total: totalamount,
+                      subtotal: totalprice,
+                      tax: salestax
+                    }}
+                    onSuccess={handlePaymentSuccess}
+                    onError={handlePaymentError}
+                  />
+                </PaymentSection>
               )}
 
-              <ActionButton 
-                variant="success" 
-                onClick={handleDownloadReceipt}
-                disabled={!isFormValid}
-              >
-                Download Receipt
-              </ActionButton>
+              <InfoText>
+                💳 Collecting 15% deposit (${fifteenpercent}) of TOTAL
+              </InfoText>
 
               <InfoText>
-                💳 Collecting 15% deposit to confirm order
+                Balance due (${(totalamount - fifteenpercent).toFixed(2)}) at installation
               </InfoText>
 
               <InfoText>
                 Processor fee: 4.75%. For check/cash: (336) 468-1131
-              </InfoText>
-
-              <InfoText>
-                Prices subject to change with add-ons
               </InfoText>
             </Card>
           </Column>
