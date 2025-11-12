@@ -1,10 +1,7 @@
 // client/src/components/StripePaymentForm.js
-// ✅ BEST PRACTICES - SIMPLIFIED
-// ✅ Backend generates order numbers
-// ✅ Manual payment confirmation added as webhook backup
-// ✅ No complex state management needed
+// ✅ BULLETPROOF - Works with React Strict Mode
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   PaymentElement,
   Elements,
@@ -17,6 +14,9 @@ import axios from 'axios';
 
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
+// ✅ GLOBAL CACHE - Survives React remounts
+const globalPaymentCache = new Map();
 
 // ============================================================================
 // STYLED COMPONENTS
@@ -114,7 +114,7 @@ const OrderNumberDisplay = styled.div`
 `;
 
 // ============================================================================
-// INNER PAYMENT FORM (Uses Stripe hooks)
+// INNER PAYMENT FORM
 // ============================================================================
 
 const PaymentFormInner = ({
@@ -135,6 +135,7 @@ const PaymentFormInner = ({
     e.preventDefault();
 
     if (!stripe || !elements) {
+      console.log('⚠️ Stripe or Elements not ready yet');
       return;
     }
 
@@ -144,7 +145,6 @@ const PaymentFormInner = ({
     try {
       console.log('💳 Processing payment for order:', orderNumber);
 
-      // Confirm the payment with Stripe
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -164,69 +164,36 @@ const PaymentFormInner = ({
 
       if (paymentIntent && paymentIntent.status === 'succeeded') {
         console.log('✅ Payment succeeded:', paymentIntent.id);
-        console.log('📋 Payment Intent Details:', {
-          id: paymentIntent.id,
-          status: paymentIntent.status,
-          amount: paymentIntent.amount
-        });
         
-        // ✅ MANUAL PAYMENT CONFIRMATION - Save to database (backup for webhook)
         try {
-          console.log('📝 Saving payment to database...');
-          console.log('📋 Customer Info:', customerInfo);
-          console.log('📋 Order Number:', orderNumber);
-          console.log('📋 Order Data:', orderData);
-          
-          const requestBody = {
-            paymentIntentId: paymentIntent.id,
-            orderNumber: orderNumber,
-            customerInfo: {
-              fname: customerInfo.fname,
-              lname: customerInfo.lname,
-              email: customerInfo.email,
-              phone: customerInfo.phone,
-              address: customerInfo.address
-            },
-            orderData: orderData
-          };
-          
-          console.log('📤 Sending request to /api/checkout/confirm-payment');
-          console.log('📤 Request body:', JSON.stringify(requestBody, null, 2));
-          
           const confirmResponse = await fetch('/api/checkout/confirm-payment', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              paymentIntentId: paymentIntent.id,
+              orderNumber: orderNumber,
+              customerInfo: {
+                fname: customerInfo.fname,
+                lname: customerInfo.lname,
+                email: customerInfo.email,
+                phone: customerInfo.phone,
+                address: customerInfo.address
+              },
+              orderData: orderData
+            })
           });
-
-          console.log('📥 Response status:', confirmResponse.status);
-          console.log('📥 Response ok:', confirmResponse.ok);
           
           const confirmData = await confirmResponse.json();
-          console.log('📥 Response data:', confirmData);
           
           if (confirmData.success) {
-            console.log('✅ Payment saved to database successfully!');
-            console.log('✅ Payment ID:', confirmData.payment?._id);
-          } else {
-            console.error('❌ Database save failed:', confirmData.error);
-            alert('⚠️ Payment succeeded but database save failed: ' + confirmData.error);
+            console.log('✅ Payment saved to database!');
           }
         } catch (dbError) {
           console.error('❌ Database error:', dbError);
-          console.error('❌ Error message:', dbError.message);
-          console.error('❌ Error stack:', dbError.stack);
-          alert('⚠️ Payment succeeded but database error: ' + dbError.message);
         }
         
-        // ✅ Notify frontend of success
         if (onSuccess) {
-          onSuccess({
-            paymentIntent,
-            orderNumber
-          });
+          onSuccess({ paymentIntent, orderNumber });
         }
       }
 
@@ -258,10 +225,7 @@ const PaymentFormInner = ({
           </ErrorMessage>
         )}
 
-        <PaymentButton
-          type="submit"
-          disabled={!stripe || !elements || isProcessing}
-        >
+        <PaymentButton type="submit" disabled={!stripe || !elements || isProcessing}>
           {isProcessing && <LoadingSpinner />}
           {isProcessing ? 'Processing...' : `Pay $${parseFloat(amount).toFixed(2)}`}
         </PaymentButton>
@@ -271,7 +235,7 @@ const PaymentFormInner = ({
 };
 
 // ============================================================================
-// OUTER WRAPPER (Fetches clientSecret and provides Elements)
+// OUTER WRAPPER
 // ============================================================================
 
 const StripePaymentForm = ({
@@ -286,55 +250,51 @@ const StripePaymentForm = ({
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   
-  // ✅ LAYER 1: Ref to prevent duplicate calls
-  const hasCreatedIntent = React.useRef(false);
+  // ✅ Create stable cache key
+  const cacheKey = `${customerInfo.email}-${amount}`;
   
-  // ✅ LAYER 2: Track if currently creating to prevent concurrent calls
-  const isCreating = React.useRef(false);
+  // ✅ Track if we're currently creating (prevents race conditions)
+  const isCreating = useRef(false);
+  const hasInitialized = useRef(false);
 
-  // ✅ Create Payment Intent when component mounts (ONCE!)
-  useEffect(() => {
-    // LAYER 1: Already created?
-    if (hasCreatedIntent.current) {
-      console.log('⏭️ [Layer 1] Skipping - already created payment intent');
+  // ✅ Wrap in useCallback to make it stable for useEffect
+  const createPaymentIntent = useCallback(async () => {
+    // Double check we haven't already created
+    if (hasInitialized.current) {
+      console.log('⏭️ Already initialized, skipping...');
       return;
     }
-    
-    // LAYER 2: Currently creating?
+
+    // Check if already in progress
     if (isCreating.current) {
-      console.log('⏭️ [Layer 2] Skipping - creation in progress');
+      console.log('⏭️ Creation in progress, skipping...');
       return;
     }
-    
-    console.log('✅ Creating payment intent...');
-    hasCreatedIntent.current = true;
-    isCreating.current = true;
-    
-    createPaymentIntent().finally(() => {
-      isCreating.current = false;
-    });
-    
-    // Cleanup function
-    return () => {
-      console.log('🧹 Cleanup called');
-    };
-  }, []); // Empty deps - only run on mount
 
-  const createPaymentIntent = async () => {
+    // Check global cache
+    if (globalPaymentCache.has(cacheKey)) {
+      const cached = globalPaymentCache.get(cacheKey);
+      console.log('✅ Using cached payment intent');
+      setClientSecret(cached.clientSecret);
+      setOrderNumber(cached.orderNumber);
+      setIsLoading(false);
+      hasInitialized.current = true;
+      return;
+    }
+
     try {
+      isCreating.current = true;
+      hasInitialized.current = true;
       setIsLoading(true);
       setErrorMessage('');
 
-      console.log('🔄 Creating payment intent...');
+      console.log('🔄 Creating NEW payment intent...');
 
-      // ✅ BEST PRACTICE: Backend generates order number
-      // ✅ Pass ALL data needed for Order creation
       const response = await axios.post('/api/checkout/create-payment-intent', {
         amount: parseFloat(amount),
         customerEmail: customerInfo.email,
         customerName: `${customerInfo.fname} ${customerInfo.lname}`,
         orderData: {
-          // Customer Info
           fname: customerInfo.fname,
           lname: customerInfo.lname,
           customerName: `${customerInfo.fname} ${customerInfo.lname}`,
@@ -343,32 +303,42 @@ const StripePaymentForm = ({
           customerPhone: customerInfo.phone,
           address: customerInfo.address,
           installationAddress: customerInfo.address,
-          
-          // Order Details
           productName: orderData.productName || 'Carport',
           total: orderData.total || (amount / 0.15).toFixed(2),
           subtotal: orderData.subtotal || orderData.total || (amount / 0.15).toFixed(2),
           tax: orderData.tax || 0,
-          
-          // Complete Order Data
           ...orderData
         }
       });
 
       if (response.data.success) {
+        // Store in global cache
+        globalPaymentCache.set(cacheKey, {
+          clientSecret: response.data.clientSecret,
+          orderNumber: response.data.orderNumber
+        });
+        
         setClientSecret(response.data.clientSecret);
-        setOrderNumber(response.data.orderNumber);  // ✅ Backend generated this!
-        console.log('✅ Payment Intent created. Order:', response.data.orderNumber);
+        setOrderNumber(response.data.orderNumber);
+        console.log('✅ Payment intent created successfully!');
       } else {
-        setErrorMessage('Failed to initialize payment. Please try again.');
+        setErrorMessage('Failed to initialize payment.');
+        hasInitialized.current = false;
       }
     } catch (error) {
       console.error('❌ Error creating payment intent:', error);
       setErrorMessage(error.response?.data?.error || 'Failed to initialize payment');
+      hasInitialized.current = false;
     } finally {
       setIsLoading(false);
+      isCreating.current = false;
     }
-  };
+  }, [amount, customerInfo.email, customerInfo.fname, customerInfo.lname, customerInfo.phone, customerInfo.address, orderData, cacheKey]);
+
+  // ✅ Single useEffect with proper dependencies
+  useEffect(() => {
+    createPaymentIntent();
+  }, [createPaymentIntent]);
 
   if (isLoading) {
     return (
