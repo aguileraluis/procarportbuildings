@@ -24,7 +24,7 @@ mongoose
   .connect(process.env.MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(() => {
     console.log("✅ DB Connection Successful!");
-    seedAdminUser();
+    // seedAdminUser();
   })
   .catch((err) => {
     console.error("❌ DB Connection Error:", err);
