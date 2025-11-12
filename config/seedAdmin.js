@@ -5,13 +5,13 @@ const defaultUsers = [
   {
     username: 'admin',
     email: 'admin@procarport.com',
-    password: 'admin123',
+    password: 'ProCarportBuildings2025!',
     role: 'admin'
   },
   {
     username: 'staff',
     email: 'staff@procarport.com',
-    password: 'staff123',
+    password: 'ProCarportBuildings2025!',
     role: 'staff'
   }
 ];
