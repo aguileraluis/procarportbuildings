@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const defaultUsers = [
   {
@@ -23,10 +23,12 @@ const seedAdminUser = async () => {
     for (const userData of defaultUsers) {
       const userExists = await User.findOne({ username: userData.username });
       
-      if (!userExists) {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(userData.password, salt);
+      // Hash the password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(userData.password, salt);
 
+      if (!userExists) {
+        // ✅ Create new user
         const newUser = new User({
           username: userData.username,
           email: userData.email,
@@ -38,7 +40,10 @@ const seedAdminUser = async () => {
         await newUser.save();
         console.log(`✅ Created user: ${userData.username} (${userData.role})`);
       } else {
-        console.log(`✓ User exists: ${userData.username}`);
+        // ✅ UPDATE existing user's password
+        userExists.password = hashedPassword;
+        await userExists.save();
+        console.log(`✅ Updated password for: ${userData.username}`);
       }
     }
     
