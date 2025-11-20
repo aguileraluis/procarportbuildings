@@ -1,6 +1,6 @@
 // client/src/utils/receiptGenerator.js
 // ✅ FULL-PAGE BLACK & WHITE PROFESSIONAL RECEIPT WITH SIGNATURES
-// Impressive, formal, contract-style receipt that maximizes page space
+// Fixed version with proper spacing and no overlapping text
 
 import jsPDF from 'jspdf';
 
@@ -696,7 +696,7 @@ export const printReceipt = async (orderData, logoBase64 = null) => {
 };
 
 // ============================================================================
-// DOWNLOAD PDF RECEIPT - FULL PAGE BLACK & WHITE WITH SIGNATURES
+// DOWNLOAD PDF RECEIPT - FIXED VERSION WITH PROPER SPACING
 // ============================================================================
 export const downloadReceipt = async (orderData, logoBase64 = null) => {
   const {
@@ -719,195 +719,209 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
     format: 'a4'
   });
 
-  let yPos = 10;
-  const leftMargin = 12;
-  const rightMargin = 198;
+  // Page layout constants with improved spacing
+  let yPos = 12;
+  const leftMargin = 15;
+  const rightMargin = 195;
   const pageWidth = 210;
-  const contentWidth = 186;
+  const contentWidth = 180;
   const pageHeight = 297;
+  const sectionSpacing = 5; // Consistent spacing between sections
 
   // ===== HEADER WITH DOUBLE BORDER =====
-  doc.setLineWidth(0.8);
+  doc.setLineWidth(0.6);
   doc.setDrawColor(0, 0, 0);
-  doc.rect(leftMargin, yPos, contentWidth, 25);
-  doc.rect(leftMargin + 1, yPos + 1, contentWidth - 2, 23);
+  doc.rect(leftMargin, yPos, contentWidth, 24);
+  doc.rect(leftMargin + 0.8, yPos + 0.8, contentWidth - 1.6, 22.4);
   
   // Logo
   if (logoBase64) {
     try {
-      doc.addImage(logoBase64, 'PNG', leftMargin + 4, yPos + 4, 28, 17);
+      doc.addImage(logoBase64, 'PNG', leftMargin + 3, yPos + 3, 26, 18);
     } catch (error) {
       console.error('Error adding logo:', error);
     }
   }
   
   // Company Name
-  doc.setFontSize(18);
+  doc.setFontSize(17);
   doc.setFont('helvetica', 'bold');
-  doc.text('PROCARPORT BUILDINGS', leftMargin + 35, yPos + 12);
+  doc.text('PROCARPORT BUILDINGS', leftMargin + 32, yPos + 11);
   
-  doc.setFontSize(9);
+  doc.setFontSize(8.5);
   doc.setFont('helvetica', 'italic');
-  doc.text('Professional Steel Building Solutions', leftMargin + 35, yPos + 17);
+  doc.text('Professional Steel Building Solutions', leftMargin + 32, yPos + 16);
   
   // Order Box
-  const orderBoxX = rightMargin - 42;
-  doc.setLineWidth(0.5);
+  const orderBoxX = rightMargin - 40;
+  doc.setLineWidth(0.4);
   doc.setFillColor(250, 250, 250);
-  doc.rect(orderBoxX, yPos + 5, 42, 15, 'FD');
+  doc.rect(orderBoxX, yPos + 4, 40, 16, 'FD');
   
-  doc.setFontSize(7);
+  doc.setFontSize(6.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('ORDER NUMBER', orderBoxX + 21, yPos + 9, { align: 'center' });
+  doc.text('ORDER NUMBER', orderBoxX + 20, yPos + 8, { align: 'center' });
   
   doc.setFontSize(11);
-  doc.text(orderNumber, orderBoxX + 21, yPos + 14, { align: 'center' });
+  doc.text(orderNumber, orderBoxX + 20, yPos + 13, { align: 'center' });
   
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
-  doc.text(orderDate, orderBoxX + 21, yPos + 18, { align: 'center' });
+  doc.text(orderDate, orderBoxX + 20, yPos + 17.5, { align: 'center' });
   
-  yPos += 28;
+  yPos += 26;
 
   // ===== DOCUMENT TITLE =====
-  doc.setFontSize(13);
+  doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
-  doc.text('BUILDING ORDER RECEIPT & AGREEMENT', pageWidth / 2, yPos + 2, { align: 'center' });
+  doc.text('BUILDING ORDER RECEIPT & AGREEMENT', pageWidth / 2, yPos + 3, { align: 'center' });
   
-  doc.setLineWidth(0.5);
-  doc.line(leftMargin, yPos + 5, rightMargin, yPos + 5);
+  doc.setLineWidth(0.4);
+  doc.line(leftMargin, yPos + 5.5, rightMargin, yPos + 5.5);
   
   yPos += 9;
 
   // ===== CUSTOMER GRID =====
-  const boxHeight = 20;
-  const halfWidth = (contentWidth - 3) / 2;
+  const boxHeight = 22;
+  const halfWidth = (contentWidth - 4) / 2;
   
   doc.setLineWidth(0.3);
   doc.rect(leftMargin, yPos, halfWidth, boxHeight);
-  doc.rect(leftMargin + halfWidth + 3, yPos, halfWidth, boxHeight);
+  doc.rect(leftMargin + halfWidth + 4, yPos, halfWidth, boxHeight);
   
   // Customer Info
-  doc.setFontSize(7);
+  doc.setFontSize(6.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('CUSTOMER INFORMATION', leftMargin + 2, yPos + 4);
-  doc.line(leftMargin + 2, yPos + 5, leftMargin + halfWidth - 2, yPos + 5);
+  doc.text('CUSTOMER INFORMATION', leftMargin + 3, yPos + 4.5);
+  doc.line(leftMargin + 3, yPos + 5.5, leftMargin + halfWidth - 3, yPos + 5.5);
   
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
-  doc.text(customerName, leftMargin + 2, yPos + 9);
+  doc.text(customerName, leftMargin + 3, yPos + 10);
   
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  doc.text(phone, leftMargin + 2, yPos + 13);
-  doc.text(email, leftMargin + 2, yPos + 16.5);
+  doc.text(phone, leftMargin + 3, yPos + 14.5);
+  doc.text(email, leftMargin + 3, yPos + 18.5);
   
   // Installation Address
-  doc.setFontSize(7);
+  doc.setFontSize(6.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('INSTALLATION ADDRESS', leftMargin + halfWidth + 5, yPos + 4);
-  doc.line(leftMargin + halfWidth + 5, yPos + 5, rightMargin - 2, yPos + 5);
+  doc.text('INSTALLATION ADDRESS', leftMargin + halfWidth + 7, yPos + 4.5);
+  doc.line(leftMargin + halfWidth + 7, yPos + 5.5, rightMargin - 3, yPos + 5.5);
   
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  const addressLines = doc.splitTextToSize(address, halfWidth - 6);
-  doc.text(addressLines, leftMargin + halfWidth + 5, yPos + 9);
+  const addressLines = doc.splitTextToSize(address, halfWidth - 8);
+  doc.text(addressLines, leftMargin + halfWidth + 7, yPos + 10);
   
-  yPos += boxHeight + 5;
+  yPos += boxHeight + sectionSpacing;
 
   // ===== BUILDING SPECIFICATIONS =====
-  const specHeight = fullOrderData?.colors && (fullOrderData.colors.roof || fullOrderData.colors.side || fullOrderData.colors.trim) ? 28 : 20;
+  const hasColors = fullOrderData?.colors && (fullOrderData.colors.roof || fullOrderData.colors.side || fullOrderData.colors.trim);
+  const specHeight = hasColors ? 30 : 22;
   
   doc.setFillColor(250, 250, 250);
+  doc.setLineWidth(0.4);
   doc.rect(leftMargin, yPos, contentWidth, specHeight, 'FD');
   
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
-  doc.text('BUILDING SPECIFICATIONS', leftMargin + 2, yPos + 5);
-  doc.setLineWidth(0.5);
-  doc.line(leftMargin + 2, yPos + 6, rightMargin - 2, yPos + 6);
+  doc.text('BUILDING SPECIFICATIONS', leftMargin + 3, yPos + 5.5);
+  doc.setLineWidth(0.4);
+  doc.line(leftMargin + 3, yPos + 6.5, rightMargin - 3, yPos + 6.5);
   
   // Specs Grid
-  const specY = yPos + 11;
+  const specY = yPos + 12;
   const colWidth = contentWidth / 4;
   
-  doc.setFontSize(7);
+  doc.setFontSize(6.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('TYPE', leftMargin + 2, specY);
-  doc.text('ROOF STYLE', leftMargin + colWidth + 2, specY);
-  doc.text('DIMENSIONS', leftMargin + colWidth * 2 + 2, specY);
-  doc.text('SQUARE FOOTAGE', leftMargin + colWidth * 3 + 2, specY);
+  doc.text('TYPE', leftMargin + 3, specY);
+  doc.text('ROOF STYLE', leftMargin + colWidth + 3, specY);
+  doc.text('DIMENSIONS', leftMargin + colWidth * 2 + 3, specY);
+  doc.text('SQUARE FOOTAGE', leftMargin + colWidth * 3 + 3, specY);
   
-  doc.setFontSize(10);
+  doc.setFontSize(9.5);
   doc.setFont('helvetica', 'normal');
-  doc.text(fullOrderData?.buildingType === 'commercial' ? 'Commercial' : 'Carport', leftMargin + 2, specY + 5);
-  doc.text(fullOrderData?.roofStyle || 'Vertical', leftMargin + colWidth + 2, specY + 5);
-  doc.text(`${fullOrderData?.width}' × ${fullOrderData?.length}' × ${fullOrderData?.height}'`, leftMargin + colWidth * 2 + 2, specY + 5);
-  doc.text(`${fullOrderData?.squareFootage || (fullOrderData?.width * fullOrderData?.length)} sq ft`, leftMargin + colWidth * 3 + 2, specY + 5);
+  doc.text(fullOrderData?.buildingType === 'commercial' ? 'Commercial' : 'Carport', leftMargin + 3, specY + 5);
+  doc.text(fullOrderData?.roofStyle || 'Vertical', leftMargin + colWidth + 3, specY + 5);
+  doc.text(`${fullOrderData?.width}' × ${fullOrderData?.length}' × ${fullOrderData?.height}'`, leftMargin + colWidth * 2 + 3, specY + 5);
+  doc.text(`${fullOrderData?.squareFootage || (fullOrderData?.width * fullOrderData?.length)} sq ft`, leftMargin + colWidth * 3 + 3, specY + 5);
   
   // Colors
-  if (fullOrderData?.colors && (fullOrderData.colors.roof || fullOrderData.colors.side || fullOrderData.colors.trim)) {
-    const colorY = specY + 11;
+  if (hasColors) {
+    const colorY = specY + 12;
     doc.setLineWidth(0.2);
-    doc.line(leftMargin + 2, colorY - 2, rightMargin - 2, colorY - 2);
+    doc.line(leftMargin + 3, colorY - 2, rightMargin - 3, colorY - 2);
     
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setFont('helvetica', 'bold');
-    doc.text('COLORS:', leftMargin + 2, colorY);
+    doc.text('COLORS:', leftMargin + 3, colorY + 1);
     
     doc.setFont('helvetica', 'normal');
     let colorText = '';
     if (fullOrderData.colors.roof) colorText += `Roof: ${fullOrderData.colors.roof}  `;
     if (fullOrderData.colors.side) colorText += `Sides: ${fullOrderData.colors.side}  `;
     if (fullOrderData.colors.trim) colorText += `Trim: ${fullOrderData.colors.trim}`;
-    doc.text(colorText, leftMargin + 18, colorY);
+    doc.text(colorText, leftMargin + 17, colorY + 1);
   }
   
-  yPos += specHeight + 5;
+  yPos += specHeight + sectionSpacing;
 
-  // ===== ITEMS GRID =====
+  // ===== ITEMS GRID WITH IMPROVED SPACING =====
   let leftColY = yPos;
   let rightColY = yPos;
-  const itemColWidth = (contentWidth - 3) / 2;
+  const itemColWidth = (contentWidth - 4) / 2;
   
   const addItemSection = (title, items, side = 'left') => {
     if (items.length === 0) return;
     
-    const x = side === 'left' ? leftMargin : leftMargin + itemColWidth + 3;
+    const x = side === 'left' ? leftMargin : leftMargin + itemColWidth + 4;
     let y = side === 'left' ? leftColY : rightColY;
     
-    const sectionHeight = 9 + (items.length * 4.5);
+    // Better height calculation with proper padding
+    const titleHeight = 9;
+    const itemHeight = 5;
+    const itemPadding = 0.5;
+    const bottomPadding = 2;
+    const sectionHeight = titleHeight + (items.length * (itemHeight + itemPadding)) + bottomPadding;
     
     doc.setDrawColor(0, 0, 0);
     doc.setLineWidth(0.3);
     doc.rect(x, y, itemColWidth, sectionHeight);
     
-    doc.setFontSize(8);
+    doc.setFontSize(7.5);
     doc.setFont('helvetica', 'bold');
-    doc.text(title, x + 2, y + 5);
+    doc.text(title, x + 2, y + 5.5);
     doc.setLineWidth(0.2);
-    doc.line(x + 2, y + 6, x + itemColWidth - 2, y + 6);
+    doc.line(x + 2, y + 6.5, x + itemColWidth - 2, y + 6.5);
     
-    y += 9;
+    let itemY = y + titleHeight + 2;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     
-    items.forEach(([label, value]) => {
-      const labelLines = doc.splitTextToSize(label, itemColWidth - 30);
-      doc.text(labelLines[0], x + 2, y);
+    items.forEach(([label, value], index) => {
+      const labelLines = doc.splitTextToSize(label, itemColWidth - 28);
+      doc.text(labelLines[0], x + 2, itemY);
       doc.setFont('helvetica', 'bold');
-      doc.text(value, x + itemColWidth - 2, y, { align: 'right' });
+      doc.text(value, x + itemColWidth - 2, itemY, { align: 'right' });
       doc.setFont('helvetica', 'normal');
-      doc.setDrawColor(200, 200, 200);
-      doc.setLineWidth(0.1);
-      doc.line(x + 2, y + 1, x + itemColWidth - 2, y + 1);
-      y += 4.5;
+      
+      // Add dotted line separator except for last item
+      if (index < items.length - 1) {
+        doc.setDrawColor(200, 200, 200);
+        doc.setLineWidth(0.1);
+        doc.line(x + 2, itemY + 1.5, x + itemColWidth - 2, itemY + 1.5);
+      }
+      
+      itemY += itemHeight + itemPadding;
     });
     
     if (side === 'left') {
-      leftColY = y + 3;
+      leftColY = y + sectionHeight + 3;
     } else {
-      rightColY = y + 3;
+      rightColY = y + sectionHeight + 3;
     }
   };
 
@@ -952,124 +966,131 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
 
   yPos = Math.max(leftColY, rightColY);
 
-  // ===== FINANCIAL SUMMARY =====
-  const financialHeight = 38;
+  // ===== FINANCIAL SUMMARY WITH BETTER SPACING =====
+  const financialHeight = 42;
   
-  doc.setLineWidth(0.8);
+  doc.setLineWidth(0.6);
   doc.setDrawColor(0, 0, 0);
   doc.rect(leftMargin, yPos, contentWidth, financialHeight);
-  doc.rect(leftMargin + 1, yPos + 1, contentWidth - 2, financialHeight - 2);
+  doc.rect(leftMargin + 0.8, yPos + 0.8, contentWidth - 1.6, financialHeight - 1.6);
   
-  let finY = yPos + 6;
+  let finY = yPos + 7;
   
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text('Subtotal', leftMargin + 3, finY);
+  doc.text('Subtotal', leftMargin + 4, finY);
   doc.setFont('helvetica', 'bold');
-  doc.text(`$${Number(subtotal).toLocaleString()}`, rightMargin - 3, finY, { align: 'right' });
+  doc.text(`$${Number(subtotal).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 6;
+  finY += 6.5;
+  doc.setLineWidth(0.1);
+  doc.setDrawColor(200, 200, 200);
+  doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
+  
   doc.setFont('helvetica', 'normal');
-  doc.text('Tax (6.75%)', leftMargin + 3, finY);
+  doc.text('Tax (6.75%)', leftMargin + 4, finY);
   doc.setFont('helvetica', 'bold');
-  doc.text(`$${Number(tax).toLocaleString()}`, rightMargin - 3, finY, { align: 'right' });
-  
-  finY += 7;
-  doc.setLineWidth(0.5);
-  doc.line(leftMargin + 3, finY - 1, rightMargin - 3, finY - 1);
-  doc.line(leftMargin + 3, finY, rightMargin - 3, finY);
-  
-  finY += 6;
-  doc.setFontSize(14);
-  doc.text('TOTAL AMOUNT', leftMargin + 3, finY);
-  doc.text(`$${Number(total).toLocaleString()}`, rightMargin - 3, finY, { align: 'right' });
+  doc.text(`$${Number(tax).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
   finY += 8;
-  doc.setFontSize(9);
-  doc.setFillColor(240, 240, 240);
-  doc.rect(leftMargin + 3, finY - 4, contentWidth - 6, 5, 'F');
-  doc.setFont('helvetica', 'normal');
-  doc.text('Deposit Paid (15%)', leftMargin + 5, finY);
-  doc.setFont('helvetica', 'bold');
-  doc.text(`$${Number(fifteenPercent).toLocaleString()}`, rightMargin - 5, finY, { align: 'right' });
+  doc.setLineWidth(0.4);
+  doc.setDrawColor(0, 0, 0);
+  doc.line(leftMargin + 4, finY - 2, rightMargin - 4, finY - 2);
+  doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
   
-  finY += 6;
+  finY += 5;
+  doc.setFontSize(13);
+  doc.text('TOTAL AMOUNT', leftMargin + 4, finY);
+  doc.text(`$${Number(total).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
+  
+  finY += 9;
+  doc.setFontSize(9.5);
+  doc.setFillColor(240, 240, 240);
+  doc.rect(leftMargin + 4, finY - 4.5, contentWidth - 8, 6, 'F');
+  doc.setFont('helvetica', 'normal');
+  doc.text('Deposit Paid (15%)', leftMargin + 6, finY);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`$${Number(fifteenPercent).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
+  
+  finY += 7;
   doc.setFillColor(230, 230, 230);
   doc.setDrawColor(0, 0, 0);
-  doc.rect(leftMargin + 3, finY - 4, contentWidth - 6, 5.5, 'FD');
+  doc.setLineWidth(0.3);
+  doc.rect(leftMargin + 4, finY - 4.5, contentWidth - 8, 6, 'FD');
   doc.setFontSize(10);
-  doc.text('BALANCE DUE AT COMPLETION', leftMargin + 5, finY);
-  doc.text(`$${(Number(total) - Number(fifteenPercent)).toLocaleString()}`, rightMargin - 5, finY, { align: 'right' });
+  doc.text('BALANCE DUE AT COMPLETION', leftMargin + 6, finY);
+  doc.text(`$${(Number(total) - Number(fifteenPercent)).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
   
-  yPos += financialHeight + 5;
+  yPos += financialHeight + sectionSpacing;
 
-  // ===== SIGNATURE SECTION =====
-  const sigHeight = 45;
+  // ===== SIGNATURE SECTION WITH IMPROVED LAYOUT =====
+  const sigHeight = 48;
   
-  doc.setLineWidth(0.8);
+  doc.setLineWidth(0.6);
   doc.rect(leftMargin, yPos, contentWidth, sigHeight);
-  doc.rect(leftMargin + 1, yPos + 1, contentWidth - 2, sigHeight - 2);
+  doc.rect(leftMargin + 0.8, yPos + 0.8, contentWidth - 1.6, sigHeight - 1.6);
   
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
-  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 6, { align: 'center' });
-  doc.setLineWidth(0.5);
-  doc.line(leftMargin + 3, yPos + 7.5, rightMargin - 3, yPos + 7.5);
+  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 6.5, { align: 'center' });
+  doc.setLineWidth(0.4);
+  doc.line(leftMargin + 4, yPos + 8, rightMargin - 4, yPos + 8);
   
-  const sigY = yPos + 14;
-  const sigBoxWidth = (contentWidth - 10) / 2;
+  const sigY = yPos + 15;
+  const sigBoxWidth = (contentWidth - 16) / 2;
   
   // Customer Signature
-  doc.setLineWidth(0.5);
-  doc.line(leftMargin + 5, sigY + 12, leftMargin + 5 + sigBoxWidth, sigY + 12);
+  doc.setLineWidth(0.4);
+  doc.line(leftMargin + 6, sigY + 13, leftMargin + 6 + sigBoxWidth, sigY + 13);
   
   doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('CUSTOMER SIGNATURE', leftMargin + 5 + sigBoxWidth / 2, sigY + 16, { align: 'center' });
+  doc.text('CUSTOMER SIGNATURE', leftMargin + 6 + sigBoxWidth / 2, sigY + 17, { align: 'center' });
   doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
-  doc.text(`(${customerName})`, leftMargin + 5 + sigBoxWidth / 2, sigY + 19, { align: 'center' });
+  doc.text(`(${customerName})`, leftMargin + 6 + sigBoxWidth / 2, sigY + 20.5, { align: 'center' });
   
   // Dealership Signature
-  doc.setLineWidth(0.5);
-  doc.line(rightMargin - 5 - sigBoxWidth, sigY + 12, rightMargin - 5, sigY + 12);
+  doc.setLineWidth(0.4);
+  doc.line(rightMargin - 6 - sigBoxWidth, sigY + 13, rightMargin - 6, sigY + 13);
   
   doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('PROCARPORT BUILDINGS', rightMargin - 5 - sigBoxWidth / 2, sigY + 16, { align: 'center' });
+  doc.text('PROCARPORT BUILDINGS', rightMargin - 6 - sigBoxWidth / 2, sigY + 17, { align: 'center' });
   doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
-  doc.text('(Authorized Representative)', rightMargin - 5 - sigBoxWidth / 2, sigY + 19, { align: 'center' });
+  doc.text('(Authorized Representative)', rightMargin - 6 - sigBoxWidth / 2, sigY + 20.5, { align: 'center' });
   
   // Date Line
-  const dateY = sigY + 26;
-  doc.setLineWidth(0.3);
-  doc.line(leftMargin + 3, dateY - 1, rightMargin - 3, dateY - 1);
+  const dateY = sigY + 28;
+  doc.setLineWidth(0.2);
+  doc.line(leftMargin + 4, dateY - 1.5, rightMargin - 4, dateY - 1.5);
   
-  const dateLineWidth = 60;
-  doc.setLineWidth(0.5);
+  const dateLineWidth = 65;
+  doc.setLineWidth(0.4);
   doc.line(pageWidth / 2 - dateLineWidth / 2, dateY + 7, pageWidth / 2 + dateLineWidth / 2, dateY + 7);
   
   doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
   doc.text('DATE OF AGREEMENT', pageWidth / 2, dateY + 3, { align: 'center' });
   
-  yPos += sigHeight + 3;
+  yPos += sigHeight + 4;
 
   // ===== FOOTER =====
-  doc.setLineWidth(0.5);
+  doc.setLineWidth(0.4);
   doc.line(leftMargin, yPos, rightMargin, yPos);
   
   doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('ProCarport Buildings', pageWidth / 2, yPos + 4, { align: 'center' });
+  doc.text('ProCarport Buildings', pageWidth / 2, yPos + 4.5, { align: 'center' });
   
-  doc.setFontSize(7);
+  doc.setFontSize(7.5);
   doc.setFont('helvetica', 'normal');
-  doc.text('Phone: (336) 468-1131 | Email: info@procarportbuildings.com', pageWidth / 2, yPos + 8, { align: 'center' });
+  doc.text('Phone: (336) 468-1131 | Email: info@procarportbuildings.com', pageWidth / 2, yPos + 8.5, { align: 'center' });
   
   doc.setFont('helvetica', 'italic');
-  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, yPos + 11.5, { align: 'center' });
+  doc.setFontSize(7);
+  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, yPos + 12, { align: 'center' });
 
   doc.save(`receipt-${orderNumber}.pdf`);
 };
