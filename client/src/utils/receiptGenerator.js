@@ -1,8 +1,16 @@
 // client/src/utils/receiptGenerator.js
 // ✅ FULL-PAGE BLACK & WHITE PROFESSIONAL RECEIPT WITH SIGNATURES
 // Fixed version with proper spacing and no overlapping text
+// Added terms and conditions - extends to fill entire page
 
 import jsPDF from 'jspdf';
+
+// ============================================================================
+// TERMS AND CONDITIONS TEXT (Word for word from paper forms)
+// ============================================================================
+const TERMS_SECTION_1 = `PCB will contact you 1-2 business days before installation to schedule. Scheduling or rescheduling usually takes 3-4 weeks, but can be sooner. Holidays/bad weather may delay installation process slightly. Please mark any cable or electrical lines prior to installation day. Indicate the location where the building will be installed before installers arrive. PCB will not be responsible for any damage including yards or pets. LOT MUST BE LEVEL within 4". If land is slightly unequal, you must have leveling blocks for installers to use. Installation on block or loose dirt will void any warranty. Customer is responsible for any permits that may be required. PCB can provide engineering drawings for certified buildings for an additional cost. Customer assumes all responsibility for covenant searches or restrictions. Once building is installed, contact PCB with any complaints within 48 hours. ALL warranties will be voided if building is altered by customer.`;
+
+const TERMS_SECTION_2 = `PCB reserves the right to correct any balance errors. Customers agrees to allow PCB to repossess any buildings not paid for in FULL upon installation. 10-15% non-refundable down payment is due when order is placed. Balance must be paid in full at the time of installation. We accept cash, money order, certified checks as a form of payment. CC Payments are accepted for a fee: 3.5%. NO PERSONAL CHECKS ACCEPTED. These prices do not include labor work such as grading, concrete or foundation preparation. A $300 labor fee will be added for any additional labor including but not limited to, cutting posts to level foundation, materials carried to remote locations, up steep driveways or trimming down trees or bushes.`;
 
 // ============================================================================
 // PLAIN TEXT VERSION FOR EMAILS
@@ -82,7 +90,13 @@ export const generateReceiptText = (orderData) => {
 
   text += `Subtotal: $${Number(subtotal).toLocaleString()} | Tax: $${Number(tax).toLocaleString()} | TOTAL: $${Number(total).toLocaleString()}\n`;
   text += `Deposit Paid (15%): $${Number(fifteenPercent).toLocaleString()} | Balance Due: $${(Number(total) - Number(fifteenPercent)).toLocaleString()}\n\n`;
-  text += `ProCarport Buildings | (336) 468-1131 | info@procarportbuildings.com\nThank you for your business!`;
+  
+  text += `--- TERMS & CONDITIONS ---\n\n`;
+  text += TERMS_SECTION_1 + `\n\n`;
+  text += TERMS_SECTION_2 + `\n\n`;
+  text += `I HAVE READ AND COMPLETELY UNDERSTAND THE ABOVE INFORMATION AND GIVEN MY APPROVAL FOR CONSTRUCTION.\n\n`;
+  
+  text += `ProCarport Buildings | (336) 468-1131 | procarportbuildings@gmail.com\nP.O. Box 127, Boonville, NC 27011\nThank you for your business!`;
 
   return text;
 };
@@ -353,7 +367,6 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
         .financial-section {
           border: 3px double #000;
           padding: 12px 16px;
-          margin-top: auto;
           margin-bottom: 10px;
           background: #fff;
         }
@@ -396,11 +409,45 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
           border: 1px solid #000;
         }
         
+        /* Terms Section */
+        .terms-section {
+          border: 2px solid #000;
+          padding: 12px 14px;
+          margin-bottom: 10px;
+          flex: 1;
+        }
+        
+        .terms-title {
+          font-size: 10px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-align: center;
+          margin-bottom: 8px;
+          padding-bottom: 6px;
+          border-bottom: 2px solid #000;
+        }
+        
+        .terms-text {
+          font-size: 8px;
+          line-height: 1.4;
+          text-align: justify;
+          margin-bottom: 8px;
+        }
+        
+        .terms-acknowledgment {
+          font-size: 9px;
+          font-weight: bold;
+          text-align: center;
+          margin-top: 10px;
+          padding-top: 8px;
+          border-top: 1px solid #000;
+        }
+        
         /* Signature Section */
         .signature-section {
           border: 3px double #000;
           padding: 14px 16px;
-          margin-top: auto;
         }
         
         .signature-title {
@@ -473,6 +520,7 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
           padding: 8px 0;
           text-align: center;
           font-size: 8px;
+          margin-top: auto;
         }
         
         .footer-company {
@@ -647,9 +695,23 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
             </div>
           </div>
 
+          <!-- Terms and Conditions -->
+          <div class="terms-section">
+            <div class="terms-title">Terms & Conditions</div>
+            <div class="terms-text">
+              PCB will contact you 1-2 business days before installation to schedule. Scheduling or rescheduling usually takes 3-4 weeks, but can be sooner. Holidays/bad weather may delay installation process slightly. Please mark any cable or electrical lines prior to installation day. Indicate the location where the building will be installed before installers arrive. PCB will not be responsible for any damage including yards or pets. LOT MUST BE LEVEL within 4". If land is slightly unequal, you must have leveling blocks for installers to use. Installation on block or loose dirt will void any warranty. Customer is responsible for any permits that may be required. PCB can provide engineering drawings for certified buildings for an additional cost. Customer assumes all responsibility for covenant searches or restrictions. Once building is installed, contact PCB with any complaints within 48 hours. ALL warranties will be voided if building is altered by customer.
+            </div>
+            <div class="terms-text">
+              PCB reserves the right to correct any balance errors. Customers agrees to allow PCB to repossess any buildings not paid for in FULL upon installation. 10-15% non-refundable down payment is due when order is placed. Balance must be paid in full at the time of installation. We accept cash, money order, certified checks as a form of payment. CC Payments are accepted for a fee: 3.5%. NO PERSONAL CHECKS ACCEPTED. These prices do not include labor work such as grading, concrete or foundation preparation. A $300 labor fee will be added for any additional labor including but not limited to, cutting posts to level foundation, materials carried to remote locations, up steep driveways or trimming down trees or bushes.
+            </div>
+          </div>
+
           <!-- Signature Section -->
           <div class="signature-section">
             <div class="signature-title">Authorization & Acceptance</div>
+            <div class="terms-acknowledgment" style="margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #000;">
+              I HAVE READ AND COMPLETELY UNDERSTAND THE ABOVE INFORMATION AND GIVEN MY APPROVAL FOR CONSTRUCTION.
+            </div>
             <div class="signature-grid">
               <div class="signature-box">
                 <div class="signature-line"></div>
@@ -658,8 +720,8 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
               </div>
               <div class="signature-box">
                 <div class="signature-line"></div>
-                <div class="signature-label">ProCarport Buildings</div>
-                <div class="signature-sublabel">(Authorized Representative)</div>
+                <div class="signature-label">Dealer Signature</div>
+                <div class="signature-sublabel">(ProCarport Buildings)</div>
               </div>
             </div>
             <div class="date-section">
@@ -672,7 +734,7 @@ export const generateReceiptHTML = (orderData, logoBase64 = null) => {
         <!-- Footer -->
         <div class="footer">
           <div class="footer-company">ProCarport Buildings</div>
-          <div class="footer-contact">Phone: (336) 468-1131 | Email: info@procarportbuildings.com</div>
+          <div class="footer-contact">Phone: (336) 468-1131 | Email: procarportbuildings@gmail.com | P.O. Box 127, Boonville, NC 27011</div>
           <div class="footer-note">This receipt serves as confirmation of your order. Balance payment due upon installation completion.</div>
         </div>
       </div>
@@ -726,7 +788,7 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   const pageWidth = 210;
   const contentWidth = 180;
   const pageHeight = 297;
-  const sectionSpacing = 4; // Increased for full-page distribution
+  const sectionSpacing = 4;
 
   // ===== HEADER WITH DOUBLE BORDER =====
   doc.setLineWidth(0.5);
@@ -754,7 +816,7 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   
   // Order Box - Dynamic width based on order number length
   const orderNumLength = orderNumber.length;
-  const orderBoxWidth = Math.max(40, orderNumLength * 2.5 + 10); // Dynamic width
+  const orderBoxWidth = Math.max(40, orderNumLength * 2.5 + 10);
   const orderBoxX = rightMargin - orderBoxWidth;
   doc.setLineWidth(0.4);
   doc.setFillColor(250, 250, 250);
@@ -882,7 +944,6 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
     const x = side === 'left' ? leftMargin : leftMargin + itemColWidth + 4;
     let y = side === 'left' ? leftColY : rightColY;
     
-    // Balanced height calculation for full-page distribution
     const titleHeight = 8;
     const itemHeight = 4.5;
     const itemPadding = 0.3;
@@ -910,7 +971,6 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
       doc.text(value, x + itemColWidth - 2, itemY, { align: 'right' });
       doc.setFont('helvetica', 'normal');
       
-      // Add dotted line separator except for last item
       if (index < items.length - 1) {
         doc.setDrawColor(200, 200, 200);
         doc.setLineWidth(0.1);
@@ -968,23 +1028,23 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
 
   yPos = Math.max(leftColY, rightColY);
 
-  // ===== FINANCIAL SUMMARY - FULL PAGE DISTRIBUTION =====
-  const financialHeight = 40;
+  // ===== FINANCIAL SUMMARY =====
+  const financialHeight = 30;
   
   doc.setLineWidth(0.5);
   doc.setDrawColor(0, 0, 0);
   doc.rect(leftMargin, yPos, contentWidth, financialHeight);
   doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, financialHeight - 1.4);
   
-  let finY = yPos + 7;
+  let finY = yPos + 5;
   
-  doc.setFontSize(9.5);
+  doc.setFontSize(8.5);
   doc.setFont('helvetica', 'normal');
   doc.text('Subtotal', leftMargin + 4, finY);
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(subtotal).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 6.5;
+  finY += 5;
   doc.setLineWidth(0.1);
   doc.setDrawColor(200, 200, 200);
   doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
@@ -994,105 +1054,137 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(tax).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 7.5;
+  finY += 5;
   doc.setLineWidth(0.4);
   doc.setDrawColor(0, 0, 0);
   doc.line(leftMargin + 4, finY - 2, rightMargin - 4, finY - 2);
   doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
   
-  finY += 5;
-  doc.setFontSize(12);
+  finY += 3;
+  doc.setFontSize(10);
   doc.text('TOTAL AMOUNT', leftMargin + 4, finY);
   doc.text(`$${Number(total).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 8.5;
-  doc.setFontSize(9);
+  finY += 5.5;
+  doc.setFontSize(8);
   doc.setFillColor(240, 240, 240);
-  doc.rect(leftMargin + 4, finY - 4, contentWidth - 8, 6, 'F');
+  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 5, 'F');
   doc.setFont('helvetica', 'normal');
   doc.text('Deposit Paid (15%)', leftMargin + 6, finY);
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(fifteenPercent).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
   
-  finY += 7;
+  finY += 5;
   doc.setFillColor(230, 230, 230);
   doc.setDrawColor(0, 0, 0);
   doc.setLineWidth(0.3);
-  doc.rect(leftMargin + 4, finY - 4, contentWidth - 8, 6, 'FD');
-  doc.setFontSize(9.5);
+  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 5, 'FD');
+  doc.setFontSize(8.5);
   doc.text('BALANCE DUE AT COMPLETION', leftMargin + 6, finY);
   doc.text(`$${(Number(total) - Number(fifteenPercent)).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
   
   yPos += financialHeight + sectionSpacing;
 
-  // ===== SIGNATURE SECTION - FULL PAGE DISTRIBUTION =====
-  const sigHeight = 50;
+  // ===== TERMS AND CONDITIONS =====
+  // Fixed heights to ensure nothing gets cut off
+  const footerHeight = 12;
+  const signatureHeight = 32;
+  const termsHeight = 38;
   
-  doc.setLineWidth(0.5);
-  doc.rect(leftMargin, yPos, contentWidth, sigHeight);
-  doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, sigHeight - 1.4);
-  
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'bold');
-  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 7, { align: 'center' });
   doc.setLineWidth(0.3);
-  doc.line(leftMargin + 4, yPos + 9, rightMargin - 4, yPos + 9);
+  doc.setDrawColor(0, 0, 0);
+  doc.rect(leftMargin, yPos, contentWidth, termsHeight);
   
-  const sigY = yPos + 16;
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.text('TERMS & CONDITIONS', pageWidth / 2, yPos + 3.5, { align: 'center' });
+  doc.setLineWidth(0.3);
+  doc.line(leftMargin + 3, yPos + 5, rightMargin - 3, yPos + 5);
+  
+  // Terms text - Section 1
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'normal');
+  const terms1Lines = doc.splitTextToSize(TERMS_SECTION_1, contentWidth - 8);
+  doc.text(terms1Lines, leftMargin + 4, yPos + 8);
+  
+  // Terms text - Section 2
+  const terms2Lines = doc.splitTextToSize(TERMS_SECTION_2, contentWidth - 8);
+  const terms1Height = terms1Lines.length * 2.6;
+  doc.text(terms2Lines, leftMargin + 4, yPos + 8 + terms1Height + 2);
+  
+  yPos += termsHeight + 2;
+
+  // ===== SIGNATURE SECTION =====
+  doc.setLineWidth(0.5);
+  doc.rect(leftMargin, yPos, contentWidth, signatureHeight);
+  doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, signatureHeight - 1.4);
+  
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 4, { align: 'center' });
+  doc.setLineWidth(0.3);
+  doc.line(leftMargin + 4, yPos + 5.5, rightMargin - 4, yPos + 5.5);
+  
+  // Acknowledgment text
+  doc.setFontSize(5);
+  doc.setFont('helvetica', 'bold');
+  doc.text('I HAVE READ AND COMPLETELY UNDERSTAND THE ABOVE INFORMATION AND GIVEN MY APPROVAL FOR CONSTRUCTION.', pageWidth / 2, yPos + 9, { align: 'center' });
+  
+  const sigY = yPos + 11;
   const sigBoxWidth = (contentWidth - 16) / 2;
   
   // Customer Signature
   doc.setLineWidth(0.4);
-  doc.line(leftMargin + 6, sigY + 12, leftMargin + 6 + sigBoxWidth, sigY + 12);
+  doc.line(leftMargin + 6, sigY + 7, leftMargin + 6 + sigBoxWidth, sigY + 7);
   
-  doc.setFontSize(8);
+  doc.setFontSize(6);
   doc.setFont('helvetica', 'bold');
-  doc.text('CUSTOMER SIGNATURE', leftMargin + 6 + sigBoxWidth / 2, sigY + 16, { align: 'center' });
-  doc.setFontSize(7);
+  doc.text('CUSTOMER SIGNATURE', leftMargin + 6 + sigBoxWidth / 2, sigY + 10, { align: 'center' });
+  doc.setFontSize(5);
   doc.setFont('helvetica', 'italic');
-  doc.text(`(${customerName})`, leftMargin + 6 + sigBoxWidth / 2, sigY + 19.5, { align: 'center' });
+  doc.text(`(${customerName})`, leftMargin + 6 + sigBoxWidth / 2, sigY + 12.5, { align: 'center' });
   
-  // Dealership Signature
+  // Dealer Signature
   doc.setLineWidth(0.4);
-  doc.line(rightMargin - 6 - sigBoxWidth, sigY + 12, rightMargin - 6, sigY + 12);
+  doc.line(rightMargin - 6 - sigBoxWidth, sigY + 7, rightMargin - 6, sigY + 7);
   
-  doc.setFontSize(8);
+  doc.setFontSize(6);
   doc.setFont('helvetica', 'bold');
-  doc.text('PROCARPORT BUILDINGS', rightMargin - 6 - sigBoxWidth / 2, sigY + 16, { align: 'center' });
-  doc.setFontSize(7);
+  doc.text('DEALER SIGNATURE', rightMargin - 6 - sigBoxWidth / 2, sigY + 10, { align: 'center' });
+  doc.setFontSize(5);
   doc.setFont('helvetica', 'italic');
-  doc.text('(Authorized Representative)', rightMargin - 6 - sigBoxWidth / 2, sigY + 19.5, { align: 'center' });
+  doc.text('(ProCarport Buildings)', rightMargin - 6 - sigBoxWidth / 2, sigY + 12.5, { align: 'center' });
   
   // Date Line
-  const dateY = sigY + 27;
+  const dateY = sigY + 13;
   doc.setLineWidth(0.2);
-  doc.line(leftMargin + 4, dateY - 1.5, rightMargin - 4, dateY - 1.5);
+  doc.line(leftMargin + 4, dateY - 0.5, rightMargin - 4, dateY - 0.5);
   
-  const dateLineWidth = 60;
+  const dateLineWidth = 45;
   doc.setLineWidth(0.4);
-  doc.line(pageWidth / 2 - dateLineWidth / 2, dateY + 7, pageWidth / 2 + dateLineWidth / 2, dateY + 7);
+  doc.line(pageWidth / 2 - dateLineWidth / 2, dateY + 3, pageWidth / 2 + dateLineWidth / 2, dateY + 3);
   
-  doc.setFontSize(8);
+  doc.setFontSize(5.5);
   doc.setFont('helvetica', 'bold');
-  doc.text('DATE OF AGREEMENT', pageWidth / 2, dateY + 3.5, { align: 'center' });
+  doc.text('DATE OF AGREEMENT', pageWidth / 2, dateY + 1.5, { align: 'center' });
   
-  yPos += sigHeight + sectionSpacing;
+  yPos += signatureHeight + 1;
 
-  // ===== FOOTER - EXTENDED TO BOTTOM OF PAGE =====
+  // ===== FOOTER =====
   doc.setLineWidth(0.4);
   doc.line(leftMargin, yPos, rightMargin, yPos);
   
-  doc.setFontSize(8);
+  doc.setFontSize(6);
   doc.setFont('helvetica', 'bold');
-  doc.text('ProCarport Buildings', pageWidth / 2, yPos + 5, { align: 'center' });
+  doc.text('ProCarport Buildings', pageWidth / 2, yPos + 3, { align: 'center' });
   
-  doc.setFontSize(7.5);
+  doc.setFontSize(5.5);
   doc.setFont('helvetica', 'normal');
-  doc.text('Phone: (336) 468-1131 | Email: info@procarportbuildings.com', pageWidth / 2, yPos + 9.5, { align: 'center' });
+  doc.text('Phone: (336) 468-1131 | Email: procarportbuildings@gmail.com | P.O. Box 127, Boonville, NC 27011', pageWidth / 2, yPos + 6, { align: 'center' });
   
   doc.setFont('helvetica', 'italic');
-  doc.setFontSize(7);
-  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, yPos + 14, { align: 'center' });
+  doc.setFontSize(5);
+  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, yPos + 8.5, { align: 'center' });
 
   doc.save(`receipt-${orderNumber}.pdf`);
 };
