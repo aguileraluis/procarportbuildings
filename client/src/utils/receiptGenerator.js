@@ -1101,16 +1101,16 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   doc.setLineWidth(0.3);
   doc.line(leftMargin + 3, yPos + 5, rightMargin - 3, yPos + 5);
   
-  // Terms text - Section 1
-  doc.setFontSize(7);
+  // Terms text - Section 1 (REDUCED FONT SIZE: 7 -> 6.5)
+  doc.setFontSize(6.5);
   doc.setFont('helvetica', 'normal');
   const terms1Lines = doc.splitTextToSize(TERMS_SECTION_1, contentWidth - 8);
   doc.text(terms1Lines, leftMargin + 4, yPos + 8);
   
   // Terms text - Section 2
   const terms2Lines = doc.splitTextToSize(TERMS_SECTION_2, contentWidth - 8);
-  const terms1Height = terms1Lines.length * 2.6;
-  doc.text(terms2Lines, leftMargin + 4, yPos + 8 + terms1Height + 2);
+  const terms1Height = terms1Lines.length * 2.4;
+  doc.text(terms2Lines, leftMargin + 4, yPos + 8 + terms1Height + 3);
   
   yPos += termsHeight + 2;
 
