@@ -758,7 +758,8 @@ export const printReceipt = async (orderData, logoBase64 = null) => {
 };
 
 // ============================================================================
-// DOWNLOAD PDF RECEIPT - FIXED VERSION WITH PROPER SPACING
+// DOWNLOAD PDF RECEIPT - FULL PAGE VERSION
+// Dynamically calculates remaining space to fill entire A4 page
 // ============================================================================
 export const downloadReceipt = async (orderData, logoBase64 = null) => {
   const {
@@ -781,132 +782,134 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
     format: 'a4'
   });
 
-  // Page layout constants optimized for full-page utilization
-  let yPos = 10;
-  const leftMargin = 15;
-  const rightMargin = 195;
-  const pageWidth = 210;
-  const contentWidth = 180;
+  // Page layout constants
   const pageHeight = 297;
-  const sectionSpacing = 4;
+  const pageWidth = 210;
+  const topMargin = 8;
+  const bottomMargin = 8;
+  const leftMargin = 12;
+  const rightMargin = 198;
+  const contentWidth = rightMargin - leftMargin;
+  const usableHeight = pageHeight - topMargin - bottomMargin;
+  
+  let yPos = topMargin;
 
   // ===== HEADER WITH DOUBLE BORDER =====
+  const headerHeight = 20;
   doc.setLineWidth(0.5);
   doc.setDrawColor(0, 0, 0);
-  doc.rect(leftMargin, yPos, contentWidth, 22);
-  doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, 20.6);
+  doc.rect(leftMargin, yPos, contentWidth, headerHeight);
+  doc.rect(leftMargin + 0.6, yPos + 0.6, contentWidth - 1.2, headerHeight - 1.2);
   
   // Logo
   if (logoBase64) {
     try {
-      doc.addImage(logoBase64, 'PNG', leftMargin + 3, yPos + 3, 24, 16);
+      doc.addImage(logoBase64, 'PNG', leftMargin + 3, yPos + 2, 22, 16);
     } catch (error) {
       console.error('Error adding logo:', error);
     }
   }
   
   // Company Name
-  doc.setFontSize(16);
+  doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
-  doc.text('PROCARPORT BUILDINGS', leftMargin + 30, yPos + 10);
+  doc.text('PROCARPORT BUILDINGS', leftMargin + 28, yPos + 9);
   
-  doc.setFontSize(8);
+  doc.setFontSize(9);
   doc.setFont('helvetica', 'italic');
-  doc.text('Professional Steel Building Solutions', leftMargin + 30, yPos + 14.5);
+  doc.text('Professional Steel Building Solutions', leftMargin + 28, yPos + 14);
   
-  // Order Box - Dynamic width based on order number length
-  const orderNumLength = orderNumber.length;
-  const orderBoxWidth = Math.max(40, orderNumLength * 2.5 + 10);
-  const orderBoxX = rightMargin - orderBoxWidth;
-  doc.setLineWidth(0.4);
-  doc.setFillColor(250, 250, 250);
-  doc.rect(orderBoxX, yPos + 3, orderBoxWidth, 16, 'FD');
+  // Order Box
+  const orderBoxWidth = 42;
+  const orderBoxX = rightMargin - orderBoxWidth - 2;
+  doc.setLineWidth(0.3);
+  doc.setFillColor(248, 248, 248);
+  doc.rect(orderBoxX, yPos + 2, orderBoxWidth, 16, 'FD');
   
   doc.setFontSize(6);
   doc.setFont('helvetica', 'bold');
-  doc.text('ORDER NUMBER', orderBoxX + orderBoxWidth / 2, yPos + 7, { align: 'center' });
+  doc.text('ORDER NUMBER', orderBoxX + orderBoxWidth / 2, yPos + 6, { align: 'center' });
   
-  doc.setFontSize(10);
-  doc.text(orderNumber, orderBoxX + orderBoxWidth / 2, yPos + 11.5, { align: 'center' });
+  doc.setFontSize(11);
+  doc.text(orderNumber, orderBoxX + orderBoxWidth / 2, yPos + 11, { align: 'center' });
   
-  doc.setFontSize(7);
+  doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
-  doc.text(orderDate, orderBoxX + orderBoxWidth / 2, yPos + 16, { align: 'center' });
+  doc.text(orderDate, orderBoxX + orderBoxWidth / 2, yPos + 15.5, { align: 'center' });
   
-  yPos += 24;
+  yPos += headerHeight + 3;
 
   // ===== DOCUMENT TITLE =====
-  doc.setFontSize(11);
+  doc.setFontSize(12);
   doc.setFont('helvetica', 'bold');
-  doc.text('BUILDING ORDER RECEIPT & AGREEMENT', pageWidth / 2, yPos + 2.5, { align: 'center' });
+  doc.text('BUILDING ORDER RECEIPT & AGREEMENT', pageWidth / 2, yPos + 2, { align: 'center' });
+  doc.setLineWidth(0.4);
+  doc.line(leftMargin, yPos + 4, rightMargin, yPos + 4);
   
-  doc.setLineWidth(0.3);
-  doc.line(leftMargin, yPos + 4.5, rightMargin, yPos + 4.5);
-  
-  yPos += 7.5;
+  yPos += 7;
 
   // ===== CUSTOMER GRID =====
-  const boxHeight = 22;
-  const halfWidth = (contentWidth - 4) / 2;
+  const customerHeight = 20;
+  const halfWidth = (contentWidth - 3) / 2;
   
   doc.setLineWidth(0.3);
-  doc.rect(leftMargin, yPos, halfWidth, boxHeight);
-  doc.rect(leftMargin + halfWidth + 4, yPos, halfWidth, boxHeight);
+  doc.rect(leftMargin, yPos, halfWidth, customerHeight);
+  doc.rect(leftMargin + halfWidth + 3, yPos, halfWidth, customerHeight);
   
   // Customer Info
-  doc.setFontSize(6.5);
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'bold');
-  doc.text('CUSTOMER INFORMATION', leftMargin + 3, yPos + 4.5);
-  doc.line(leftMargin + 3, yPos + 5.5, leftMargin + halfWidth - 3, yPos + 5.5);
+  doc.text('CUSTOMER INFORMATION', leftMargin + 3, yPos + 4);
+  doc.setLineWidth(0.2);
+  doc.line(leftMargin + 3, yPos + 5, leftMargin + halfWidth - 3, yPos + 5);
   
   doc.setFontSize(10);
-  doc.setFont('helvetica', 'bold');
-  doc.text(customerName, leftMargin + 3, yPos + 10);
+  doc.text(customerName, leftMargin + 3, yPos + 9.5);
   
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  doc.text(phone, leftMargin + 3, yPos + 14.5);
-  doc.text(email, leftMargin + 3, yPos + 18.5);
+  doc.text(phone, leftMargin + 3, yPos + 13.5);
+  doc.text(email, leftMargin + 3, yPos + 17.5);
   
   // Installation Address
-  doc.setFontSize(6.5);
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'bold');
-  doc.text('INSTALLATION ADDRESS', leftMargin + halfWidth + 7, yPos + 4.5);
-  doc.line(leftMargin + halfWidth + 7, yPos + 5.5, rightMargin - 3, yPos + 5.5);
+  doc.text('INSTALLATION ADDRESS', leftMargin + halfWidth + 6, yPos + 4);
+  doc.line(leftMargin + halfWidth + 6, yPos + 5, rightMargin - 3, yPos + 5);
   
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  const addressLines = doc.splitTextToSize(address, halfWidth - 8);
-  doc.text(addressLines, leftMargin + halfWidth + 7, yPos + 10);
+  const addressLines = doc.splitTextToSize(address, halfWidth - 6);
+  doc.text(addressLines, leftMargin + halfWidth + 6, yPos + 9.5);
   
-  yPos += boxHeight + sectionSpacing;
+  yPos += customerHeight + 3;
 
   // ===== BUILDING SPECIFICATIONS =====
   const hasColors = fullOrderData?.colors && (fullOrderData.colors.roof || fullOrderData.colors.side || fullOrderData.colors.trim);
-  const specHeight = hasColors ? 28 : 22;
+  const specHeight = hasColors ? 26 : 20;
   
   doc.setFillColor(250, 250, 250);
   doc.setLineWidth(0.3);
   doc.rect(leftMargin, yPos, contentWidth, specHeight, 'FD');
   
-  doc.setFontSize(9.5);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
-  doc.text('BUILDING SPECIFICATIONS', leftMargin + 3, yPos + 5.5);
+  doc.text('BUILDING SPECIFICATIONS', leftMargin + 3, yPos + 5);
   doc.setLineWidth(0.3);
   doc.line(leftMargin + 3, yPos + 6.5, rightMargin - 3, yPos + 6.5);
   
   // Specs Grid
-  const specY = yPos + 12;
+  const specY = yPos + 11;
   const colWidth = contentWidth / 4;
   
-  doc.setFontSize(6.5);
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'bold');
   doc.text('TYPE', leftMargin + 3, specY);
   doc.text('ROOF STYLE', leftMargin + colWidth + 3, specY);
   doc.text('DIMENSIONS', leftMargin + colWidth * 2 + 3, specY);
   doc.text('SQUARE FOOTAGE', leftMargin + colWidth * 3 + 3, specY);
   
-  doc.setFontSize(9);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.text(fullOrderData?.buildingType === 'commercial' ? 'Commercial' : 'Carport', leftMargin + 3, specY + 5);
   doc.text(fullOrderData?.roofStyle || 'Vertical', leftMargin + colWidth + 3, specY + 5);
@@ -915,79 +918,69 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   
   // Colors
   if (hasColors) {
-    const colorY = specY + 11;
+    const colorY = specY + 10;
     doc.setLineWidth(0.2);
-    doc.line(leftMargin + 3, colorY - 2, rightMargin - 3, colorY - 2);
+    doc.line(leftMargin + 3, colorY - 1, rightMargin - 3, colorY - 1);
     
-    doc.setFontSize(7);
+    doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
-    doc.text('COLORS:', leftMargin + 3, colorY + 1);
+    doc.text('COLORS:', leftMargin + 3, colorY + 3);
     
     doc.setFont('helvetica', 'normal');
     let colorText = '';
-    if (fullOrderData.colors.roof) colorText += `Roof: ${fullOrderData.colors.roof}  `;
-    if (fullOrderData.colors.side) colorText += `Sides: ${fullOrderData.colors.side}  `;
+    if (fullOrderData.colors.roof) colorText += `Roof: ${fullOrderData.colors.roof}   `;
+    if (fullOrderData.colors.side) colorText += `Sides: ${fullOrderData.colors.side}   `;
     if (fullOrderData.colors.trim) colorText += `Trim: ${fullOrderData.colors.trim}`;
-    doc.text(colorText, leftMargin + 16, colorY + 1);
+    doc.text(colorText, leftMargin + 20, colorY + 3);
   }
   
-  yPos += specHeight + sectionSpacing;
+  yPos += specHeight + 3;
 
-  // ===== ITEMS GRID WITH IMPROVED SPACING =====
+  // ===== ITEMS GRID =====
   let leftColY = yPos;
   let rightColY = yPos;
-  const itemColWidth = (contentWidth - 4) / 2;
+  const itemColWidth = (contentWidth - 3) / 2;
   
   const addItemSection = (title, items, side = 'left') => {
     if (items.length === 0) return;
     
-    const x = side === 'left' ? leftMargin : leftMargin + itemColWidth + 4;
+    const x = side === 'left' ? leftMargin : leftMargin + itemColWidth + 3;
     let y = side === 'left' ? leftColY : rightColY;
     
-    const titleHeight = 8;
-    const itemHeight = 4.5;
-    const itemPadding = 0.3;
-    const bottomPadding = 1.5;
-    const sectionHeight = titleHeight + (items.length * (itemHeight + itemPadding)) + bottomPadding;
+    const titleHeight = 7;
+    const itemHeight = 4.2;
+    const sectionHeight = titleHeight + (items.length * itemHeight) + 2;
     
     doc.setDrawColor(0, 0, 0);
     doc.setLineWidth(0.3);
     doc.rect(x, y, itemColWidth, sectionHeight);
     
-    doc.setFontSize(7.5);
+    doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
-    doc.text(title, x + 2, y + 5);
+    doc.text(title, x + 2, y + 4.5);
     doc.setLineWidth(0.2);
-    doc.line(x + 2, y + 6, x + itemColWidth - 2, y + 6);
+    doc.line(x + 2, y + 5.5, x + itemColWidth - 2, y + 5.5);
     
-    let itemY = y + titleHeight + 1.5;
-    doc.setFontSize(7.5);
+    let itemY = y + titleHeight + 2;
+    doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     
     items.forEach(([label, value], index) => {
-      const labelLines = doc.splitTextToSize(label, itemColWidth - 26);
-      doc.text(labelLines[0], x + 2, itemY);
+      doc.text(label, x + 2, itemY);
       doc.setFont('helvetica', 'bold');
       doc.text(value, x + itemColWidth - 2, itemY, { align: 'right' });
       doc.setFont('helvetica', 'normal');
-      
-      if (index < items.length - 1) {
-        doc.setDrawColor(200, 200, 200);
-        doc.setLineWidth(0.1);
-        doc.line(x + 2, itemY + 1.2, x + itemColWidth - 2, itemY + 1.2);
-      }
-      
-      itemY += itemHeight + itemPadding;
+      itemY += itemHeight;
     });
     
     if (side === 'left') {
-      leftColY = y + sectionHeight + 3;
+      leftColY = y + sectionHeight + 2;
     } else {
-      rightColY = y + sectionHeight + 3;
+      rightColY = y + sectionHeight + 2;
     }
   };
 
-  // Enclosures
+  // Build item sections
   const enclosures = [];
   if (fullOrderData?.bothSidesClosed) enclosures.push(['Both Sides Closed', `$${(fullOrderData.bothSidesClosedPrice || 0).toLocaleString()}`]);
   if (fullOrderData?.verticalSidesBoth) enclosures.push(['Vertical Sides', `$${(fullOrderData.verticalSidesBothPrice || 0).toLocaleString()}`]);
@@ -997,16 +990,12 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   if (fullOrderData?.vertical2ToneEndCount > 0) enclosures.push([`V2T Ends (${fullOrderData.vertical2ToneEndCount})`, `$${(fullOrderData.vertical2ToneEndPrice || 0).toLocaleString()}`]);
   if (enclosures.length > 0) addItemSection('ENCLOSURES', enclosures, 'left');
 
-  // Garage Doors
   if (fullOrderData?.garageDoors && fullOrderData.garageDoors.length > 0) {
-    const doorItems = fullOrderData.garageDoors.map((door) => 
-      [`${door.size} - ${door.color}`, door.certification]
-    );
+    const doorItems = fullOrderData.garageDoors.map((door) => [`${door.size} - ${door.color}`, door.certification]);
     doorItems.push(['Total', `$${(fullOrderData.garageDoorPrice || 0).toLocaleString()}`]);
     addItemSection('GARAGE DOORS', doorItems, leftColY <= rightColY ? 'left' : 'right');
   }
 
-  // Additional Options
   const additional = [];
   if (fullOrderData?.sideOpenings > 0) additional.push([`Side Openings (${fullOrderData.sideOpenings})`, `$${(fullOrderData.sideOpeningPrice || 0).toLocaleString()}`]);
   if (fullOrderData?.walkInDoor > 0) additional.push([`Walk-in Doors (${fullOrderData.walkInDoor})`, `$${(fullOrderData.walkInDoorPrice || 0).toLocaleString()}`]);
@@ -1018,10 +1007,9 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   if (fullOrderData?.coloredScrews) additional.push(['Colored Screws', `$${(fullOrderData.coloredScrewsPrice || 0).toLocaleString()}`]);
   if (additional.length > 0) addItemSection('ADDITIONAL OPTIONS', additional, leftColY <= rightColY ? 'left' : 'right');
 
-  // Custom Panels
   const panels = [];
   if (fullOrderData?.frameouts > 0) panels.push([`Frameouts (${fullOrderData.frameouts})`, `$${(fullOrderData.frameoutPrice || 0).toLocaleString()}`]);
-  if (fullOrderData?.halfPanelWithTrim > 0) panels.push([`Half Panels w/ Trim (${fullOrderData.halfPanelWithTrim})`, `$${(fullOrderData.halfPanelWithTrimPrice || 0).toLocaleString()}`]);
+  if (fullOrderData?.halfPanelWithTrim > 0) panels.push([`Half Panels (${fullOrderData.halfPanelWithTrim})`, `$${(fullOrderData.halfPanelWithTrimPrice || 0).toLocaleString()}`]);
   if (fullOrderData?.cutPanel > 0) panels.push([`Cut Panels (${fullOrderData.cutPanel})`, `$${(fullOrderData.cutPanelPrice || 0).toLocaleString()}`]);
   if (fullOrderData?.panels3ft > 0) panels.push([`3ft Panels (${fullOrderData.panels3ft})`, `$${(fullOrderData.panels3ftPrice || 0).toLocaleString()}`]);
   if (panels.length > 0) addItemSection('CUSTOM PANELS', panels, leftColY <= rightColY ? 'left' : 'right');
@@ -1029,24 +1017,24 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   yPos = Math.max(leftColY, rightColY);
 
   // ===== FINANCIAL SUMMARY =====
-  const financialHeight = 30;
+  const financialHeight = 28;
   
   doc.setLineWidth(0.5);
   doc.setDrawColor(0, 0, 0);
   doc.rect(leftMargin, yPos, contentWidth, financialHeight);
-  doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, financialHeight - 1.4);
+  doc.rect(leftMargin + 0.6, yPos + 0.6, contentWidth - 1.2, financialHeight - 1.2);
   
   let finY = yPos + 5;
   
-  doc.setFontSize(8.5);
+  doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.text('Subtotal', leftMargin + 4, finY);
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(subtotal).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 5;
+  finY += 4.5;
   doc.setLineWidth(0.1);
-  doc.setDrawColor(200, 200, 200);
+  doc.setDrawColor(180, 180, 180);
   doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
   
   doc.setFont('helvetica', 'normal');
@@ -1054,137 +1042,138 @@ export const downloadReceipt = async (orderData, logoBase64 = null) => {
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(tax).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 5;
+  finY += 4.5;
   doc.setLineWidth(0.4);
   doc.setDrawColor(0, 0, 0);
-  doc.line(leftMargin + 4, finY - 2, rightMargin - 4, finY - 2);
-  doc.line(leftMargin + 4, finY - 1, rightMargin - 4, finY - 1);
+  doc.line(leftMargin + 4, finY - 1.5, rightMargin - 4, finY - 1.5);
   
-  finY += 3;
-  doc.setFontSize(10);
+  finY += 2;
+  doc.setFontSize(11);
   doc.text('TOTAL AMOUNT', leftMargin + 4, finY);
   doc.text(`$${Number(total).toLocaleString()}`, rightMargin - 4, finY, { align: 'right' });
   
-  finY += 5.5;
-  doc.setFontSize(8);
+  finY += 5;
+  doc.setFontSize(9);
   doc.setFillColor(240, 240, 240);
-  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 5, 'F');
+  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 4.5, 'F');
   doc.setFont('helvetica', 'normal');
   doc.text('Deposit Paid (15%)', leftMargin + 6, finY);
   doc.setFont('helvetica', 'bold');
   doc.text(`$${Number(fifteenPercent).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
   
-  finY += 5;
-  doc.setFillColor(230, 230, 230);
-  doc.setDrawColor(0, 0, 0);
+  finY += 4.5;
+  doc.setFillColor(225, 225, 225);
   doc.setLineWidth(0.3);
-  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 5, 'FD');
-  doc.setFontSize(8.5);
+  doc.rect(leftMargin + 4, finY - 3, contentWidth - 8, 4.5, 'FD');
   doc.text('BALANCE DUE AT COMPLETION', leftMargin + 6, finY);
   doc.text(`$${(Number(total) - Number(fifteenPercent)).toLocaleString()}`, rightMargin - 6, finY, { align: 'right' });
   
-  yPos += financialHeight + sectionSpacing;
+  yPos += financialHeight + 3;
 
-  // ===== TERMS AND CONDITIONS =====
-  // Fixed heights to ensure nothing gets cut off
-  const footerHeight = 12;
-  const signatureHeight = 32;
-  const termsHeight = 38;
+  // ===== CALCULATE REMAINING SPACE FOR TERMS & SIGNATURE =====
+  const footerHeight = 10;
+  const signatureHeight = 38;
+  const remainingSpace = pageHeight - bottomMargin - yPos - footerHeight - signatureHeight - 6;
+  const termsHeight = Math.max(42, remainingSpace); // Minimum 42mm, expand if more space
   
+  // ===== TERMS AND CONDITIONS - EXPANDED TO FILL PAGE =====
   doc.setLineWidth(0.3);
   doc.setDrawColor(0, 0, 0);
   doc.rect(leftMargin, yPos, contentWidth, termsHeight);
   
-  doc.setFontSize(7);
+  doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('TERMS & CONDITIONS', pageWidth / 2, yPos + 3.5, { align: 'center' });
+  doc.text('TERMS & CONDITIONS', pageWidth / 2, yPos + 4, { align: 'center' });
   doc.setLineWidth(0.3);
-  doc.line(leftMargin + 3, yPos + 5, rightMargin - 3, yPos + 5);
+  doc.line(leftMargin + 3, yPos + 6, rightMargin - 3, yPos + 6);
   
-  // Terms text - Section 1 (REDUCED FONT SIZE: 7 -> 6.5)
-  doc.setFontSize(6.5);
+  // Adjust font size based on available space
+  const termsFontSize = termsHeight > 50 ? 7 : 6.5;
+  const termsLineHeight = termsHeight > 50 ? 2.8 : 2.4;
+  
+  doc.setFontSize(termsFontSize);
   doc.setFont('helvetica', 'normal');
   const terms1Lines = doc.splitTextToSize(TERMS_SECTION_1, contentWidth - 8);
-  doc.text(terms1Lines, leftMargin + 4, yPos + 8);
+  doc.text(terms1Lines, leftMargin + 4, yPos + 10);
   
-  // Terms text - Section 2
   const terms2Lines = doc.splitTextToSize(TERMS_SECTION_2, contentWidth - 8);
-  const terms1Height = terms1Lines.length * 2.4;
-  doc.text(terms2Lines, leftMargin + 4, yPos + 8 + terms1Height + 3);
+  const terms1TextHeight = terms1Lines.length * termsLineHeight;
+  const gapBetweenTerms = termsHeight > 50 ? 4 : 3;
+  doc.text(terms2Lines, leftMargin + 4, yPos + 10 + terms1TextHeight + gapBetweenTerms);
   
-  yPos += termsHeight + 2;
+  yPos += termsHeight + 3;
 
-  // ===== SIGNATURE SECTION =====
+  // ===== SIGNATURE SECTION - EXPANDED =====
   doc.setLineWidth(0.5);
   doc.rect(leftMargin, yPos, contentWidth, signatureHeight);
-  doc.rect(leftMargin + 0.7, yPos + 0.7, contentWidth - 1.4, signatureHeight - 1.4);
+  doc.rect(leftMargin + 0.6, yPos + 0.6, contentWidth - 1.2, signatureHeight - 1.2);
   
-  doc.setFontSize(7);
+  doc.setFontSize(9);
   doc.setFont('helvetica', 'bold');
-  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 4, { align: 'center' });
+  doc.text('AUTHORIZATION & ACCEPTANCE', pageWidth / 2, yPos + 5, { align: 'center' });
   doc.setLineWidth(0.3);
-  doc.line(leftMargin + 4, yPos + 5.5, rightMargin - 4, yPos + 5.5);
+  doc.line(leftMargin + 4, yPos + 7, rightMargin - 4, yPos + 7);
   
   // Acknowledgment text
-  doc.setFontSize(5);
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'bold');
-  doc.text('I HAVE READ AND COMPLETELY UNDERSTAND THE ABOVE INFORMATION AND GIVEN MY APPROVAL FOR CONSTRUCTION.', pageWidth / 2, yPos + 9, { align: 'center' });
+  doc.text('I HAVE READ AND COMPLETELY UNDERSTAND THE ABOVE INFORMATION AND GIVEN MY APPROVAL FOR CONSTRUCTION.', pageWidth / 2, yPos + 11, { align: 'center' });
   
-  const sigY = yPos + 11;
-  const sigBoxWidth = (contentWidth - 16) / 2;
+  const sigY = yPos + 14;
+  const sigBoxWidth = (contentWidth - 20) / 2;
   
   // Customer Signature
   doc.setLineWidth(0.4);
-  doc.line(leftMargin + 6, sigY + 7, leftMargin + 6 + sigBoxWidth, sigY + 7);
+  doc.line(leftMargin + 8, sigY + 12, leftMargin + 8 + sigBoxWidth, sigY + 12);
   
-  doc.setFontSize(6);
+  doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('CUSTOMER SIGNATURE', leftMargin + 6 + sigBoxWidth / 2, sigY + 10, { align: 'center' });
-  doc.setFontSize(5);
+  doc.text('CUSTOMER SIGNATURE', leftMargin + 8 + sigBoxWidth / 2, sigY + 16, { align: 'center' });
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
-  doc.text(`(${customerName})`, leftMargin + 6 + sigBoxWidth / 2, sigY + 12.5, { align: 'center' });
+  doc.text(`(${customerName})`, leftMargin + 8 + sigBoxWidth / 2, sigY + 20, { align: 'center' });
   
   // Dealer Signature
   doc.setLineWidth(0.4);
-  doc.line(rightMargin - 6 - sigBoxWidth, sigY + 7, rightMargin - 6, sigY + 7);
+  doc.line(rightMargin - 8 - sigBoxWidth, sigY + 12, rightMargin - 8, sigY + 12);
   
-  doc.setFontSize(6);
+  doc.setFontSize(8);
   doc.setFont('helvetica', 'bold');
-  doc.text('DEALER SIGNATURE', rightMargin - 6 - sigBoxWidth / 2, sigY + 10, { align: 'center' });
-  doc.setFontSize(5);
+  doc.text('DEALER SIGNATURE', rightMargin - 8 - sigBoxWidth / 2, sigY + 16, { align: 'center' });
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'italic');
-  doc.text('(ProCarport Buildings)', rightMargin - 6 - sigBoxWidth / 2, sigY + 12.5, { align: 'center' });
+  doc.text('(ProCarport Buildings)', rightMargin - 8 - sigBoxWidth / 2, sigY + 20, { align: 'center' });
   
   // Date Line
-  const dateY = sigY + 13;
   doc.setLineWidth(0.2);
-  doc.line(leftMargin + 4, dateY - 0.5, rightMargin - 4, dateY - 0.5);
+  doc.line(leftMargin + 4, yPos + signatureHeight - 10, rightMargin - 4, yPos + signatureHeight - 10);
   
-  const dateLineWidth = 45;
+  const dateLineWidth = 50;
   doc.setLineWidth(0.4);
-  doc.line(pageWidth / 2 - dateLineWidth / 2, dateY + 3, pageWidth / 2 + dateLineWidth / 2, dateY + 3);
+  doc.line(pageWidth / 2 - dateLineWidth / 2, yPos + signatureHeight - 4, pageWidth / 2 + dateLineWidth / 2, yPos + signatureHeight - 4);
   
-  doc.setFontSize(5.5);
+  doc.setFontSize(7);
   doc.setFont('helvetica', 'bold');
-  doc.text('DATE OF AGREEMENT', pageWidth / 2, dateY + 1.5, { align: 'center' });
+  doc.text('DATE OF AGREEMENT', pageWidth / 2, yPos + signatureHeight - 6, { align: 'center' });
   
-  yPos += signatureHeight + 1;
+  yPos += signatureHeight + 2;
 
-  // ===== FOOTER =====
+  // ===== FOOTER - POSITIONED AT BOTTOM =====
+  const footerY = pageHeight - bottomMargin - 8;
   doc.setLineWidth(0.4);
-  doc.line(leftMargin, yPos, rightMargin, yPos);
+  doc.line(leftMargin, footerY, rightMargin, footerY);
+  
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.text('ProCarport Buildings', pageWidth / 2, footerY + 3, { align: 'center' });
   
   doc.setFontSize(6);
-  doc.setFont('helvetica', 'bold');
-  doc.text('ProCarport Buildings', pageWidth / 2, yPos + 3, { align: 'center' });
-  
-  doc.setFontSize(5.5);
   doc.setFont('helvetica', 'normal');
-  doc.text('Phone: (336) 468-1131 | Email: procarportbuildings@gmail.com | P.O. Box 127, Boonville, NC 27011', pageWidth / 2, yPos + 6, { align: 'center' });
+  doc.text('Phone: (336) 468-1131 | Email: procarportbuildings@gmail.com | P.O. Box 127, Boonville, NC 27011', pageWidth / 2, footerY + 6, { align: 'center' });
   
   doc.setFont('helvetica', 'italic');
-  doc.setFontSize(5);
-  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, yPos + 8.5, { align: 'center' });
+  doc.setFontSize(5.5);
+  doc.text('This receipt serves as confirmation of your order. Balance payment due upon installation completion.', pageWidth / 2, footerY + 8.5, { align: 'center' });
 
   doc.save(`receipt-${orderNumber}.pdf`);
 };

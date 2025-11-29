@@ -1,8 +1,8 @@
 // client/src/pages/OrderBuilder.js
-// COMPLETE CARPORT & COMMERCIAL ORDER BUILDER
-// ✅ Carports (12'-30') - All features working
-// ✅ Commercial Buildings (32'-60') - All features working
-// ✅ Vertical 2 Tone (Both) - NOW WORKS FOR COMMERCIAL! ⭐
+// REFINED CARPORT & COMMERCIAL ORDER BUILDER
+// ✅ Compact, professional UI with improved usability
+// ✅ Smaller components, better information density
+// ✅ Clean visual hierarchy
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ import ColorSelector from '../components/ColorSelector';
 import { 
   HEIGHT_CHARGES,
   COMMERCIAL_HEIGHT_CHARGES,
-  COMMERCIAL_VERTICAL_2_TONE, // ✅ ADDED FOR COMMERCIAL VERTICAL 2 TONE SUPPORT
+  COMMERCIAL_VERTICAL_2_TONE,
   GARAGE_DOOR_SIZES, 
   HALF_PANEL_WITH_TRIM, 
   CUT_PANEL, 
@@ -29,61 +29,57 @@ import {
 } from '../pricingData';
 
 // ============================================================================
-// STYLED COMPONENTS (keeping all the same styled components from before)
+// REFINED STYLED COMPONENTS - Compact & Professional
 // ============================================================================
 
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  padding: 0;
+  background: #f0f2f5;
 `;
 
 const ModernNav = styled.nav`
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  padding: 20px 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 12px 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mobile({ padding: '15px 20px', flexDirection: 'column', gap: '15px' })}
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  ${mobile({ padding: '10px 15px', flexDirection: 'column', gap: '10px' })}
 `;
 
 const LeftNav = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  align-items: center;
+  gap: 12px;
 `;
 
 const CompanyName = styled.h1`
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1a365d;
   margin: 0;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  ${mobile({ fontSize: '20px' })}
+  ${mobile({ fontSize: '16px' })}
 `;
 
 const StaffBadge = styled.div`
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  background: #48bb78;
   color: white;
-  padding: 5px 14px;
-  border-radius: 14px;
+  padding: 3px 10px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-  width: fit-content;
+  letter-spacing: 0.3px;
 `;
 
 const UserSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   ${mobile({ width: '100%', justifyContent: 'space-between' })}
 `;
 
@@ -93,260 +89,237 @@ const UserInfo = styled.div`
 `;
 
 const Username = styled.div`
-  font-weight: 700;
-  color: #1a1a1a;
-  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 13px;
 `;
 
 const Role = styled.div`
-  font-size: 13px;
-  color: #666;
+  font-size: 11px;
+  color: #718096;
   text-transform: capitalize;
 `;
 
 const LogoutButton = styled.button`
-  padding: 12px 26px;
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  padding: 6px 14px;
+  background: #e53e3e;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  transition: all 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+    background: #c53030;
   }
 `;
 
 const ContentWrapper = styled.div`
-  padding: 40px 20px;
-  max-width: 1800px;
+  padding: 20px;
+  max-width: 1600px;
   margin: 0 auto;
-  ${mobile({ padding: '20px 15px' })}
+  ${mobile({ padding: '12px' })}
 `;
 
-const Wrapper = styled.div`
-  background: white;
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  ${mobile({ padding: '25px', borderRadius: '16px' })}
-`;
-
-const Header = styled.div`
+const PageHeader = styled.div`
   text-align: center;
-  margin-bottom: 50px;
-  padding-bottom: 35px;
-  border-bottom: 3px solid #e8f4f8;
+  margin-bottom: 20px;
 `;
 
 const Title = styled.h2`
-  font-size: 36px;
+  font-size: 22px;
   font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 15px 0;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  ${mobile({ fontSize: '26px' })}
+  color: #1a365d;
+  margin: 0 0 4px 0;
+  ${mobile({ fontSize: '18px' })}
 `;
 
 const Subtitle = styled.p`
-  color: #666;
-  font-size: 17px;
+  color: #718096;
+  font-size: 13px;
   margin: 0;
-  line-height: 1.6;
-  ${mobile({ fontSize: '15px' })}
+  ${mobile({ fontSize: '12px' })}
 `;
 
+// Compact Progress Bar
 const ProgressBar = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 40px;
-  padding: 0 20px;
-  ${mobile({ flexDirection: 'column', gap: '10px', padding: '0' })}
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  ${mobile({ gap: '6px' })}
 `;
 
 const ProgressStep = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-
-  &:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    width: 100%;
-    height: 3px;
-    background: ${props => props.$completed ? '#28a745' : '#e3f2fd'};
-    z-index: 0;
-    ${mobile({ display: 'none' })}
-  }
-`;
-
-const ProgressCircle = styled.div`
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: ${props => props.$completed ? 'linear-gradient(135deg, #28a745 0%, #20c997 100%)' : 
-                props.$active ? 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' : 
-                '#e3f2fd'};
-  color: ${props => props.$completed || props.$active ? 'white' : '#999'};
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  z-index: 1;
-  box-shadow: ${props => props.$completed || props.$active ? '0 4px 12px rgba(0, 0, 0, 0.2)' : 'none'};
-`;
-
-const ProgressLabel = styled.div`
-  margin-top: 10px;
-  font-size: 13px;
+  gap: 6px;
+  padding: 6px 12px;
+  background: ${props => props.$completed ? '#c6f6d5' : props.$active ? '#bee3f8' : '#edf2f7'};
+  border-radius: 20px;
+  font-size: 11px;
   font-weight: 600;
-  color: ${props => props.$completed ? '#28a745' : props.$active ? '#1e3c72' : '#999'};
-  text-align: center;
-  ${mobile({ fontSize: '12px' })}
+  color: ${props => props.$completed ? '#276749' : props.$active ? '#2b6cb0' : '#718096'};
+  transition: all 0.2s ease;
+  ${mobile({ padding: '4px 8px', fontSize: '10px' })}
+`;
+
+const StepIcon = styled.span`
+  font-size: 12px;
 `;
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 35px;
-  ${mobile({ gridTemplateColumns: '1fr', gap: '25px' })}
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  align-items: start;
+  ${mobile({ gridTemplateColumns: '1fr', gap: '15px' })}
 `;
 
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 12px;
+  min-height: 0; /* Allows proper scrolling behavior */
 `;
 
+// Compact Section Cards
 const Section = styled.div`
-  background: ${props => props.$disabled ? '#f8f9fa' : '#f8fbfd'};
-  border-radius: 16px;
-  padding: 28px;
-  border: 2px solid ${props => props.$disabled ? '#dee2e6' : '#e3f2fd'};
-  opacity: ${props => props.$disabled ? 0.6 : 1};
+  background: ${props => props.$disabled ? '#f7fafc' : 'white'};
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid ${props => props.$disabled ? '#e2e8f0' : '#e2e8f0'};
+  opacity: ${props => props.$disabled ? 0.5 : 1};
   pointer-events: ${props => props.$disabled ? 'none' : 'auto'};
-  transition: all 0.3s ease;
-  ${mobile({ padding: '20px' })}
+  transition: all 0.2s ease;
+  ${mobile({ padding: '12px' })}
 `;
 
 const SectionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 `;
 
 const SectionTitleGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 `;
 
 const StepBadge = styled.div`
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #4299e1;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 16px;
-  box-shadow: 0 3px 10px rgba(30, 60, 114, 0.3);
+  font-size: 12px;
 `;
 
 const SectionTitle = styled.h3`
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0;
-  ${mobile({ fontSize: '18px' })}
-`;
-
-const RequiredBadge = styled.span`
-  background: #dc3545;
-  color: white;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-`;
-
-const SectionDescription = styled.p`
-  color: #666;
   font-size: 14px;
-  margin: 0 0 20px 0;
-  line-height: 1.5;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
   ${mobile({ fontSize: '13px' })}
 `;
 
+const RequiredBadge = styled.span`
+  background: #fed7d7;
+  color: #c53030;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: 8px;
+`;
+
+const SectionDescription = styled.p`
+  color: #718096;
+  font-size: 12px;
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+`;
+
+// Compact Button Grid
 const ButtonGrid = styled.div`
   display: grid;
-  grid-template-columns: ${props => props.$columns || 'repeat(auto-fill, minmax(110px, 1fr))'};
-  gap: 12px;
-  ${mobile({ gridTemplateColumns: props => props.$columns || 'repeat(auto-fill, minmax(90px, 1fr))', gap: '10px' })}
+  grid-template-columns: ${props => props.$columns || 'repeat(auto-fill, minmax(70px, 1fr))'};
+  gap: 6px;
+  ${mobile({ gap: '5px' })}
 `;
 
 const SelectButton = styled.button`
-  padding: 20px 14px;
-  background: ${props => props.$active ? 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' : 'white'};
-  color: ${props => props.$active ? 'white' : '#1a1a1a'};
-  border: 2px solid ${props => props.$active ? '#1e3c72' : '#e3f2fd'};
-  border-radius: 12px;
+  padding: ${props => props.$large ? '14px 10px' : '10px 8px'};
+  background: ${props => props.$active ? '#4299e1' : 'white'};
+  color: ${props => props.$active ? 'white' : '#2d3748'};
+  border: 1.5px solid ${props => props.$active ? '#4299e1' : '#e2e8f0'};
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   font-weight: 600;
-  font-size: 15px;
-  box-shadow: ${props => props.$active ? '0 4px 12px rgba(30, 60, 114, 0.3)' : '0 2px 4px rgba(0, 0, 0, 0.05)'};
+  font-size: 13px;
 
   &:hover {
-    border-color: #2a5298;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border-color: #4299e1;
+    transform: translateY(-1px);
   }
 
-  ${mobile({ padding: '16px 12px', fontSize: '14px' })}
+  ${mobile({ padding: '8px 6px', fontSize: '12px' })}
 `;
 
+const SelectButtonContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+`;
+
+const ButtonIcon = styled.span`
+  font-size: 20px;
+  ${mobile({ fontSize: '18px' })}
+`;
+
+const ButtonLabel = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  ${mobile({ fontSize: '11px' })}
+`;
+
+const ButtonSublabel = styled.span`
+  font-size: 10px;
+  opacity: 0.7;
+`;
+
+// Compact Option Cards
 const OptionCard = styled.div`
   background: white;
-  border: 2px solid ${props => props.$active ? '#28a745' : '#e3f2fd'};
-  border-radius: 14px;
-  padding: 20px;
+  border: 1.5px solid ${props => props.$active ? '#48bb78' : '#e2e8f0'};
+  border-radius: 8px;
+  padding: 10px 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  box-shadow: ${props => props.$active ? '0 4px 16px rgba(40, 167, 69, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)'};
+  margin-bottom: 8px;
 
   &:hover {
-    border-color: ${props => props.$active ? '#28a745' : '#2a5298'};
-    transform: translateX(5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: ${props => props.$active ? '#48bb78' : '#4299e1'};
   }
 
   &:last-child {
     margin-bottom: 0;
   }
-
-  ${mobile({ padding: '16px' })}
 `;
 
 const OptionInfo = styled.div`
@@ -354,134 +327,152 @@ const OptionInfo = styled.div`
 `;
 
 const OptionName = styled.div`
-  font-weight: 700;
-  font-size: 16px;
-  color: #1a1a1a;
-  margin-bottom: 6px;
-  ${mobile({ fontSize: '15px' })}
+  font-weight: 600;
+  font-size: 13px;
+  color: #2d3748;
+  margin-bottom: 2px;
 `;
 
 const OptionDescription = styled.div`
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 6px;
-  line-height: 1.4;
+  font-size: 11px;
+  color: #718096;
 `;
 
 const OptionPrice = styled.div`
-  font-size: 15px;
-  color: ${props => props.$free ? '#28a745' : '#2a5298'};
+  font-size: 12px;
+  color: ${props => props.$free ? '#48bb78' : '#4299e1'};
   font-weight: 700;
-  ${mobile({ fontSize: '14px' })}
+  margin-top: 2px;
 `;
 
 const Checkbox = styled.div`
-  width: 28px;
-  height: 28px;
-  border: 2px solid ${props => props.$checked ? '#28a745' : '#e3f2fd'};
-  border-radius: 8px;
-  background: ${props => props.$checked ? '#28a745' : 'white'};
+  width: 20px;
+  height: 20px;
+  border: 2px solid ${props => props.$checked ? '#48bb78' : '#e2e8f0'};
+  border-radius: 5px;
+  background: ${props => props.$checked ? '#48bb78' : 'white'};
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: all 0.2s ease;
-  box-shadow: ${props => props.$checked ? '0 3px 8px rgba(40, 167, 69, 0.3)' : 'none'};
+  font-size: 12px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
 `;
 
+// Compact Counter Groups
 const CounterGroup = styled.div`
-  margin-top: 16px;
-  padding: 16px;
-  background: white;
-  border-radius: 12px;
-  border: 2px solid #e3f2fd;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
 `;
 
 const CounterLabel = styled.div`
-  font-weight: 700;
-  font-size: 15px;
-  color: #1a1a1a;
-  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #2d3748;
+  margin-bottom: 8px;
 `;
 
 const CounterButtons = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 6px;
 `;
 
 const CounterControl = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
 `;
 
 const CounterButton = styled.button`
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 2px solid #e3f2fd;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1.5px solid #e2e8f0;
   background: white;
-  color: #1e3c72;
-  font-size: 20px;
+  color: #4299e1;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  &:hover {
-    background: #1e3c72;
+  &:hover:not(:disabled) {
+    background: #4299e1;
     color: white;
-    border-color: #1e3c72;
-    transform: scale(1.1);
+    border-color: #4299e1;
   }
 
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    transform: none;
   }
 `;
 
 const CounterValue = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
-  color: #1e3c72;
-  min-width: 40px;
+  color: #2d3748;
+  min-width: 30px;
   text-align: center;
 `;
 
+const CounterTotal = styled.div`
+  margin-top: 6px;
+  color: #4299e1;
+  font-weight: 600;
+  font-size: 12px;
+`;
+
+// Garage Door Components
 const GarageDoorList = styled.div`
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 `;
 
 const GarageDoorItem = styled.div`
-  background: #f8f9fa;
-  padding: 12px 16px;
-  border-radius: 10px;
+  background: #f7fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #e3f2fd;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
 `;
 
 const GarageDoorInfo = styled.div`
-  font-size: 14px;
-  color: #1a1a1a;
+  color: #2d3748;
   font-weight: 600;
 `;
 
 const RemoveButton = styled.button`
-  padding: 6px 12px;
-  background: #dc3545;
+  padding: 4px 10px;
+  background: #fc8181;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: #f56565;
+  }
+`;
+
+const AddButton = styled.button`
+  padding: 8px 16px;
+  background: #48bb78;
   color: white;
   border: none;
   border-radius: 6px;
@@ -489,56 +480,90 @@ const RemoveButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: 8px;
+  width: 100%;
 
   &:hover {
-    background: #c82333;
-    transform: scale(1.05);
+    background: #38a169;
   }
 `;
 
-const AddButton = styled.button`
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 12px;
+// Dropdown Styling
+const SelectDropdown = styled.select`
   width: 100%;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  padding: 8px 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d3748;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+  &:focus {
+    outline: none;
+    border-color: #4299e1;
   }
+`;
+
+const DropdownGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  ${mobile({ gridTemplateColumns: '1fr' })}
+`;
+
+// Sticky Summary Card - Always visible on scroll
+const SummaryWrapper = styled.div`
+  position: sticky;
+  top: 70px;
+  height: fit-content;
+  ${mobile({ position: 'static' })}
 `;
 
 const SummaryCard = styled.div`
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  border-radius: 16px;
-  padding: 30px;
-  color: white;
-  position: sticky;
-  top: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  ${mobile({ position: 'static', padding: '25px' })}
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  
+  /* Custom scrollbar for the summary */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+  }
+  
+  ${mobile({ maxHeight: 'none' })}
 `;
 
 const SummaryTitle = styled.h3`
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  margin: 0 0 25px 0;
+  margin: 0 0 16px 0;
+  color: #1a365d;
   text-align: center;
-  ${mobile({ fontSize: '22px' })}
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
 `;
 
 const SummarySection = styled.div`
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf2f7;
 
   &:last-of-type {
     border-bottom: none;
@@ -547,123 +572,152 @@ const SummarySection = styled.div`
 `;
 
 const SummarySectionTitle = styled.div`
-  font-size: 13px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  opacity: 0.8;
-  margin-bottom: 12px;
-  font-weight: 600;
+  color: #a0aec0;
+  margin-bottom: 8px;
+  font-weight: 700;
 `;
 
 const SummaryRow = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  font-size: 15px;
+  padding: 4px 0;
+  font-size: 12px;
   align-items: center;
-  ${mobile({ fontSize: '14px' })}
 `;
 
 const SummaryLabel = styled.span`
-  opacity: 0.95;
+  color: #718096;
   font-weight: 500;
 `;
 
 const SummaryValue = styled.span`
   font-weight: 700;
-  font-size: 16px;
-  ${mobile({ fontSize: '15px' })}
+  color: #2d3748;
 `;
 
-const TotalRow = styled(SummaryRow)`
-  font-size: 22px;
+const TotalSection = styled.div`
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  margin: 12px -16px -16px -16px;
+  padding: 16px;
+  border-radius: 0 0 12px 12px;
+  color: white;
+`;
+
+const TotalRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 6px;
+  opacity: 0.9;
+`;
+
+const GrandTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
   font-weight: 700;
-  margin-top: 20px;
-  padding: 20px 0 0 0;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  ${mobile({ fontSize: '20px' })}
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 8px;
 `;
 
-const DepositRow = styled(SummaryRow)`
-  background: rgba(255, 255, 255, 0.15);
-  padding: 14px;
-  border-radius: 10px;
-  margin-top: 15px;
-  font-size: 16px;
-  ${mobile({ fontSize: '15px' })}
+const DepositRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.15);
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
 `;
 
 const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 25px;
-  ${mobile({ gridTemplateColumns: '1fr', gap: '10px' })}
+  gap: 8px;
+  margin-top: 12px;
 `;
 
 const Button = styled.button`
-  padding: 16px;
-  background: ${props => props.$variant === 'primary' ? 'white' : 'rgba(255, 255, 255, 0.2)'};
-  color: ${props => props.$variant === 'primary' ? '#1e3c72' : 'white'};
-  border: ${props => props.$variant === 'primary' ? 'none' : '2px solid white'};
-  border-radius: 12px;
+  padding: 10px;
+  background: ${props => props.$variant === 'primary' ? '#48bb78' : '#edf2f7'};
+  color: ${props => props.$variant === 'primary' ? 'white' : '#4a5568'};
+  border: none;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: ${props => props.$variant === 'primary' ? '0 4px 12px rgba(255, 255, 255, 0.3)' : 'none'};
-
-  &:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  ${mobile({ padding: '14px', fontSize: '15px' })}
-`;
-
-const ValidationMessage = styled.div`
-  background: #fff3cd;
-  border: 2px solid #ffc107;
-  color: #856404;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 15px;
-  line-height: 1.4;
-`;
-
-const SelectDropdown = styled.select`
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #e3f2fd;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1a1a1a;
-  background: white;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 
-  &:focus {
-    outline: none;
-    border-color: #2a5298;
-    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
   }
 `;
 
-const DropdownGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+const ValidationMessage = styled.div`
+  background: #fefcbf;
+  border: 1px solid #ecc94b;
+  color: #744210;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const InfoBanner = styled.div`
+  padding: 10px 14px;
+  background: #ebf8ff;
+  border-radius: 8px;
+  border: 1px solid #bee3f8;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2b6cb0;
+  font-weight: 600;
+  font-size: 12px;
+`;
+
+const SelectedBadge = styled.div`
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #c6f6d5;
+  border-radius: 6px;
+  color: #276749;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+`;
+
+const PriceBadge = styled.div`
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #feebc8;
+  border-radius: 6px;
+  color: #c05621;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+`;
+
+// Two-column layout for options
+const TwoColumnGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   ${mobile({ gridTemplateColumns: '1fr' })}
 `;
 
@@ -702,7 +756,6 @@ const OrderBuilder = () => {
     handleColorChange,
   } = useOrderBuilder();
 
-  // Safety: Ensure order has all required nested objects
   const safeOrder = {
     buildingType: order.buildingType || 'carport',
     roofStyle: order.roofStyle || null,
@@ -716,14 +769,12 @@ const OrderBuilder = () => {
     vertical2ToneEndCount: order.vertical2ToneEndCount || 0,
   };
 
-  // State for garage door form
   const [garageDoorForm, setGarageDoorForm] = useState({
     size: "6'x6'",
     certification: 'uncertified',
     color: 'white'
   });
 
-  // Progress tracking
   const progress = {
     buildingType: !!safeOrder.buildingType,
     roofStyle: safeOrder.buildingType === 'commercial' ? true : !!safeOrder.roofStyle,
@@ -732,7 +783,6 @@ const OrderBuilder = () => {
     height: !!safeOrder.height,
   };
 
-  // Check if commercial
   const isCommercialBuilding = safeOrder.buildingType === 'commercial';
 
   // ============================================================================
@@ -741,14 +791,14 @@ const OrderBuilder = () => {
 
   const handleLogout = () => {
     Swal.fire({
-      title: '👋 Logout?',
+      title: 'Logout?',
       text: 'Are you sure you want to logout?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#dc3545',
-      cancelButtonColor: '#6c757d',
+      confirmButtonColor: '#e53e3e',
+      cancelButtonColor: '#718096',
       confirmButtonText: 'Yes, Logout',
-      cancelButtonText: 'Stay Logged In'
+      cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
         logout();
@@ -765,35 +815,28 @@ const OrderBuilder = () => {
       if (!safeOrder.height) missing.push('Height');
 
       Swal.fire({
-        title: '⚠️ Incomplete Order',
-        html: `
-          <p style="margin-bottom: 15px;">Please complete these required selections:</p>
-          <div style="text-align: left; background: #f8f9fa; padding: 15px; border-radius: 8px;">
-            ${missing.map(item => `<div style="margin: 8px 0;">❌ <strong>${item}</strong></div>`).join('')}
-          </div>
-        `,
+        title: 'Incomplete Order',
+        html: `<p>Please complete: <strong>${missing.join(', ')}</strong></p>`,
         icon: 'warning',
-        confirmButtonColor: '#2a5298',
-        confirmButtonText: 'OK, Got It!'
+        confirmButtonColor: '#4299e1',
       });
       return;
     }
 
     Swal.fire({
-      title: '✅ Add to Cart?',
+      title: 'Add to Cart?',
       html: `
-        <div style="text-align: left;">
-          <p><strong>Type:</strong> ${labels.buildingType || 'N/A'}</p>
-          <p><strong>Roof Style:</strong> ${labels.roofStyle || 'N/A'}</p>
-          <p><strong>Size:</strong> ${labels.size || 'N/A'} at ${labels.height || 'N/A'}</p>
-          <p><strong>Total:</strong> $${(calculations.total || 0).toLocaleString()}</p>
+        <div style="text-align: left; font-size: 14px;">
+          <p><strong>${labels.buildingType}</strong> - ${labels.roofStyle}</p>
+          <p>${labels.size} at ${labels.height}</p>
+          <p style="font-size: 18px; color: #48bb78; font-weight: 700;">$${(calculations.total || 0).toLocaleString()}</p>
         </div>
       `,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#28a745',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: '✓ Add to Cart',
+      confirmButtonColor: '#48bb78',
+      cancelButtonColor: '#718096',
+      confirmButtonText: 'Add to Cart',
       cancelButtonText: 'Keep Editing'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -862,14 +905,9 @@ const OrderBuilder = () => {
         
         try {
           localStorage.setItem('completeOrderData', JSON.stringify(completeOrderData));
-          console.log('✅ Complete order data saved to localStorage');
         } catch (error) {
-          console.error('❌ Error saving order data:', error);
-          Swal.fire({
-            title: 'Error',
-            text: 'Failed to save order data. Please try again.',
-            icon: 'error'
-          });
+          console.error('Error saving order data:', error);
+          Swal.fire({ title: 'Error', text: 'Failed to save order data.', icon: 'error' });
           return;
         }
         
@@ -894,41 +932,34 @@ const OrderBuilder = () => {
         dispatch(addProduct(product));
         
         Swal.fire({
-          title: '🎉 Added to Cart!',
-          text: 'Proceeding to checkout...',
+          title: 'Added to Cart!',
           icon: 'success',
-          timer: 1500,
+          timer: 1200,
           showConfirmButton: false
         });
 
         setTimeout(() => {
           navigate(`/cart/${calculations.subtotal || 0}/${calculations.tax || 0}`);
-        }, 1500);
+        }, 1200);
       }
     });
   };
 
   const handleReset = () => {
     Swal.fire({
-      title: '🔄 Reset Order?',
-      text: 'This will clear all your selections',
+      title: 'Reset Order?',
+      text: 'This will clear all selections',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#dc3545',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Yes, Reset Everything',
+      confirmButtonColor: '#e53e3e',
+      cancelButtonColor: '#718096',
+      confirmButtonText: 'Reset',
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
         if (resetOrder) resetOrder();
         setGarageDoorForm({ size: "6'x6'", certification: 'uncertified', color: 'white' });
-        Swal.fire({
-          title: '✨ Reset Complete',
-          text: 'Start fresh!',
-          icon: 'success',
-          timer: 1200,
-          showConfirmButton: false
-        });
+        Swal.fire({ title: 'Reset!', icon: 'success', timer: 800, showConfirmButton: false });
       }
     });
   };
@@ -937,88 +968,67 @@ const OrderBuilder = () => {
     if (addGarageDoor) {
       addGarageDoor(garageDoorForm.size, garageDoorForm.certification, garageDoorForm.color);
       Swal.fire({
-        title: '✅ Garage Door Added!',
-        text: `${garageDoorForm.size} ${garageDoorForm.color} (${garageDoorForm.certification})`,
+        title: 'Door Added!',
+        text: `${garageDoorForm.size} ${garageDoorForm.color}`,
         icon: 'success',
-        timer: 1000,
+        timer: 800,
         showConfirmButton: false
       });
     }
   };
 
-  // Helper function to get height charge for display
   const getHeightChargeForDisplay = (height) => {
     if (!safeOrder.width || !safeOrder.length) return 0;
     if (isCommercialBuilding && height === '8') return 0;
     if (!isCommercialBuilding && height === '6') return 0;
-    const charge = getHeightCharge(height, safeOrder.length, safeOrder.width, safeOrder.buildingType);
-    return charge || 0;
+    return getHeightCharge(height, safeOrder.length, safeOrder.width, safeOrder.buildingType) || 0;
   };
 
   const getPanelPrice = (panelType, count) => {
     if (!safeOrder.length || count === 0) return 0;
-    
     const panelLengthKey = getPanelLengthKey(safeOrder.length);
-    
     let priceTable;
     if (panelType === 'halfPanel') priceTable = HALF_PANEL_WITH_TRIM;
     else if (panelType === 'cutPanel') priceTable = CUT_PANEL;
     else if (panelType === 'panels3ft') priceTable = PANELS_3FT;
     else return 0;
-    
     return ((priceTable[panelLengthKey] || 0) * count) || 0;
   };
 
-  // If the hook didn't load properly, show error
   if (!order || !setBuildingType) {
     return (
       <Container>
         <ContentWrapper>
-          <Wrapper>
-            <div style={{ textAlign: 'center', padding: '50px' }}>
-              <h2 style={{ color: '#dc3545', marginBottom: '20px' }}>⚠️ Error Loading Order Builder</h2>
-              <p style={{ color: '#666', marginBottom: '20px' }}>
-                The order builder hook failed to initialize. Please check your files.
-              </p>
-              <button 
-                onClick={() => window.location.reload()} 
-                style={{
-                  marginTop: '30px',
-                  padding: '12px 24px',
-                  background: '#1e3c72',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontWeight: '600'
-                }}
-              >
-                Reload Page
-              </button>
-            </div>
-          </Wrapper>
+          <div style={{ textAlign: 'center', padding: '50px', background: 'white', borderRadius: '12px' }}>
+            <h2 style={{ color: '#e53e3e', marginBottom: '15px' }}>Error Loading</h2>
+            <p style={{ color: '#718096', marginBottom: '20px' }}>Failed to initialize order builder.</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              style={{ padding: '10px 20px', background: '#4299e1', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}
+            >
+              Reload
+            </button>
+          </div>
         </ContentWrapper>
       </Container>
     );
   }
 
   // ============================================================================
-  // RENDER JSX
+  // RENDER
   // ============================================================================
 
   return (
     <Container>
-      {/* NAVIGATION */}
       <ModernNav>
         <LeftNav>
           <CompanyName>ProCarport Buildings</CompanyName>
-          <StaffBadge>Staff Order System</StaffBadge>
+          <StaffBadge>Staff Portal</StaffBadge>
         </LeftNav>
-
         {user && (
           <UserSection>
             <UserInfo>
-              <Username>👤 {user.username}</Username>
+              <Username>{user.username}</Username>
               <Role>{user.role}</Role>
             </UserInfo>
             <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
@@ -1027,475 +1037,273 @@ const OrderBuilder = () => {
       </ModernNav>
 
       <ContentWrapper>
-        <Wrapper>
-          <Header>
-            <Title>🏗️ Build Your Order</Title>
-            <Subtitle>
-              Choose from Carports (12'-30') or Commercial Buildings (32'-60') with complete customization
-            </Subtitle>
-          </Header>
+        <PageHeader>
+          <Title>Build Your Order</Title>
+          <Subtitle>Carports (12'-30') • Commercial (32'-60')</Subtitle>
+        </PageHeader>
 
-          {/* PROGRESS BAR */}
-          <ProgressBar>
-            <ProgressStep $completed={progress.buildingType} $active={!progress.buildingType}>
-              <ProgressCircle $completed={progress.buildingType} $active={!progress.buildingType}>
-                {progress.buildingType ? '✓' : '0'}
-              </ProgressCircle>
-              <ProgressLabel $completed={progress.buildingType} $active={!progress.buildingType}>
-                Building Type
-              </ProgressLabel>
-            </ProgressStep>
+        {/* Compact Progress */}
+        <ProgressBar>
+          <ProgressStep $completed={progress.buildingType}>
+            <StepIcon>{progress.buildingType ? '✓' : '1'}</StepIcon> Type
+          </ProgressStep>
+          <ProgressStep $completed={progress.roofStyle} $active={progress.buildingType && !progress.roofStyle}>
+            <StepIcon>{progress.roofStyle ? '✓' : '2'}</StepIcon> Roof
+          </ProgressStep>
+          <ProgressStep $completed={progress.width} $active={progress.roofStyle && !progress.width}>
+            <StepIcon>{progress.width ? '✓' : '3'}</StepIcon> Width
+          </ProgressStep>
+          <ProgressStep $completed={progress.length} $active={progress.width && !progress.length}>
+            <StepIcon>{progress.length ? '✓' : '4'}</StepIcon> Length
+          </ProgressStep>
+          <ProgressStep $completed={progress.height} $active={progress.length && !progress.height}>
+            <StepIcon>{progress.height ? '✓' : '5'}</StepIcon> Height
+          </ProgressStep>
+          <ProgressStep $active={progress.height}>
+            <StepIcon>6</StepIcon> Options
+          </ProgressStep>
+        </ProgressBar>
 
-            <ProgressStep $completed={progress.roofStyle} $active={progress.buildingType && !progress.roofStyle}>
-              <ProgressCircle $completed={progress.roofStyle} $active={progress.buildingType && !progress.roofStyle}>
-                {progress.roofStyle ? '✓' : '1'}
-              </ProgressCircle>
-              <ProgressLabel $completed={progress.roofStyle} $active={progress.buildingType && !progress.roofStyle}>
-                Roof Style
-              </ProgressLabel>
-            </ProgressStep>
+        <GridContainer>
+          <LeftColumn>
+            {/* BUILDING TYPE */}
+            <Section>
+              <SectionHeader>
+                <SectionTitleGroup>
+                  <StepBadge>🏢</StepBadge>
+                  <SectionTitle>Building Type<RequiredBadge>Required</RequiredBadge></SectionTitle>
+                </SectionTitleGroup>
+              </SectionHeader>
+              <ButtonGrid $columns="repeat(2, 1fr)">
+                {buildingTypes.map((type) => (
+                  <SelectButton
+                    key={type.value}
+                    $active={safeOrder.buildingType === type.value}
+                    $large
+                    onClick={() => setBuildingType && setBuildingType(type.value)}
+                  >
+                    <SelectButtonContent>
+                      <ButtonIcon>{type.icon}</ButtonIcon>
+                      <ButtonLabel>{type.label}</ButtonLabel>
+                    </SelectButtonContent>
+                  </SelectButton>
+                ))}
+              </ButtonGrid>
+            </Section>
 
-            <ProgressStep $completed={progress.width} $active={progress.roofStyle && !progress.width}>
-              <ProgressCircle $completed={progress.width} $active={progress.roofStyle && !progress.width}>
-                {progress.width ? '✓' : '2'}
-              </ProgressCircle>
-              <ProgressLabel $completed={progress.width} $active={progress.roofStyle && !progress.width}>
-                Width
-              </ProgressLabel>
-            </ProgressStep>
-
-            <ProgressStep $completed={progress.length} $active={progress.width && !progress.length}>
-              <ProgressCircle $completed={progress.length} $active={progress.width && !progress.length}>
-                {progress.length ? '✓' : '3'}
-              </ProgressCircle>
-              <ProgressLabel $completed={progress.length} $active={progress.width && !progress.length}>
-                Length
-              </ProgressLabel>
-            </ProgressStep>
-
-            <ProgressStep $completed={progress.height} $active={progress.length && !progress.height}>
-              <ProgressCircle $completed={progress.height} $active={progress.length && !progress.height}>
-                {progress.height ? '✓' : '4'}
-              </ProgressCircle>
-              <ProgressLabel $completed={progress.height} $active={progress.length && !progress.height}>
-                Height
-              </ProgressLabel>
-            </ProgressStep>
-
-            <ProgressStep $active={progress.height}>
-              <ProgressCircle $active={progress.height}>
-                5
-              </ProgressCircle>
-              <ProgressLabel $active={progress.height}>
-                Extras
-              </ProgressLabel>
-            </ProgressStep>
-          </ProgressBar>
-
-          <GridContainer>
-            <LeftColumn>
-              {/* STEP 0: BUILDING TYPE */}
+            {/* ROOF STYLE - Only for carports */}
+            {!isCommercialBuilding && (
               <Section>
                 <SectionHeader>
                   <SectionTitleGroup>
-                    <StepBadge>🏢</StepBadge>
-                    <div>
-                      <SectionTitle>Select Building Type <RequiredBadge>Required</RequiredBadge></SectionTitle>
-                    </div>
+                    <StepBadge>1</StepBadge>
+                    <SectionTitle>Roof Style<RequiredBadge>Required</RequiredBadge></SectionTitle>
                   </SectionTitleGroup>
                 </SectionHeader>
-                <SectionDescription>
-                  Choose between Carport (12'-30' wide) or Commercial Building (32'-60' wide)
-                </SectionDescription>
-                <ButtonGrid $columns="repeat(2, 1fr)">
-                  {buildingTypes.map((type) => (
+                <ButtonGrid $columns="repeat(3, 1fr)">
+                  {roofStyles.map((style) => (
                     <SelectButton
-                      key={type.value}
-                      $active={safeOrder.buildingType === type.value}
-                      onClick={() => setBuildingType && setBuildingType(type.value)}
+                      key={style.value}
+                      $active={safeOrder.roofStyle === style.value}
+                      onClick={() => setRoofStyle && setRoofStyle(style.value)}
                     >
-                      <div style={{ fontSize: '32px', marginBottom: '8px' }}>{type.icon}</div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', lineHeight: '1.3' }}>{type.label}</div>
+                      <SelectButtonContent>
+                        <ButtonIcon>{style.icon}</ButtonIcon>
+                        <ButtonLabel>{style.label}</ButtonLabel>
+                      </SelectButtonContent>
                     </SelectButton>
                   ))}
                 </ButtonGrid>
-                {safeOrder.buildingType && (
-                  <div style={{ 
-                    marginTop: '15px', 
-                    padding: '12px', 
-                    background: '#e8f5e9', 
-                    borderRadius: '8px',
-                    color: '#2e7d32',
-                    fontWeight: '600',
-                    textAlign: 'center'
-                  }}>
-                    ✓ Selected: {labels.buildingType || safeOrder.buildingType}
-                  </div>
-                )}
               </Section>
+            )}
 
-              {/* STEP 1: ROOF STYLE - Hidden for commercial */}
-              {!isCommercialBuilding && (
-                <Section>
-                  <SectionHeader>
-                    <SectionTitleGroup>
-                      <StepBadge>1</StepBadge>
-                      <div>
-                        <SectionTitle>Select Roof Style <RequiredBadge>Required</RequiredBadge></SectionTitle>
-                      </div>
-                    </SectionTitleGroup>
-                  </SectionHeader>
-                  <SectionDescription>
-                    Choose your preferred roof style (Regular, Boxed Eave, or Vertical)
-                  </SectionDescription>
-                  <ButtonGrid $columns="repeat(3, 1fr)">
-                    {roofStyles.map((style) => (
-                      <SelectButton
-                        key={style.value}
-                        $active={safeOrder.roofStyle === style.value}
-                        onClick={() => setRoofStyle && setRoofStyle(style.value)}
-                      >
-                        <div style={{ fontSize: '28px', marginBottom: '8px' }}>{style.icon}</div>
-                        <div style={{ fontSize: '16px', fontWeight: '700' }}>{style.label}</div>
-                      </SelectButton>
-                    ))}
-                  </ButtonGrid>
-                  {safeOrder.roofStyle && (
-                    <div style={{ 
-                      marginTop: '15px', 
-                      padding: '12px', 
-                      background: '#e8f5e9', 
-                      borderRadius: '8px',
-                      color: '#2e7d32',
-                      fontWeight: '600',
-                      textAlign: 'center'
-                    }}>
-                      ✓ Selected: {labels.roofStyle || safeOrder.roofStyle}
-                    </div>
-                  )}
-                </Section>
-              )}
+            {isCommercialBuilding && (
+              <InfoBanner>
+                <span>ℹ️</span> Commercial buildings use Vertical roof only
+              </InfoBanner>
+            )}
 
-              {/* Auto-select vertical for commercial */}
-              {isCommercialBuilding && (
-                <div style={{ 
-                  padding: '16px', 
-                  background: '#e3f2fd', 
-                  borderRadius: '12px',
-                  border: '2px solid #2196f3',
-                  marginBottom: '25px'
-                }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '10px',
-                    color: '#1565c0',
-                    fontWeight: '600'
-                  }}>
-                    <span style={{ fontSize: '24px' }}>ℹ️</span>
-                    <span>Commercial buildings use Vertical roof style only</span>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 2: WIDTH */}
+            {/* WIDTH & LENGTH - Side by side */}
+            <TwoColumnGrid>
               <Section>
                 <SectionHeader>
                   <SectionTitleGroup>
                     <StepBadge>{isCommercialBuilding ? '1' : '2'}</StepBadge>
-                    <div>
-                      <SectionTitle>Select Width <RequiredBadge>Required</RequiredBadge></SectionTitle>
-                    </div>
+                    <SectionTitle>Width<RequiredBadge>Req</RequiredBadge></SectionTitle>
                   </SectionTitleGroup>
                 </SectionHeader>
-                <SectionDescription>
-                  {isCommercialBuilding
-                    ? 'Choose commercial building width (32\'-60\' in 2\' increments)'
-                    : 'Choose carport width - Standard (12\'-24\') or Triple Wide (26\'-30\')'}
-                </SectionDescription>
-                <ButtonGrid $columns={isCommercialBuilding ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)'}>
+                <ButtonGrid $columns={isCommercialBuilding ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'}>
                   {availableWidths.map((w) => (
                     <SelectButton
                       key={w}
                       $active={safeOrder.width === w}
                       onClick={() => setWidth && setWidth(w)}
                     >
-                      <div style={{ fontSize: '18px', fontWeight: '700' }}>{w}'</div>
-                      <div style={{ fontSize: '12px', opacity: 0.8 }}>Wide</div>
+                      {w}'
                     </SelectButton>
                   ))}
                 </ButtonGrid>
               </Section>
 
-              {/* STEP 3: LENGTH */}
               <Section $disabled={!safeOrder.width}>
                 <SectionHeader>
                   <SectionTitleGroup>
                     <StepBadge>{isCommercialBuilding ? '2' : '3'}</StepBadge>
-                    <div>
-                      <SectionTitle>Select Length <RequiredBadge>Required</RequiredBadge></SectionTitle>
-                    </div>
+                    <SectionTitle>Length<RequiredBadge>Req</RequiredBadge></SectionTitle>
                   </SectionTitleGroup>
                 </SectionHeader>
-                <SectionDescription>
-                  {safeOrder.width 
-                    ? isCommercialBuilding
-                      ? 'Commercial: Choose length (20\', 24\', 28\', 32\', 36\', 40\', 44\', 48\', 52\')'
-                      : safeOrder.roofStyle === 'vertical'
-                        ? 'Vertical roof: Choose length up to 50\''
-                        : 'Regular/Boxed Eave: Choose length up to 35\''
-                    : '⬆️ Please select a width first'}
-                </SectionDescription>
-                <ButtonGrid $columns={isCommercialBuilding ? 'repeat(5, 1fr)' : 'repeat(5, 1fr)'}>
+                <ButtonGrid $columns="repeat(4, 1fr)">
                   {availableLengths.map((l) => (
                     <SelectButton
                       key={l}
                       $active={safeOrder.length === l}
                       onClick={() => setLength && setLength(l)}
                     >
-                      <div style={{ fontSize: '18px', fontWeight: '700' }}>{l}'</div>
-                      <div style={{ fontSize: '12px', opacity: 0.8 }}>Long</div>
+                      {l}'
                     </SelectButton>
                   ))}
                 </ButtonGrid>
-                {safeOrder.width && safeOrder.length && (
-                  <div style={{ 
-                    marginTop: '15px', 
-                    padding: '12px', 
-                    background: '#e8f5e9', 
-                    borderRadius: '8px',
-                    color: '#2e7d32',
-                    fontWeight: '600',
-                    textAlign: 'center'
-                  }}>
-                    ✓ Selected Size: {safeOrder.width}' × {safeOrder.length}' 
-                    {(calculations.basePrice || 0) > 0 && ` - Base Price: $${(calculations.basePrice || 0).toLocaleString()}`}
-                  </div>
+                {safeOrder.width && safeOrder.length && (calculations.basePrice || 0) > 0 && (
+                  <SelectedBadge>
+                    {safeOrder.width}' × {safeOrder.length}' = ${(calculations.basePrice || 0).toLocaleString()}
+                  </SelectedBadge>
                 )}
               </Section>
+            </TwoColumnGrid>
 
-              {/* STEP 4: HEIGHT */}
-              <Section $disabled={!safeOrder.width || !safeOrder.length}>
-                <SectionHeader>
-                  <SectionTitleGroup>
-                    <StepBadge>{isCommercialBuilding ? '3' : '4'}</StepBadge>
-                    <div>
-                      <SectionTitle>Select Height <RequiredBadge>Required</RequiredBadge></SectionTitle>
-                    </div>
-                  </SectionTitleGroup>
-                </SectionHeader>
-                <SectionDescription>
-                  {safeOrder.width && safeOrder.length
-                    ? isCommercialBuilding
-                      ? 'Choose side height (8\' is base, taller heights cost extra)'
-                      : `Choose side height (6' is standard, taller heights cost extra)${isTripleWide(safeOrder.width) ? ' - Triple Wide pricing' : ''}`
-                    : '⬆️ Please select width and length first'}
-                </SectionDescription>
-                <ButtonGrid>
-                  {availableHeights.map((h) => {
-                    const chargeAmount = getHeightChargeForDisplay(h);
-                    const isBase = isCommercialBuilding ? h === '8' : h === '6';
-                    
-                    return (
-                      <SelectButton
-                        key={h}
-                        $active={safeOrder.height === h}
-                        onClick={() => setHeight && setHeight(h)}
-                      >
-                        <div style={{ fontSize: '18px', fontWeight: '700' }}>{h}'</div>
-                        {safeOrder.length && !isBase && chargeAmount > 0 && (
-                          <div style={{ fontSize: '11px', opacity: 0.9, marginTop: '4px' }}>
-                            +${chargeAmount.toLocaleString()}
-                          </div>
+            {/* HEIGHT */}
+            <Section $disabled={!safeOrder.width || !safeOrder.length}>
+              <SectionHeader>
+                <SectionTitleGroup>
+                  <StepBadge>{isCommercialBuilding ? '3' : '4'}</StepBadge>
+                  <SectionTitle>Height<RequiredBadge>Required</RequiredBadge></SectionTitle>
+                </SectionTitleGroup>
+              </SectionHeader>
+              <SectionDescription>
+                {isCommercialBuilding ? "8' is base height" : "6' is standard"} • Taller = extra cost
+              </SectionDescription>
+              <ButtonGrid $columns="repeat(6, 1fr)">
+                {availableHeights.map((h) => {
+                  const charge = getHeightChargeForDisplay(h);
+                  const isBase = isCommercialBuilding ? h === '8' : h === '6';
+                  return (
+                    <SelectButton
+                      key={h}
+                      $active={safeOrder.height === h}
+                      onClick={() => setHeight && setHeight(h)}
+                    >
+                      <SelectButtonContent>
+                        <span style={{ fontWeight: 700 }}>{h}'</span>
+                        {safeOrder.length && !isBase && charge > 0 && (
+                          <ButtonSublabel>+${charge.toLocaleString()}</ButtonSublabel>
                         )}
-                      </SelectButton>
-                    );
-                  })}
-                </ButtonGrid>
-                {safeOrder.height && (calculations.heightCharge || 0) > 0 && (
-                  <div style={{ 
-                    marginTop: '15px', 
-                    padding: '12px', 
-                    background: '#fff3e0', 
-                    borderRadius: '8px',
-                    color: '#e65100',
-                    fontWeight: '600',
-                    textAlign: 'center'
-                  }}>
-                    ℹ️ Extra height charge: +${(calculations.heightCharge || 0).toLocaleString()}
-                    {isCommercialBuilding ? ' (Commercial pricing)' : isTripleWide(safeOrder.width) ? ' (Triple Wide pricing)' : ''}
-                  </div>
-                )}
-              </Section>
+                      </SelectButtonContent>
+                    </SelectButton>
+                  );
+                })}
+              </ButtonGrid>
+              {safeOrder.height && (calculations.heightCharge || 0) > 0 && (
+                <PriceBadge>
+                  Height upgrade: +${(calculations.heightCharge || 0).toLocaleString()}
+                </PriceBadge>
+              )}
+            </Section>
 
-              <ColorSelector
-  selectedColors={order.colors}
-  onColorChange={handleColorChange}
-/>
+            {/* COLORS */}
+            <ColorSelector selectedColors={order.colors} onColorChange={handleColorChange} />
 
-              {/* ENCLOSURE OPTIONS */}
-              <Section $disabled={!safeOrder.height}>
-                <SectionHeader>
-                  <SectionTitleGroup>
-                    <StepBadge>{isCommercialBuilding ? '4' : '5'}</StepBadge>
-                    <SectionTitle>Enclosure Options</SectionTitle>
-                  </SectionTitleGroup>
-                </SectionHeader>
-                <SectionDescription>
-                  Add walls and paneling to enclose your {isCommercialBuilding ? 'building' : 'carport'} (optional)
-                </SectionDescription>
+            {/* ENCLOSURES */}
+            <Section $disabled={!safeOrder.height}>
+              <SectionHeader>
+                <SectionTitleGroup>
+                  <StepBadge>{isCommercialBuilding ? '4' : '5'}</StepBadge>
+                  <SectionTitle>Enclosures</SectionTitle>
+                </SectionTitleGroup>
+              </SectionHeader>
 
-                {/* Both Sides Closed */}
-                <OptionCard
-                  $active={safeOrder.options.bothSidesClosed}
-                  onClick={() => toggleOption && toggleOption('bothSidesClosed')}
-                >
-                  <OptionInfo>
-                    <OptionName>Both Sides Closed</OptionName>
-                    <OptionDescription>Full metal panels on both long sides</OptionDescription>
-                    {(calculations.bothSidesClosedPrice || 0) > 0 && (
-                      <OptionPrice>+${(calculations.bothSidesClosedPrice || 0).toLocaleString()}</OptionPrice>
-                    )}
-                  </OptionInfo>
-                  <Checkbox $checked={safeOrder.options.bothSidesClosed}>
-                    {safeOrder.options.bothSidesClosed && '✓'}
-                  </Checkbox>
-                </OptionCard>
-
-                {/* Vertical Sides (Both) - Carports only */}
-                {!isCommercialBuilding && (
-                  <OptionCard
-                    $active={safeOrder.options.verticalSidesBoth}
-                    onClick={() => toggleOption && toggleOption('verticalSidesBoth')}
-                  >
-                    <OptionInfo>
-                      <OptionName>Vertical Sides (Both)</OptionName>
-                      <OptionDescription>Vertical metal panels on both long sides</OptionDescription>
-                      {(calculations.verticalSidesBothPrice || 0) > 0 && (
-                        <OptionPrice>+${(calculations.verticalSidesBothPrice || 0).toLocaleString()}</OptionPrice>
-                      )}
-                    </OptionInfo>
-                    <Checkbox $checked={safeOrder.options.verticalSidesBoth}>
-                      {safeOrder.options.verticalSidesBoth && '✓'}
-                    </Checkbox>
-                  </OptionCard>
-                )}
-
-                {/* ✅ Vertical 2 Tone (Both) - NOW AVAILABLE FOR BOTH CARPORTS AND COMMERCIAL! */}
-                <OptionCard
-                  $active={safeOrder.options.vertical2ToneBoth}
-                  onClick={() => toggleOption && toggleOption('vertical2ToneBoth')}
-                >
-                  <OptionInfo>
-                    <OptionName>Vertical 2 Tone (Both Sides)</OptionName>
-                    <OptionDescription>
-                      {isCommercialBuilding 
-                        ? 'Two-tone vertical metal panels on both long sides - Commercial pricing' 
-                        : 'Two-tone vertical panels on both long sides'}
-                    </OptionDescription>
-                    {(calculations.vertical2ToneBothPrice || 0) > 0 && (
-                      <OptionPrice>+${(calculations.vertical2ToneBothPrice || 0).toLocaleString()}</OptionPrice>
-                    )}
-                  </OptionInfo>
-                  <Checkbox $checked={safeOrder.options.vertical2ToneBoth}>
-                    {safeOrder.options.vertical2ToneBoth && '✓'}
-                  </Checkbox>
-                </OptionCard>
-
-                {/* Each End Closed */}
-                <CounterGroup>
-                  <CounterLabel>Each End Closed - ${(calculations.eachEndClosedPricePerEnd || 0).toLocaleString()} per end</CounterLabel>
-                  <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('eachEndClosed', -1)}
-                      disabled={(safeOrder.counters.eachEndClosed || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
-                    <CounterValue>{safeOrder.counters.eachEndClosed || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('eachEndClosed', 1)}
-                      disabled={(safeOrder.counters.eachEndClosed || 0) >= 2}
-                    >
-                      +
-                    </CounterButton>
-                  </CounterControl>
-                  {(safeOrder.counters.eachEndClosed || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.eachEndClosedPrice || 0).toLocaleString()}
-                    </div>
+              <OptionCard
+                $active={safeOrder.options.bothSidesClosed}
+                onClick={() => toggleOption && toggleOption('bothSidesClosed')}
+              >
+                <OptionInfo>
+                  <OptionName>Both Sides Closed</OptionName>
+                  {(calculations.bothSidesClosedPrice || 0) > 0 && (
+                    <OptionPrice>+${(calculations.bothSidesClosedPrice || 0).toLocaleString()}</OptionPrice>
                   )}
-                </CounterGroup>
+                </OptionInfo>
+                <Checkbox $checked={safeOrder.options.bothSidesClosed}>
+                  {safeOrder.options.bothSidesClosed && '✓'}
+                </Checkbox>
+              </OptionCard>
 
-                {/* Vertical End - Carports only */}
-                {!isCommercialBuilding && (
-                  <CounterGroup>
-                    <CounterLabel>Vertical End - ${(calculations.verticalEndPricePerEnd || 0).toLocaleString()} per end</CounterLabel>
-                    <CounterButtons>
-                      <SelectButton
-                        $active={safeOrder.verticalEndCount === 0}
-                        onClick={() => setVerticalEndCount && setVerticalEndCount(0)}
-                      >
-                        None
-                      </SelectButton>
-                      <SelectButton
-                        $active={safeOrder.verticalEndCount === 1}
-                        onClick={() => setVerticalEndCount && setVerticalEndCount(1)}
-                      >
-                        1 End
-                      </SelectButton>
-                      <SelectButton
-                        $active={safeOrder.verticalEndCount === 2}
-                        onClick={() => setVerticalEndCount && setVerticalEndCount(2)}
-                      >
-                        2 Ends
-                      </SelectButton>
-                    </CounterButtons>
-                    {safeOrder.verticalEndCount > 0 && (
-                      <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                        Total: ${(calculations.verticalEndPrice || 0).toLocaleString()}
-                      </div>
+              {!isCommercialBuilding && (
+                <OptionCard
+                  $active={safeOrder.options.verticalSidesBoth}
+                  onClick={() => toggleOption && toggleOption('verticalSidesBoth')}
+                >
+                  <OptionInfo>
+                    <OptionName>Vertical Sides (Both)</OptionName>
+                    {(calculations.verticalSidesBothPrice || 0) > 0 && (
+                      <OptionPrice>+${(calculations.verticalSidesBothPrice || 0).toLocaleString()}</OptionPrice>
                     )}
-                  </CounterGroup>
-                )}
+                  </OptionInfo>
+                  <Checkbox $checked={safeOrder.options.verticalSidesBoth}>
+                    {safeOrder.options.verticalSidesBoth && '✓'}
+                  </Checkbox>
+                </OptionCard>
+              )}
 
-                 <CounterGroup>
+              <OptionCard
+                $active={safeOrder.options.vertical2ToneBoth}
+                onClick={() => toggleOption && toggleOption('vertical2ToneBoth')}
+              >
+                <OptionInfo>
+                  <OptionName>Vertical 2 Tone (Both)</OptionName>
+                  {(calculations.vertical2ToneBothPrice || 0) > 0 && (
+                    <OptionPrice>+${(calculations.vertical2ToneBothPrice || 0).toLocaleString()}</OptionPrice>
+                  )}
+                </OptionInfo>
+                <Checkbox $checked={safeOrder.options.vertical2ToneBoth}>
+                  {safeOrder.options.vertical2ToneBoth && '✓'}
+                </Checkbox>
+              </OptionCard>
 
-                  
-                <CounterLabel>
-                  Vertical 2 Tone End - ${(calculations.vertical2ToneEndPricePerEnd || 0).toLocaleString()} per end
-                  {isCommercialBuilding && <span style={{marginLeft: '8px', fontSize: '12px', opacity: 0.8}}>(Commercial pricing)</span>}
-                </CounterLabel>
+              {/* End Closures */}
+              <CounterGroup>
+                <CounterLabel>Each End Closed - ${(calculations.eachEndClosedPricePerEnd || 0).toLocaleString()}/end</CounterLabel>
+                <CounterControl>
+                  <CounterButton onClick={() => updateCounter && updateCounter('eachEndClosed', -1)} disabled={(safeOrder.counters.eachEndClosed || 0) === 0}>−</CounterButton>
+                  <CounterValue>{safeOrder.counters.eachEndClosed || 0}</CounterValue>
+                  <CounterButton onClick={() => updateCounter && updateCounter('eachEndClosed', 1)} disabled={(safeOrder.counters.eachEndClosed || 0) >= 2}>+</CounterButton>
+                </CounterControl>
+                {(safeOrder.counters.eachEndClosed || 0) > 0 && <CounterTotal>Total: ${(calculations.eachEndClosedPrice || 0).toLocaleString()}</CounterTotal>}
+              </CounterGroup>
+
+              {!isCommercialBuilding && (
+                <CounterGroup>
+                  <CounterLabel>Vertical End - ${(calculations.verticalEndPricePerEnd || 0).toLocaleString()}/end</CounterLabel>
+                  <CounterButtons>
+                    <SelectButton $active={safeOrder.verticalEndCount === 0} onClick={() => setVerticalEndCount && setVerticalEndCount(0)}>None</SelectButton>
+                    <SelectButton $active={safeOrder.verticalEndCount === 1} onClick={() => setVerticalEndCount && setVerticalEndCount(1)}>1</SelectButton>
+                    <SelectButton $active={safeOrder.verticalEndCount === 2} onClick={() => setVerticalEndCount && setVerticalEndCount(2)}>2</SelectButton>
+                  </CounterButtons>
+                  {safeOrder.verticalEndCount > 0 && <CounterTotal>Total: ${(calculations.verticalEndPrice || 0).toLocaleString()}</CounterTotal>}
+                </CounterGroup>
+              )}
+
+              <CounterGroup>
+                <CounterLabel>Vertical 2 Tone End - ${(calculations.vertical2ToneEndPricePerEnd || 0).toLocaleString()}/end</CounterLabel>
                 <CounterButtons>
-                  <SelectButton
-                    $active={safeOrder.vertical2ToneEndCount === 0}
-                    onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(0)}
-                  >
-                    None
-                  </SelectButton>
-                  <SelectButton
-                    $active={safeOrder.vertical2ToneEndCount === 1}
-                    onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(1)}
-                  >
-                    1 End
-                  </SelectButton>
-                  <SelectButton
-                    $active={safeOrder.vertical2ToneEndCount === 2}
-                    onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(2)}
-                  >
-                    2 Ends
-                  </SelectButton>
+                  <SelectButton $active={safeOrder.vertical2ToneEndCount === 0} onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(0)}>None</SelectButton>
+                  <SelectButton $active={safeOrder.vertical2ToneEndCount === 1} onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(1)}>1</SelectButton>
+                  <SelectButton $active={safeOrder.vertical2ToneEndCount === 2} onClick={() => setVertical2ToneEndCount && setVertical2ToneEndCount(2)}>2</SelectButton>
                 </CounterButtons>
-                {safeOrder.vertical2ToneEndCount > 0 && (
-                  <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                    Total: ${(calculations.vertical2ToneEndPrice || 0).toLocaleString()}
-                    {isCommercialBuilding && <span style={{marginLeft: '8px', fontSize: '12px'}}>({safeOrder.vertical2ToneEndCount} × ${(calculations.vertical2ToneEndPricePerEnd || 0).toLocaleString()})</span>}
-                  </div>
-                )}
-              </CounterGroup>  
-              </Section>
+                {safeOrder.vertical2ToneEndCount > 0 && <CounterTotal>Total: ${(calculations.vertical2ToneEndPrice || 0).toLocaleString()}</CounterTotal>}
+              </CounterGroup>
+            </Section>
 
-              {/* GARAGE DOORS */}
+            {/* GARAGE DOORS & SIDE OPENINGS - Side by side */}
+            <TwoColumnGrid>
               <Section $disabled={!safeOrder.height}>
                 <SectionHeader>
                   <SectionTitleGroup>
@@ -1503,72 +1311,37 @@ const OrderBuilder = () => {
                     <SectionTitle>Garage Doors</SectionTitle>
                   </SectionTitleGroup>
                 </SectionHeader>
-                <SectionDescription>
-                  Add roll-up garage doors to your {isCommercialBuilding ? 'building' : 'carport'}
-                </SectionDescription>
 
                 <DropdownGrid>
-                  <SelectDropdown
-                    value={garageDoorForm.size}
-                    onChange={(e) => setGarageDoorForm({...garageDoorForm, size: e.target.value})}
-                  >
-                    {GARAGE_DOOR_SIZES.map(size => (
-                      <option key={size} value={size}>{size}</option>
-                    ))}
+                  <SelectDropdown value={garageDoorForm.size} onChange={(e) => setGarageDoorForm({...garageDoorForm, size: e.target.value})}>
+                    {GARAGE_DOOR_SIZES.map(size => <option key={size} value={size}>{size}</option>)}
                   </SelectDropdown>
-
-                  <SelectDropdown
-                    value={garageDoorForm.certification}
-                    onChange={(e) => setGarageDoorForm({...garageDoorForm, certification: e.target.value})}
-                  >
-                    <option value="uncertified">Uncertified</option>
-                    <option value="certified">Certified</option>
+                  <SelectDropdown value={garageDoorForm.certification} onChange={(e) => setGarageDoorForm({...garageDoorForm, certification: e.target.value})}>
+                    <option value="uncertified">Uncert</option>
+                    <option value="certified">Cert</option>
                   </SelectDropdown>
-
-                  <SelectDropdown
-                    value={garageDoorForm.color}
-                    onChange={(e) => setGarageDoorForm({...garageDoorForm, color: e.target.value})}
-                  >
+                  <SelectDropdown value={garageDoorForm.color} onChange={(e) => setGarageDoorForm({...garageDoorForm, color: e.target.value})}>
                     <option value="white">White</option>
-                    <option value="colored">Colored</option>
+                    <option value="colored">Color</option>
                   </SelectDropdown>
                 </DropdownGrid>
 
-                <AddButton onClick={handleAddGarageDoor}>
-                  + Add Garage Door
-                </AddButton>
+                <AddButton onClick={handleAddGarageDoor}>+ Add Door</AddButton>
 
                 {safeOrder.garageDoors.length > 0 && (
                   <GarageDoorList>
                     {safeOrder.garageDoors.map((door, index) => (
                       <GarageDoorItem key={index}>
-                        <GarageDoorInfo>
-                          {door.size} {door.color} ({door.certification})
-                        </GarageDoorInfo>
-                        <RemoveButton onClick={() => removeGarageDoor && removeGarageDoor(index)}>
-                          Remove
-                        </RemoveButton>
+                        <GarageDoorInfo>{door.size} {door.color}</GarageDoorInfo>
+                        <RemoveButton onClick={() => removeGarageDoor && removeGarageDoor(index)}>×</RemoveButton>
                       </GarageDoorItem>
                     ))}
                   </GarageDoorList>
                 )}
 
-                {(calculations.garageDoorPrice || 0) > 0 && (
-                  <div style={{ 
-                    marginTop: '12px', 
-                    padding: '12px', 
-                    background: '#e3f2fd', 
-                    borderRadius: '8px',
-                    color: '#1e3c72',
-                    fontWeight: '600',
-                    textAlign: 'center'
-                  }}>
-                    Garage Doors Total: ${(calculations.garageDoorPrice || 0).toLocaleString()}
-                  </div>
-                )}
+                {(calculations.garageDoorPrice || 0) > 0 && <CounterTotal>Total: ${(calculations.garageDoorPrice || 0).toLocaleString()}</CounterTotal>}
               </Section>
 
-              {/* SIDE OPENINGS */}
               <Section $disabled={!safeOrder.height}>
                 <SectionHeader>
                   <SectionTitleGroup>
@@ -1576,583 +1349,217 @@ const OrderBuilder = () => {
                     <SectionTitle>Side Openings</SectionTitle>
                   </SectionTitleGroup>
                 </SectionHeader>
-                <SectionDescription>
-                  Add side entry openings (affects pricing based on whether you have garage doors)
-                </SectionDescription>
 
                 <CounterGroup>
-                  <CounterLabel>
-                    Number of Side Openings
-                    {safeOrder.garageDoors.length > 0 
-                      ? ` - $${(calculations.sideOpeningPriceEach || 0).toLocaleString()} each (with garage door)`
-                      : ` - $${(calculations.sideOpeningPriceEach || 0).toLocaleString()} each (no garage door)`}
-                  </CounterLabel>
+                  <CounterLabel>Openings - ${(calculations.sideOpeningPriceEach || 0).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('sideOpenings', -1)}
-                      disabled={(safeOrder.counters.sideOpenings || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('sideOpenings', -1)} disabled={(safeOrder.counters.sideOpenings || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.sideOpenings || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('sideOpenings', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('sideOpenings', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.sideOpenings || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.sideOpeningPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.sideOpenings || 0) > 0 && <CounterTotal>Total: ${(calculations.sideOpeningPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
               </Section>
+            </TwoColumnGrid>
 
-              {/* ADDITIONAL OPTIONS */}
-              <Section $disabled={!safeOrder.height}>
-                <SectionHeader>
-                  <SectionTitleGroup>
-                    <StepBadge>{isCommercialBuilding ? '7' : '8'}</StepBadge>
-                    <SectionTitle>Additional Options</SectionTitle>
-                  </SectionTitleGroup>
-                </SectionHeader>
-                <SectionDescription>
-                  Doors, windows, insulation, and other extras
-                </SectionDescription>
+            {/* ADDITIONAL OPTIONS */}
+            <Section $disabled={!safeOrder.height}>
+              <SectionHeader>
+                <SectionTitleGroup>
+                  <StepBadge>{isCommercialBuilding ? '7' : '8'}</StepBadge>
+                  <SectionTitle>Additional Options</SectionTitle>
+                </SectionTitleGroup>
+              </SectionHeader>
 
-                {/* Walk-in Door */}
+              <TwoColumnGrid>
                 <CounterGroup>
-                  <CounterLabel>Walk-in Door - ${(calculations.walkInDoorPriceEach || 0).toLocaleString()} each</CounterLabel>
+                  <CounterLabel>Walk-in Door - ${(calculations.walkInDoorPriceEach || 0).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('walkInDoor', -1)}
-                      disabled={(safeOrder.counters.walkInDoor || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('walkInDoor', -1)} disabled={(safeOrder.counters.walkInDoor || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.walkInDoor || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('walkInDoor', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('walkInDoor', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.walkInDoor || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.walkInDoorPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.walkInDoor || 0) > 0 && <CounterTotal>${(calculations.walkInDoorPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Windows 30x30 */}
                 <CounterGroup>
-                  <CounterLabel>Windows 30x30 - ${(calculations.window30x30PriceEach || 0).toLocaleString()} each</CounterLabel>
+                  <CounterLabel>Windows 30×30 - ${(calculations.window30x30PriceEach || 0).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('window30x30', -1)}
-                      disabled={(safeOrder.counters.window30x30 || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('window30x30', -1)} disabled={(safeOrder.counters.window30x30 || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.window30x30 || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('window30x30', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('window30x30', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.window30x30 || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.window30x30Price || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.window30x30 || 0) > 0 && <CounterTotal>${(calculations.window30x30Price || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Windows 30x36 */}
                 <CounterGroup>
-                  <CounterLabel>Windows 30x36 - ${(calculations.window30x36PriceEach || 0).toLocaleString()} each</CounterLabel>
+                  <CounterLabel>Windows 30×36 - ${(calculations.window30x36PriceEach || 0).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('window30x36', -1)}
-                      disabled={(safeOrder.counters.window30x36 || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('window30x36', -1)} disabled={(safeOrder.counters.window30x36 || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.window30x36 || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('window30x36', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('window30x36', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.window30x36 || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.window30x36Price || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.window30x36 || 0) > 0 && <CounterTotal>${(calculations.window30x36Price || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Insulation Toggle */}
-                <OptionCard
-                  $active={safeOrder.options.insulationDoubleBubble}
-                  onClick={() => toggleOption && toggleOption('insulationDoubleBubble')}
-                >
+                <CounterGroup>
+                  <CounterLabel>Certified Gable - ${(calculations.certifiedGableEndPriceEach || 0).toLocaleString()}/ea</CounterLabel>
+                  <CounterControl>
+                    <CounterButton onClick={() => updateCounter && updateCounter('certifiedGableEnd', -1)} disabled={(safeOrder.counters.certifiedGableEnd || 0) === 0}>−</CounterButton>
+                    <CounterValue>{safeOrder.counters.certifiedGableEnd || 0}</CounterValue>
+                    <CounterButton onClick={() => updateCounter && updateCounter('certifiedGableEnd', 1)} disabled={(safeOrder.counters.certifiedGableEnd || 0) >= 2}>+</CounterButton>
+                  </CounterControl>
+                  {(safeOrder.counters.certifiedGableEnd || 0) > 0 && <CounterTotal>${(calculations.certifiedGableEndPrice || 0).toLocaleString()}</CounterTotal>}
+                </CounterGroup>
+              </TwoColumnGrid>
+
+              <div style={{ marginTop: '10px' }}>
+                <OptionCard $active={safeOrder.options.insulationDoubleBubble} onClick={() => toggleOption && toggleOption('insulationDoubleBubble')}>
                   <OptionInfo>
                     <OptionName>Insulation (Double Bubble)</OptionName>
-                    <OptionDescription>
-                      {(calculations.squareFootage || 0) > 0 && `${calculations.squareFootage} sq ft`}
-                    </OptionDescription>
-                    {(calculations.insulationDoubleBubblePrice || 0) > 0 && (
-                      <OptionPrice>+${(calculations.insulationDoubleBubblePrice || 0).toLocaleString()}</OptionPrice>
-                    )}
+                    {(calculations.insulationDoubleBubblePrice || 0) > 0 && <OptionPrice>+${(calculations.insulationDoubleBubblePrice || 0).toLocaleString()}</OptionPrice>}
                   </OptionInfo>
-                  <Checkbox $checked={safeOrder.options.insulationDoubleBubble}>
-                    {safeOrder.options.insulationDoubleBubble && '✓'}
-                  </Checkbox>
+                  <Checkbox $checked={safeOrder.options.insulationDoubleBubble}>{safeOrder.options.insulationDoubleBubble && '✓'}</Checkbox>
                 </OptionCard>
 
-                <OptionCard
-                  $active={safeOrder.options.insulationFiberglass}
-                  onClick={() => toggleOption && toggleOption('insulationFiberglass')}
-                >
+                <OptionCard $active={safeOrder.options.insulationFiberglass} onClick={() => toggleOption && toggleOption('insulationFiberglass')}>
                   <OptionInfo>
                     <OptionName>Insulation (Fiberglass)</OptionName>
-                    <OptionDescription>
-                      {(calculations.squareFootage || 0) > 0 && `${calculations.squareFootage} sq ft`}
-                    </OptionDescription>
-                    {(calculations.insulationFiberglassPrice || 0) > 0 && (
-                      <OptionPrice>+${(calculations.insulationFiberglassPrice || 0).toLocaleString()}</OptionPrice>
-                    )}
+                    {(calculations.insulationFiberglassPrice || 0) > 0 && <OptionPrice>+${(calculations.insulationFiberglassPrice || 0).toLocaleString()}</OptionPrice>}
                   </OptionInfo>
-                  <Checkbox $checked={safeOrder.options.insulationFiberglass}>
-                    {safeOrder.options.insulationFiberglass && '✓'}
-                  </Checkbox>
+                  <Checkbox $checked={safeOrder.options.insulationFiberglass}>{safeOrder.options.insulationFiberglass && '✓'}</Checkbox>
                 </OptionCard>
 
-                {/* Certified Gable End */}
-                <CounterGroup>
-                  <CounterLabel>Certified Gable End - ${(calculations.certifiedGableEndPriceEach || 0).toLocaleString()} each</CounterLabel>
-                  <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('certifiedGableEnd', -1)}
-                      disabled={(safeOrder.counters.certifiedGableEnd || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
-                    <CounterValue>{safeOrder.counters.certifiedGableEnd || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('certifiedGableEnd', 1)}
-                      disabled={(safeOrder.counters.certifiedGableEnd || 0) >= 2}
-                    >
-                      +
-                    </CounterButton>
-                  </CounterControl>
-                  {(safeOrder.counters.certifiedGableEnd || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.certifiedGableEndPrice || 0).toLocaleString()}
-                    </div>
-                  )}
-                </CounterGroup>
-
-                {/* Colored Screws */}
-                <OptionCard
-                  $active={safeOrder.options.coloredScrews}
-                  onClick={() => toggleOption && toggleOption('coloredScrews')}
-                >
+                <OptionCard $active={safeOrder.options.coloredScrews} onClick={() => toggleOption && toggleOption('coloredScrews')}>
                   <OptionInfo>
                     <OptionName>Colored Screws</OptionName>
-                    <OptionDescription>Matching screws for better aesthetics</OptionDescription>
-                    {(calculations.coloredScrewsPrice || 0) > 0 && (
-                      <OptionPrice>+${(calculations.coloredScrewsPrice || 0).toLocaleString()}</OptionPrice>
-                    )}
+                    {(calculations.coloredScrewsPrice || 0) > 0 && <OptionPrice>+${(calculations.coloredScrewsPrice || 0).toLocaleString()}</OptionPrice>}
                   </OptionInfo>
-                  <Checkbox $checked={safeOrder.options.coloredScrews}>
-                    {safeOrder.options.coloredScrews && '✓'}
-                  </Checkbox>
+                  <Checkbox $checked={safeOrder.options.coloredScrews}>{safeOrder.options.coloredScrews && '✓'}</Checkbox>
                 </OptionCard>
-              </Section>
+              </div>
+            </Section>
 
-              {/* CUSTOM PANELS */}
-              <Section $disabled={!safeOrder.height}>
-                <SectionHeader>
-                  <SectionTitleGroup>
-                    <StepBadge>{isCommercialBuilding ? '8' : '9'}</StepBadge>
-                    <SectionTitle>Custom Panels & Frameouts</SectionTitle>
-                  </SectionTitleGroup>
-                </SectionHeader>
-                <SectionDescription>
-                  Add custom panels, frameouts, and special configurations
-                </SectionDescription>
+            {/* CUSTOM PANELS */}
+            <Section $disabled={!safeOrder.height}>
+              <SectionHeader>
+                <SectionTitleGroup>
+                  <StepBadge>{isCommercialBuilding ? '8' : '9'}</StepBadge>
+                  <SectionTitle>Custom Panels</SectionTitle>
+                </SectionTitleGroup>
+              </SectionHeader>
 
-                {/* Frameouts */}
+              <TwoColumnGrid>
                 <CounterGroup>
-                  <CounterLabel>Frameouts - ${(calculations.frameoutPriceEach || 0).toLocaleString()} each</CounterLabel>
+                  <CounterLabel>Frameouts - ${(calculations.frameoutPriceEach || 0).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('frameouts', -1)}
-                      disabled={(safeOrder.counters.frameouts || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('frameouts', -1)} disabled={(safeOrder.counters.frameouts || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.frameouts || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('frameouts', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('frameouts', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.frameouts || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.frameoutPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.frameouts || 0) > 0 && <CounterTotal>${(calculations.frameoutPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Half Panel with Trim */}
                 <CounterGroup>
-                  <CounterLabel>
-                    1/2 Panel with Trim - ${getPanelPrice('halfPanel', 1).toLocaleString()} each
-                  </CounterLabel>
+                  <CounterLabel>½ Panel w/ Trim - ${getPanelPrice('halfPanel', 1).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('halfPanelWithTrim', -1)}
-                      disabled={(safeOrder.counters.halfPanelWithTrim || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('halfPanelWithTrim', -1)} disabled={(safeOrder.counters.halfPanelWithTrim || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.halfPanelWithTrim || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('halfPanelWithTrim', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('halfPanelWithTrim', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.halfPanelWithTrim || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.halfPanelWithTrimPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.halfPanelWithTrim || 0) > 0 && <CounterTotal>${(calculations.halfPanelWithTrimPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Cut Panel */}
                 <CounterGroup>
-                  <CounterLabel>
-                    Cut Panel - ${getPanelPrice('cutPanel', 1).toLocaleString()} each
-                  </CounterLabel>
+                  <CounterLabel>Cut Panel - ${getPanelPrice('cutPanel', 1).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('cutPanel', -1)}
-                      disabled={(safeOrder.counters.cutPanel || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('cutPanel', -1)} disabled={(safeOrder.counters.cutPanel || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.cutPanel || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('cutPanel', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('cutPanel', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.cutPanel || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.cutPanelPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.cutPanel || 0) > 0 && <CounterTotal>${(calculations.cutPanelPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
 
-                {/* Panels 3ft */}
                 <CounterGroup>
-                  <CounterLabel>
-                    3ft Panels - ${getPanelPrice('panels3ft', 1).toLocaleString()} each
-                  </CounterLabel>
+                  <CounterLabel>3ft Panels - ${getPanelPrice('panels3ft', 1).toLocaleString()}/ea</CounterLabel>
                   <CounterControl>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('panels3ft', -1)}
-                      disabled={(safeOrder.counters.panels3ft || 0) === 0}
-                    >
-                      −
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('panels3ft', -1)} disabled={(safeOrder.counters.panels3ft || 0) === 0}>−</CounterButton>
                     <CounterValue>{safeOrder.counters.panels3ft || 0}</CounterValue>
-                    <CounterButton 
-                      onClick={() => updateCounter && updateCounter('panels3ft', 1)}
-                    >
-                      +
-                    </CounterButton>
+                    <CounterButton onClick={() => updateCounter && updateCounter('panels3ft', 1)}>+</CounterButton>
                   </CounterControl>
-                  {(safeOrder.counters.panels3ft || 0) > 0 && (
-                    <div style={{ marginTop: '10px', color: '#2a5298', fontWeight: '600', fontSize: '14px' }}>
-                      Total: ${(calculations.panels3ftPrice || 0).toLocaleString()}
-                    </div>
-                  )}
+                  {(safeOrder.counters.panels3ft || 0) > 0 && <CounterTotal>${(calculations.panels3ftPrice || 0).toLocaleString()}</CounterTotal>}
                 </CounterGroup>
-              </Section>
-            </LeftColumn>
+              </TwoColumnGrid>
+            </Section>
+          </LeftColumn>
 
-            {/* RIGHT COLUMN - ORDER SUMMARY */}
-            <div>
-              <SummaryCard>
-                <SummaryTitle>📋 Order Summary</SummaryTitle>
+          {/* SUMMARY CARD - Sticky on scroll */}
+          <SummaryWrapper>
+            <SummaryCard>
+              <SummaryTitle>📋 Order Summary</SummaryTitle>
 
-                {/* Basic Configuration */}
+              <SummarySection>
+                <SummarySectionTitle>Configuration</SummarySectionTitle>
+                {safeOrder.buildingType && <SummaryRow><SummaryLabel>Type</SummaryLabel><SummaryValue>{labels.buildingType}</SummaryValue></SummaryRow>}
+                {safeOrder.roofStyle && <SummaryRow><SummaryLabel>Roof</SummaryLabel><SummaryValue>{labels.roofStyle}</SummaryValue></SummaryRow>}
+                {safeOrder.width && safeOrder.length && <SummaryRow><SummaryLabel>Size</SummaryLabel><SummaryValue>{labels.size}</SummaryValue></SummaryRow>}
+                {safeOrder.height && <SummaryRow><SummaryLabel>Height</SummaryLabel><SummaryValue>{labels.height}</SummaryValue></SummaryRow>}
+              </SummarySection>
+
+              {(order.colors?.roof || order.colors?.side || order.colors?.trim) && (
                 <SummarySection>
-                  <SummarySectionTitle>Configuration</SummarySectionTitle>
-                  {safeOrder.buildingType && (
-                    <SummaryRow>
-                      <SummaryLabel>Type:</SummaryLabel>
-                      <SummaryValue>{labels.buildingType || safeOrder.buildingType}</SummaryValue>
-                    </SummaryRow>
-                  )}
-                  {safeOrder.roofStyle && (
-                    <SummaryRow>
-                      <SummaryLabel>Roof Style:</SummaryLabel>
-                      <SummaryValue>{labels.roofStyle || safeOrder.roofStyle}</SummaryValue>
-                    </SummaryRow>
-                  )}
-                  {safeOrder.width && safeOrder.length && (
-                    <SummaryRow>
-                      <SummaryLabel>Size:</SummaryLabel>
-                      <SummaryValue>{labels.size || `${safeOrder.width}' x ${safeOrder.length}'`}</SummaryValue>
-                    </SummaryRow>
-                  )}
-                  {safeOrder.height && (
-                    <SummaryRow>
-                      <SummaryLabel>Height:</SummaryLabel>
-                      <SummaryValue>{labels.height || `${safeOrder.height}'`}</SummaryValue>
-                    </SummaryRow>
-                  )}
+                  <SummarySectionTitle>Colors</SummarySectionTitle>
+                  {order.colors.roof && <SummaryRow><SummaryLabel>Roof</SummaryLabel><SummaryValue>{order.colors.roof}</SummaryValue></SummaryRow>}
+                  {order.colors.side && <SummaryRow><SummaryLabel>Sides</SummaryLabel><SummaryValue>{order.colors.side}</SummaryValue></SummaryRow>}
+                  {order.colors.trim && <SummaryRow><SummaryLabel>Trim</SummaryLabel><SummaryValue>{order.colors.trim}</SummaryValue></SummaryRow>}
                 </SummarySection>
+              )}
 
-                {(order.colors?.roof || order.colors?.side || order.colors?.trim) && (
-  <SummarySection>
-    <SummarySectionTitle>🎨 Colors</SummarySectionTitle>
-    
-    {order.colors.roof && (
-      <SummaryRow>
-        <SummaryLabel>Roof:</SummaryLabel>
-        <SummaryValue>{order.colors.roof}</SummaryValue>
-      </SummaryRow>
-    )}
-    
-    {order.colors.side && (
-      <SummaryRow>
-        <SummaryLabel>Sides:</SummaryLabel>
-        <SummaryValue>{order.colors.side}</SummaryValue>
-      </SummaryRow>
-    )}
-    
-    {order.colors.trim && (
-      <SummaryRow>
-        <SummaryLabel>Trim:</SummaryLabel>
-        <SummaryValue>{order.colors.trim}</SummaryValue>
-      </SummaryRow>
-    )}
-  </SummarySection>
-)}
+              {(calculations.basePrice || 0) > 0 && (
+                <SummarySection>
+                  <SummarySectionTitle>Pricing</SummarySectionTitle>
+                  <SummaryRow><SummaryLabel>Base</SummaryLabel><SummaryValue>${(calculations.basePrice || 0).toLocaleString()}</SummaryValue></SummaryRow>
+                  {(calculations.heightCharge || 0) > 0 && <SummaryRow><SummaryLabel>Height</SummaryLabel><SummaryValue>+${(calculations.heightCharge || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.bothSidesClosedPrice || 0) > 0 && <SummaryRow><SummaryLabel>Sides</SummaryLabel><SummaryValue>+${(calculations.bothSidesClosedPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.verticalSidesBothPrice || 0) > 0 && <SummaryRow><SummaryLabel>Vert Sides</SummaryLabel><SummaryValue>+${(calculations.verticalSidesBothPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.vertical2ToneBothPrice || 0) > 0 && <SummaryRow><SummaryLabel>V2T Sides</SummaryLabel><SummaryValue>+${(calculations.vertical2ToneBothPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.eachEndClosedPrice || 0) > 0 && <SummaryRow><SummaryLabel>Ends ({safeOrder.counters.eachEndClosed})</SummaryLabel><SummaryValue>+${(calculations.eachEndClosedPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.verticalEndPrice || 0) > 0 && <SummaryRow><SummaryLabel>Vert Ends</SummaryLabel><SummaryValue>+${(calculations.verticalEndPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.vertical2ToneEndPrice || 0) > 0 && <SummaryRow><SummaryLabel>V2T Ends</SummaryLabel><SummaryValue>+${(calculations.vertical2ToneEndPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.garageDoorPrice || 0) > 0 && <SummaryRow><SummaryLabel>Doors ({safeOrder.garageDoors.length})</SummaryLabel><SummaryValue>+${(calculations.garageDoorPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.sideOpeningPrice || 0) > 0 && <SummaryRow><SummaryLabel>Openings</SummaryLabel><SummaryValue>+${(calculations.sideOpeningPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.walkInDoorPrice || 0) > 0 && <SummaryRow><SummaryLabel>Walk-in</SummaryLabel><SummaryValue>+${(calculations.walkInDoorPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.window30x30Price || 0) > 0 && <SummaryRow><SummaryLabel>Win 30×30</SummaryLabel><SummaryValue>+${(calculations.window30x30Price || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.window30x36Price || 0) > 0 && <SummaryRow><SummaryLabel>Win 30×36</SummaryLabel><SummaryValue>+${(calculations.window30x36Price || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.insulationDoubleBubblePrice || 0) > 0 && <SummaryRow><SummaryLabel>Insul DB</SummaryLabel><SummaryValue>+${(calculations.insulationDoubleBubblePrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.insulationFiberglassPrice || 0) > 0 && <SummaryRow><SummaryLabel>Insul FG</SummaryLabel><SummaryValue>+${(calculations.insulationFiberglassPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.certifiedGableEndPrice || 0) > 0 && <SummaryRow><SummaryLabel>Gable</SummaryLabel><SummaryValue>+${(calculations.certifiedGableEndPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.coloredScrewsPrice || 0) > 0 && <SummaryRow><SummaryLabel>Screws</SummaryLabel><SummaryValue>+${(calculations.coloredScrewsPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.frameoutPrice || 0) > 0 && <SummaryRow><SummaryLabel>Frameouts</SummaryLabel><SummaryValue>+${(calculations.frameoutPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.halfPanelWithTrimPrice || 0) > 0 && <SummaryRow><SummaryLabel>½ Panels</SummaryLabel><SummaryValue>+${(calculations.halfPanelWithTrimPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.cutPanelPrice || 0) > 0 && <SummaryRow><SummaryLabel>Cut Panels</SummaryLabel><SummaryValue>+${(calculations.cutPanelPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                  {(calculations.panels3ftPrice || 0) > 0 && <SummaryRow><SummaryLabel>3ft Panels</SummaryLabel><SummaryValue>+${(calculations.panels3ftPrice || 0).toLocaleString()}</SummaryValue></SummaryRow>}
+                </SummarySection>
+              )}
 
-                {/* Price Breakdown */}
-                {(calculations.basePrice || 0) > 0 && (
-                  <SummarySection>
-                    <SummarySectionTitle>Price Breakdown</SummarySectionTitle>
-                    <SummaryRow>
-                      <SummaryLabel>Base Price:</SummaryLabel>
-                      <SummaryValue>${(calculations.basePrice || 0).toLocaleString()}</SummaryValue>
-                    </SummaryRow>
-                    
-                    {(calculations.heightCharge || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Height Charge:</SummaryLabel>
-                        <SummaryValue>+${(calculations.heightCharge || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.bothSidesClosedPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Both Sides Closed:</SummaryLabel>
-                        <SummaryValue>+${(calculations.bothSidesClosedPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.verticalSidesBothPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Vertical Sides (Both):</SummaryLabel>
-                        <SummaryValue>+${(calculations.verticalSidesBothPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
+              {(calculations.subtotal || 0) > 0 && (
+                <TotalSection>
+                  <TotalRow><span>Subtotal</span><span>${(calculations.subtotal || 0).toLocaleString()}</span></TotalRow>
+                  <TotalRow><span>Tax (6.75%)</span><span>${(calculations.tax || 0).toLocaleString()}</span></TotalRow>
+                  <GrandTotal><span>Total</span><span>${(calculations.total || 0).toLocaleString()}</span></GrandTotal>
+                  <DepositRow><span>Deposit (15%)</span><span>${(calculations.deposit || 0).toLocaleString()}</span></DepositRow>
+                </TotalSection>
+              )}
 
-                    {(calculations.vertical2ToneBothPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Vertical 2 Tone (Both):</SummaryLabel>
-                        <SummaryValue>+${(calculations.vertical2ToneBothPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.eachEndClosedPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>End Closures ({safeOrder.counters.eachEndClosed || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.eachEndClosedPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.verticalEndPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Vertical Ends ({safeOrder.verticalEndCount || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.verticalEndPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
+              <ButtonGroup>
+                <Button onClick={handleReset}>🔄 Reset</Button>
+                <Button $variant="primary" onClick={handleAddToCart} disabled={!isOrderComplete}>✓ Add to Cart</Button>
+              </ButtonGroup>
 
-                    {(calculations.vertical2ToneEndPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Vertical 2 Tone Ends ({safeOrder.vertical2ToneEndCount || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.vertical2ToneEndPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.garageDoorPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Garage Doors ({safeOrder.garageDoors.length}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.garageDoorPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.sideOpeningPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Side Openings ({safeOrder.counters.sideOpenings || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.sideOpeningPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.walkInDoorPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Walk-in Doors ({safeOrder.counters.walkInDoor || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.walkInDoorPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.window30x30Price || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Windows 30x30 ({safeOrder.counters.window30x30 || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.window30x30Price || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.window30x36Price || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Windows 30x36 ({safeOrder.counters.window30x36 || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.window30x36Price || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.insulationDoubleBubblePrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Insulation (Double Bubble):</SummaryLabel>
-                        <SummaryValue>+${(calculations.insulationDoubleBubblePrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.insulationFiberglassPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Insulation (Fiberglass):</SummaryLabel>
-                        <SummaryValue>+${(calculations.insulationFiberglassPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.certifiedGableEndPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Certified Gable ({safeOrder.counters.certifiedGableEnd || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.certifiedGableEndPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.coloredScrewsPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Colored Screws:</SummaryLabel>
-                        <SummaryValue>+${(calculations.coloredScrewsPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.frameoutPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Frameouts ({safeOrder.counters.frameouts || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.frameoutPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.halfPanelWithTrimPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>1/2 Panels ({safeOrder.counters.halfPanelWithTrim || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.halfPanelWithTrimPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.cutPanelPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>Cut Panels ({safeOrder.counters.cutPanel || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.cutPanelPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                    
-                    {(calculations.panels3ftPrice || 0) > 0 && (
-                      <SummaryRow>
-                        <SummaryLabel>3ft Panels ({safeOrder.counters.panels3ft || 0}):</SummaryLabel>
-                        <SummaryValue>+${(calculations.panels3ftPrice || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    )}
-                  </SummarySection>
-                )}
-
-                {/* Total Section */}
-                {(calculations.subtotal || 0) > 0 && (
-                  <>
-                    <SummarySection>
-                      <SummaryRow>
-                        <SummaryLabel>Subtotal:</SummaryLabel>
-                        <SummaryValue>${(calculations.subtotal || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                      <SummaryRow>
-                        <SummaryLabel>Tax (6.75%):</SummaryLabel>
-                        <SummaryValue>${(calculations.tax || 0).toLocaleString()}</SummaryValue>
-                      </SummaryRow>
-                    </SummarySection>
-
-                    <TotalRow>
-                      <SummaryLabel>Total:</SummaryLabel>
-                      <SummaryValue>${(calculations.total || 0).toLocaleString()}</SummaryValue>
-                    </TotalRow>
-
-                    <DepositRow>
-                      <SummaryLabel>Deposit (15%):</SummaryLabel>
-                      <SummaryValue>${(calculations.deposit || 0).toLocaleString()}</SummaryValue>
-                    </DepositRow>
-                  </>
-                )}
-
-                {/* Action Buttons */}
-                <ButtonGroup>
-                  <Button 
-                    $variant="secondary"
-                    onClick={handleReset}
-                  >
-                    🔄 Reset
-                  </Button>
-                  <Button 
-                    $variant="primary"
-                    onClick={handleAddToCart}
-                    disabled={!isOrderComplete}
-                  >
-                    ✓ Add to Cart
-                  </Button>
-                </ButtonGroup>
-
-                {!isOrderComplete && (
-                  <ValidationMessage>
-                    Complete required selections: Building Type, Width, Length, and Height
-                  </ValidationMessage>
-                )}
-              </SummaryCard>
-            </div>
-          </GridContainer>
-        </Wrapper>
+              {!isOrderComplete && <ValidationMessage>Complete: Type, Width, Length, Height</ValidationMessage>}
+            </SummaryCard>
+          </SummaryWrapper>
+        </GridContainer>
       </ContentWrapper>
     </Container>
   );
